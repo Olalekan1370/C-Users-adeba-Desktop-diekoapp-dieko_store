@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Add Course(Single Entry)
+            Add Supplier(Single Entry)
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -28,18 +28,24 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{courses.coursetitle}" required="true" requiredMessage="invalid course title"/>
-                            <label>Course Title</label>
+                        <p:inputText value="#{supplier.name}" required="true" 
+                                     requiredMessage="invalid course title"/>
+                            <label>Supplier name</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value="#{courses.coursecode}" required="true" requiredMessage="invalid course code"/>
-                            <label>Course Code</label>
+                        <p:inputText value="#{supplier.contactphone}" required="true" requiredMessage="invalid course code"/>
+                            <label>Contact Mobile</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputMask value="#{courses.courseunits}" mask="9" required="true" requiredMessage="invalid course unit"/>
-                            <label>Course Units</label>
+                        <p:inputText value="#{supplier.email}"  required="true" requiredMessage="invalid course unit"/>
+                            <label>Contact Email</label>
                         </h:panelGroup>
-                    <p:commandButton value="Save"  icon="fa fa-plus" action="#{courseController.createCourse}"
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText value="#{supplier.adress}" 
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Contact Address</label>
+                        </h:panelGroup>
+                    <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />
                 </p:panelGrid> 
                 

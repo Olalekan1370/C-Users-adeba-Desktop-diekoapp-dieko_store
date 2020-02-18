@@ -4,21 +4,21 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>timsoft.ehr.org</groupId>
-    <artifactId>palm_oil_gas</artifactId>
+    <artifactId>palm_oil</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>palm_oil_gas</name>
+    <name>palm_oil</name>
 
     <!-- Inherit defaults from Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.9.RELEASE</version>
-        <relativePath />
+        
     </parent>
     <properties>
         <java.version>1.8</java.version>
-        <context.path>palm_oil_gas</context.path>
+        <context.path>palm_oil</context.path>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <mysql.connector.version>5.1.31</mysql.connector.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -233,7 +233,7 @@
         </repository>
     </repositories>
     <build>
-        <finalName>palm_oil_gas</finalName>
+        <finalName>palm_oil</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <plugins>
             <plugin>
@@ -257,7 +257,7 @@
                 <version>8.1.9.v20130131</version>
                 <configuration>
                     <webAppConfig>
-                        <contextPath>/palm_oil_gas</contextPath>
+                        <contextPath>/palm_oil</contextPath>
                     </webAppConfig>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
                     <connectors>

@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Course</ui:define>
+    <ui:define name="title">Manage Supplier</ui:define>
 <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,13 +53,13 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
            <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                    <div class="ui-g-12 ui-lg-4">
-                       <h:outputText value="Course Module"/>
+                       <h:outputText value="Supplier Module"/>
                 </div> 
                <div class="ui-g-12 ui-lg-2">
                    <p:outputPanel>    
                    <p:commandLink>
                           
-                       <span>#{courseController.coursesList.size()} Record(s)</span>
+                       <span>#0 Record(s)</span>
                         </p:commandLink>
                        </p:outputPanel> 
                     </div>
@@ -78,7 +78,7 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink action="#{courseController.reloadCourse}">
+                        <p:commandLink >
                             
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -87,8 +87,6 @@
                     </div>
                 </div>
             <div class="ui-g-12 ui-lg-12">
-                <p:tabView id="tabs" style="margin:0px;">
-            <p:tab title="Previous Course Details">
                 <p:dataTable value="#{courseController.coursesList}" 
                              var="result" 
                              id="result" paginator="true" paginatorPosition="bottom" rows="100"
@@ -140,11 +138,7 @@
                     <p:autoUpdate/>
                 </p:dataTable>
           
-            </p:tab>
-            <p:tab title="Bulk Course Upload">
-                    <ui:include src="./course/upload.xhtml"/>
-            </p:tab>
-        </p:tabView>
+           
                 </div>
         </div>
             

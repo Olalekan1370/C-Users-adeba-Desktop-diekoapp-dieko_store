@@ -8,6 +8,8 @@ package timsoft.ehr.org.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author JIDEX
  */
+@ManagedBean
+@ViewScoped
 @Entity
 @Table(name = "supplier")
 @XmlRootElement
@@ -45,7 +49,7 @@ public class Supplier implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "contactphone")
-    private Integer contactphone;
+    private String contactphone;
     @Size(max = 250)
     @Column(name = "adress")
     private String adress;
@@ -85,11 +89,11 @@ public class Supplier implements Serializable {
         this.name = name;
     }
 
-    public Integer getContactphone() {
+    public String getContactphone() {
         return contactphone;
     }
 
-    public void setContactphone(Integer contactphone) {
+    public void setContactphone(String contactphone) {
         this.contactphone = contactphone;
     }
 
