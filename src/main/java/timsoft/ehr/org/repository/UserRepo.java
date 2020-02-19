@@ -6,12 +6,11 @@
 package timsoft.ehr.org.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Supplier;
 
 /**
  *
  * @author JIDEX
  */
-public interface SupplierRepo extends JpaRepository<Supplier,Long>{
+public interface UserRepo extends JpaRepository<UserRepo,Long>{
     
 }
