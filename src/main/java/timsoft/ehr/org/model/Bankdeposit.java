@@ -7,7 +7,6 @@ package timsoft.ehr.org.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
@@ -20,13 +19,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,11 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "shifting")
+@Table(name = "bankdeposit")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Shifting.findAll", query = "SELECT s FROM Shifting s")})
-public class Shifting implements Serializable {
+    @NamedQuery(name = "Bankdeposit.findAll", query = "SELECT b FROM Bankdeposit b")})
+public class Bankdeposit implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,28 +44,32 @@ public class Shifting implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Column(name = "shifttime")
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "amount")
+    private Double amount;
+    @Column(name = "transactiondate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date shifttime;
+    private Date transactiondate;
+    @Column(name = "datedeposit")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datedeposit;
+    @Size(max = 250)
+    @Column(name = "depositorname")
+    private String depositorname;
+    @Size(max = 250)
+    @Column(name = "bank")
+    private String bank;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Size(max = 250)
-    @Column(name = "duration")
-    private String duration;
-    @OneToMany(mappedBy = "shiftingid")
-    private List<Transactions> transactionsList;
-    @JoinColumn(name = "userid", referencedColumnName = "id")
+    @JoinColumn(name = "createdby", referencedColumnName = "id")
     @ManyToOne
-    private User userid;
-    @JoinColumn(name = "staffid", referencedColumnName = "id")
-    @ManyToOne
-    private Staff staffid;
+    private Staff createdby;
 
-    public Shifting() {
+    public Bankdeposit() {
     }
 
-    public Shifting(Long id) {
+    public Bankdeposit(Long id) {
         this.id = id;
     }
 
@@ -80,12 +81,44 @@ public class Shifting implements Serializable {
         this.id = id;
     }
 
-    public Date getShifttime() {
-        return shifttime;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setShifttime(Date shifttime) {
-        this.shifttime = shifttime;
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Date getTransactiondate() {
+        return transactiondate;
+    }
+
+    public void setTransactiondate(Date transactiondate) {
+        this.transactiondate = transactiondate;
+    }
+
+    public Date getDatedeposit() {
+        return datedeposit;
+    }
+
+    public void setDatedeposit(Date datedeposit) {
+        this.datedeposit = datedeposit;
+    }
+
+    public String getDepositorname() {
+        return depositorname;
+    }
+
+    public void setDepositorname(String depositorname) {
+        this.depositorname = depositorname;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
     }
 
     public Date getDatecreated() {
@@ -96,37 +129,12 @@ public class Shifting implements Serializable {
         this.datecreated = datecreated;
     }
 
-    public String getDuration() {
-        return duration;
+    public Staff getCreatedby() {
+        return createdby;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    @XmlTransient
-    public List<Transactions> getTransactionsList() {
-        return transactionsList;
-    }
-
-    public void setTransactionsList(List<Transactions> transactionsList) {
-        this.transactionsList = transactionsList;
-    }
-
-    public User getUserid() {
-        return userid;
-    }
-
-    public void setUserid(User userid) {
-        this.userid = userid;
-    }
-
-    public Staff getStaffid() {
-        return staffid;
-    }
-
-    public void setStaffid(Staff staffid) {
-        this.staffid = staffid;
+    public void setCreatedby(Staff createdby) {
+        this.createdby = createdby;
     }
 
     @Override
@@ -139,10 +147,10 @@ public class Shifting implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Shifting)) {
+        if (!(object instanceof Bankdeposit)) {
             return false;
         }
-        Shifting other = (Shifting) object;
+        Bankdeposit other = (Bankdeposit) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -151,7 +159,7 @@ public class Shifting implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Shifting[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.Bankdeposit[ id=" + id + " ]";
     }
     
 }

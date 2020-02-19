@@ -8,6 +8,8 @@ package timsoft.ehr.org.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +30,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
+@ManagedBean
+@ViewScoped
 @Entity
 @Table(name = "pump")
 @XmlRootElement
@@ -49,11 +53,11 @@ public class Pump implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
+    @OneToMany(mappedBy = "pumpid")
+    private List<Transactions> transactionsList;
     @JoinColumn(name = "reservoirid", referencedColumnName = "id")
     @ManyToOne
     private Reservoir reservoirid;
-    @OneToMany(mappedBy = "pumpid")
-    private List<Transactions> transactionList;
 
     public Pump() {
     }
@@ -86,21 +90,21 @@ public class Pump implements Serializable {
         this.datecreated = datecreated;
     }
 
+    @XmlTransient
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+
     public Reservoir getReservoirid() {
         return reservoirid;
     }
 
     public void setReservoirid(Reservoir reservoirid) {
         this.reservoirid = reservoirid;
-    }
-
-    @XmlTransient
-    public List<Transactions> getTransactionList() {
-        return transactionList;
-    }
-
-    public void setTransactionList(List<Transactions> transactionList) {
-        this.transactionList = transactionList;
     }
 
     @Override

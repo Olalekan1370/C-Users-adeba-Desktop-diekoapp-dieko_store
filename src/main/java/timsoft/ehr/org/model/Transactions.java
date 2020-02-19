@@ -27,8 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JIDEX
- * 
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
@@ -209,7 +208,7 @@ public class Transactions implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Transaction[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.Transactions[ id=" + id + " ]";
     }
     
 }
