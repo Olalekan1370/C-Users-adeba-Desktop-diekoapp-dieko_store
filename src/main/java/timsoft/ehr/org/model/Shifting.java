@@ -53,7 +53,7 @@ public class Shifting implements Serializable {
     @Column(name = "duration")
     private String duration;
     @OneToMany(mappedBy = "shiftingid")
-    private List<Transaction> transactionList;
+    private List<Transactions> transactionList;
     @JoinColumn(name = "userid", referencedColumnName = "id")
     @ManyToOne
     private User userid;
@@ -101,11 +101,11 @@ public class Shifting implements Serializable {
     }
 
     @XmlTransient
-    public List<Transaction> getTransactionList() {
+    public List<Transactions> getTransactionList() {
         return transactionList;
     }
 
-    public void setTransactionList(List<Transaction> transactionList) {
+    public void setTransactionList(List<Transactions> transactionList) {
         this.transactionList = transactionList;
     }
 

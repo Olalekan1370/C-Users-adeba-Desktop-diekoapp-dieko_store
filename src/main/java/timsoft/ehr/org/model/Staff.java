@@ -72,7 +72,7 @@ public class Staff implements Serializable {
     @OneToMany(mappedBy = "staffid")
     private List<User> userList;
     @OneToMany(mappedBy = "staffid")
-    private List<Transaction> transactionList;
+    private List<Transactions> transactionList;
     @OneToMany(mappedBy = "staffid")
     private List<Shifting> shiftingList;
 
@@ -174,11 +174,11 @@ public class Staff implements Serializable {
     }
 
     @XmlTransient
-    public List<Transaction> getTransactionList() {
+    public List<Transactions> getTransactionList() {
         return transactionList;
     }
 
-    public void setTransactionList(List<Transaction> transactionList) {
+    public void setTransactionList(List<Transactions> transactionList) {
         this.transactionList = transactionList;
     }
 
