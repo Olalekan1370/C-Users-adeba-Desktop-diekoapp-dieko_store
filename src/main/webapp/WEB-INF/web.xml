@@ -33,38 +33,6 @@
         <filter-name>Character Encoding Filter</filter-name>
         <filter-class>org.primefaces.ultima.filter.CharacterEncodingFilter</filter-class>
     </filter>
-    <filter>
-        <filter-name>user</filter-name>
-        <filter-class>timsoft.ehr.org.config.UserAuthenticator</filter-class>
-    </filter>
-    <filter>
-        <filter-name>marker</filter-name>
-        <filter-class>timsoft.ehr.org.config.MarkerAuthenticator</filter-class>
-    </filter>
-    <filter>
-        <filter-name>admin</filter-name>
-        <filter-class>timsoft.ehr.org.config.AdminAuthenticator</filter-class>
-    </filter>
-    <filter>
-        <filter-name>course</filter-name>
-        <filter-class>timsoft.ehr.org.config.CourseAuthenticator</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>marker</filter-name>
-        <url-pattern>/markers/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>admin</filter-name>
-        <url-pattern>/secure/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>user</filter-name>
-        <url-pattern>/students/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>course</filter-name>
-        <url-pattern>/selection/*</url-pattern>
-    </filter-mapping>
     <filter-mapping>
         <filter-name>Character Encoding Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>

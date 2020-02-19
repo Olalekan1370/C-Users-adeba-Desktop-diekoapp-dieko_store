@@ -31,7 +31,7 @@
                 <div class="ui-g-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:inputText  required="true" requiredMessage="Invalid matric number"
-                                      value="#{students.matricno}"/>
+                                      />
                         <label>Matriculation Number</label>
                     </h:panelGroup>
                     
@@ -40,7 +40,7 @@
                 
                 <div class="ui-g-12">
                     <p:commandButton  value="Login" icon="ui-icon-person" 
-                                      id="btn" action="#{examController.checkLogin}" update=":login:msg">
+                                      id="btn"  update=":login:msg">
                         
                         <p:blockUI trigger="btn" block="login">
                             Authenticating please wait...

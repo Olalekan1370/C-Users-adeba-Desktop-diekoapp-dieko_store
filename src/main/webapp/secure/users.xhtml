@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Supplier</ui:define>
+    <ui:define name="title">Manage users</ui:define>
 <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             <div class="ui-g-12 ui-lg-12">
-                <p:dataTable value="#{supplierController.datalist}" 
+                <p:dataTable value="#{userController.datalist}" 
                              var="result" 
                              id="result" paginator="true" paginatorPosition="bottom" rows="100"
                              style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -121,8 +121,8 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
-                        <h:outputText value="#{result.name}" />
+                    <p:column headerText="Username" >
+                        <h:outputText value="#{result.username}" />
                         </p:column>
                         
                     <p:column headerText="Contact Email" width="160">

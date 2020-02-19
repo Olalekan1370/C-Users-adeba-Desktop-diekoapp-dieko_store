@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Add Supplier
+            Edit Supplier
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -28,7 +28,7 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
+                        <p:inputText value="#{supplier.name}" required="true" 
                                      requiredMessage="invalid course title"/>
                             <label>Supplier name</label>
                         </h:panelGroup>

@@ -6,6 +6,8 @@
 package timsoft.ehr.org.utils;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -33,6 +35,8 @@ public class AppHelper implements Serializable {
     private String choice;
     private String oldpass;
     private String newpass;
+    private Date dateFrom;
+    private Date dateTo;
 
     public String getOldpass() {
         return oldpass;
@@ -174,6 +178,22 @@ private Long passageid;
 
 	public void setChoice(String choice) {
 		this.choice = choice;
+	}
+
+	public Date getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(Date dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public Date getDateTo() {
+		return dateTo;
+	}
+
+	public void setDateTo(Date dateTo) {
+		this.dateTo = dateTo;
 	}
 
 }
