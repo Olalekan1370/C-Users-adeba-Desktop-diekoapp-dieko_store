@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @Entity
 @Table(name = "applog")

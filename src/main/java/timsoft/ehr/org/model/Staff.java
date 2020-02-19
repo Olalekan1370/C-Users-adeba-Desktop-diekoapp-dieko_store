@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
@@ -53,8 +53,9 @@ public class Staff implements Serializable {
     @Size(max = 250)
     @Column(name = "sex")
     private String sex;
+    @Size(max = 250)
     @Column(name = "phonenumber")
-    private Integer phonenumber;
+    private String phonenumber;
     @Size(max = 250)
     @Column(name = "qualification")
     private String qualification;
@@ -62,19 +63,21 @@ public class Staff implements Serializable {
     @Column(name = "address")
     private String address;
     @Size(max = 250)
-    @Column(name = "role")
-    private String role;
+    @Column(name = "designation")
+    private String designation;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
     @OneToMany(mappedBy = "staffid")
     private List<Expenditure> expenditureList;
     @OneToMany(mappedBy = "staffid")
-    private List<User> userList;
-    @OneToMany(mappedBy = "staffid")
-    private List<Transactions> transactionList;
+    private List<Transactions> transactionsList;
+    @OneToMany(mappedBy = "createdby")
+    private List<Bankdeposit> bankdepositList;
     @OneToMany(mappedBy = "staffid")
     private List<Shifting> shiftingList;
+    @OneToMany(mappedBy = "staffid")
+    private List<User> userList;
 
     public Staff() {
     }
@@ -115,11 +118,11 @@ public class Staff implements Serializable {
         this.sex = sex;
     }
 
-    public Integer getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(Integer phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
@@ -139,12 +142,12 @@ public class Staff implements Serializable {
         this.address = address;
     }
 
-    public String getRole() {
-        return role;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     public Date getDatecreated() {
@@ -165,21 +168,21 @@ public class Staff implements Serializable {
     }
 
     @XmlTransient
-    public List<User> getUserList() {
-        return userList;
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
     }
 
     @XmlTransient
-    public List<Transactions> getTransactionList() {
-        return transactionList;
+    public List<Bankdeposit> getBankdepositList() {
+        return bankdepositList;
     }
 
-    public void setTransactionList(List<Transactions> transactionList) {
-        this.transactionList = transactionList;
+    public void setBankdepositList(List<Bankdeposit> bankdepositList) {
+        this.bankdepositList = bankdepositList;
     }
 
     @XmlTransient
@@ -189,6 +192,15 @@ public class Staff implements Serializable {
 
     public void setShiftingList(List<Shifting> shiftingList) {
         this.shiftingList = shiftingList;
+    }
+
+    @XmlTransient
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     @Override

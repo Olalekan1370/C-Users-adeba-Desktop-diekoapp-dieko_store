@@ -5,54 +5,46 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     >
- 
+
     <p:dialog  
-        widgetVar="addNew" 
+        widgetVar="edit" 
         responsive="true" 
         closeOnEscape="true"
         dynamic="true"
         position="center" 
         closable="true"
-        id="addNew"
+        id="edit"
         fitViewport="true"
 
         >
         <f:facet name="header">
-            Edit Stock
+            Edit Expenditure Category
         </f:facet>
-       
+
         <div class="p-grid ui-fluid">
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             columnClasses="ui-grid-col-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" 
-                                     requiredMessage="invalid course title"/>
-                            <label>Stock name</label>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText  required="true" 
+                                          requiredMessage="invalid name"/>
+                            <label>Expenditure Category name</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText  required="true" requiredMessage="invalid course code"/>
-                            <label>Unit price</label>
-                        </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="invalid course unit"/>
-                            <label>Reservoir list</label>
-                        </h:panelGroup>
-                       
-                    <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
-                </p:panelGrid> 
-                
-               </p:outputPanel>
+
+                        <p:commandButton value="Save"  icon="fa fa-plus" 
+                                         styleClass="success-btn raised-btn" id="save" />
+                    </p:panelGrid> 
+
+                </p:outputPanel>
             </div>
         </div>
-       
-            
-            
-      
+
+
+
+
     </p:dialog>  
-     
+
 
 </ui:composition>
