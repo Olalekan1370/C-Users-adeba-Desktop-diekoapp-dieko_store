@@ -60,9 +60,9 @@ public class Supplier implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Size(max = 250)
     @Column(name = "lastmodified")
-    private String lastmodified;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
     @OneToMany(mappedBy = "supplierid")
     private List<Reservoirlog> reservoirlogList;
 
@@ -121,11 +121,11 @@ public class Supplier implements Serializable {
         this.datecreated = datecreated;
     }
 
-    public String getLastmodified() {
+    public Date getLastmodified() {
         return lastmodified;
     }
 
-    public void setLastmodified(String lastmodified) {
+    public void setLastmodified(Date lastmodified) {
         this.lastmodified = lastmodified;
     }
 

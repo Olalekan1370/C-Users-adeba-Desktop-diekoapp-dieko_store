@@ -30,7 +30,7 @@
                 <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              >
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{appHelper.selectedCourse}" required="true" 
+                        <p:inputText value="#{appHelper.searchterm}" required="true" 
                                      requiredMessage="invalid matric number">
                             
                             
@@ -46,7 +46,8 @@
        
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
+                             action="#{supplierController.search()}"/>
         </f:facet>
             
       

@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('supplier')}">
                            
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                              <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  action="#{supplierController.reload()}" update=":parentform:result">
                             
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -107,7 +107,7 @@
                             
                             <label>Date To</label>
                         </h:panelGroup>
-                        <p:commandLink>
+                        <p:commandLink update=":parentform:result" action="#{supplierController.filter()}">
                                      
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
@@ -147,7 +147,7 @@
                             </p:commandLink>
                             
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                            update="result">
+                                           update="result" action="#{supplierController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                   <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
