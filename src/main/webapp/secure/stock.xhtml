@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; maring:0px;">
+        <h:form id="parentform" style="padding:0px; margin:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('stock')}">
                            
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                              <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  update=":parentform:result" action="#{stockController.reload()}">
                             
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -107,7 +107,7 @@
                             
                             <label>Date To</label>
                         </h:panelGroup>
-                        <p:commandLink>
+                        <p:commandLink action="#{stockController.filter()}" update="result">
                                      
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
@@ -121,15 +121,14 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
+                    <p:column headerText="Stock Name" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
-                        </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
+                    <p:column headerText="Unit Price" width="150">
+                        <h:outputText value="#{result.unitprice}" >
+                            <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
+                        </h:outputText>
                         </p:column>
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
@@ -143,11 +142,11 @@
                                            oncomplete="PF('addNew').show()" >
 
                                <i class="fa fa-edit" style="color:#0288D1"/>
-                               <f:setPropertyActionListener target="#{supplier}" value="#{result}"/>
+                               <f:setPropertyActionListener target="#{stock}" value="#{result}"/>
                             </p:commandLink>
                             
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                            update="result">
+                                           update="result" action="#{stockController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                   <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
