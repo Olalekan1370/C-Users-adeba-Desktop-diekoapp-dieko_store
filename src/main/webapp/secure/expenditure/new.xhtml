@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Add Expenditure Category
+            Add Expenditure
         </f:facet>
 
         <div class="p-grid ui-fluid">
@@ -29,8 +29,19 @@
                                  columnClasses="ui-grid-col-12">
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText required="true" 
-                                         requiredMessage="invalid name"/>
-                            <label>Expenditure Category name</label>
+                                         requiredMessage="invalid categoryname"/>
+                            <label>Categoryname</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText required="true" 
+                                         requiredMessage="invalid description"/>
+                            <label>Description</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText required="true" 
+                                         requiredMessage="invalid amount"/>
+                            <label>Amount</label>
                         </h:panelGroup>
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 

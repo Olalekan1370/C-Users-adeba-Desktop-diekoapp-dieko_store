@@ -5,12 +5,14 @@
  */
 package timsoft.ehr.org.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import timsoft.ehr.org.model.User;
 
 /**
  *
  * @author JIDEX
  */
-public interface UserRepo extends JpaRepository<UserRepo,Long>{
+public interface UserRepo extends JpaRepository<User,Long>{
     
 }

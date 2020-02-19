@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "transactions")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t")})
+    @NamedQuery(name = "Transactions.findAll", query = "SELECT t FROM Transactions t")})
 public class Transactions implements Serializable {
 
     private static final long serialVersionUID = 1L;

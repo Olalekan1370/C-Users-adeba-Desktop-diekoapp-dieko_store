@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Expenditure Category</ui:define>
+    <ui:define name="title">Manage Expenditure</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Expenditure Category Module"/>
+                        <h:outputText value="Expenditure Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
@@ -64,7 +64,7 @@
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_excategory').show()">
+                        <p:commandLink  oncomplete="PF('search_expenditure').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{excategoryController.datalist}" 
+                    <p:dataTable value="#{expenditureController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -121,8 +121,16 @@
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="Name" >
-                            <h:outputText value="#{result.name}" />
+                        <p:column headerText="Categoryname" >
+                            <h:outputText value="#{result.excategoryid.name}" />
+                        </p:column>
+                        
+                        <p:column headerText="Description" >
+                            <h:outputText value="#{result.description}" />
+                        </p:column>
+                        
+                        <p:column headerText="Amount" >
+                            <h:outputText value="#{result.amount}" />
                         </p:column>
 
                         <p:column width="25">
@@ -132,7 +140,7 @@
                                            oncomplete="PF('addNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{excategory}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{expenditure}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
@@ -152,15 +160,15 @@
 
         </h:form>
         <h:form id="addNew">    
-            <ui:include src="./excategory/new.xhtml"/>  
+            <ui:include src="./expenditure/new.xhtml"/>  
         </h:form> 
 
         <h:form id="edit">    
-            <ui:include src="./excategory/edit.xhtml"/>  
+            <ui:include src="./expenditure/edit.xhtml"/>  
         </h:form> 
 
-        <h:form id="search_excategory">    
-            <ui:include src="./excategory/search.xhtml"/>  
+        <h:form id="search_expenditure">    
+            <ui:include src="./expenditure/search.xhtml"/>  
         </h:form> 
 
 
