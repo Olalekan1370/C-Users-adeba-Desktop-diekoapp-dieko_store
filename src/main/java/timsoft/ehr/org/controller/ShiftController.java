@@ -8,31 +8,24 @@ package timsoft.ehr.org.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.Transactions;
+import timsoft.ehr.org.model.Shifting;
 
 /**
  *
  * @author HP
  */
-@Component
-@Scope("session")
-public class TransactionController {
-    private List<Transactions> datalist;
+public class ShiftController {
+    private List<Shifting> datalist;
     @PostConstruct
     public void init(){
         datalist = new ArrayList<>();
     }
 
-    public List<Transactions> getDatalist() {
+    public List<Shifting> getDatalist() {
         return datalist;
     }
 
-    public void setDatalist(List<Transactions> datalist) {
+    public void setDatalist(List<Shifting> datalist) {
         this.datalist = datalist;
     }
-    
- 
 }

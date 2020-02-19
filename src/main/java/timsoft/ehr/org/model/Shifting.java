@@ -8,6 +8,8 @@ package timsoft.ehr.org.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author JIDEX
  */
+@ManagedBean
+@ViewScoped
 @Entity
 @Table(name = "shifting")
 @XmlRootElement
@@ -53,7 +57,7 @@ public class Shifting implements Serializable {
     @Column(name = "duration")
     private String duration;
     @OneToMany(mappedBy = "shiftingid")
-    private List<Transaction> transactionList;
+    private List<Transactions> transactionList;
     @JoinColumn(name = "userid", referencedColumnName = "id")
     @ManyToOne
     private User userid;
@@ -101,11 +105,11 @@ public class Shifting implements Serializable {
     }
 
     @XmlTransient
-    public List<Transaction> getTransactionList() {
+    public List<Transactions> getTransactionList() {
         return transactionList;
     }
 
-    public void setTransactionList(List<Transaction> transactionList) {
+    public void setTransactionList(List<Transactions> transactionList) {
         this.transactionList = transactionList;
     }
 

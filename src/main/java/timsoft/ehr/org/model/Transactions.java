@@ -33,11 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "transaction")
+@Table(name = "transactions")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t")})
-public class Transaction implements Serializable {
+public class Transactions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -76,10 +76,10 @@ public class Transaction implements Serializable {
     @ManyToOne
     private Pump pumpid;
 
-    public Transaction() {
+    public Transactions() {
     }
 
-    public Transaction(Long id) {
+    public Transactions(Long id) {
         this.id = id;
     }
 
@@ -197,10 +197,10 @@ public class Transaction implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transaction)) {
+        if (!(object instanceof Transactions)) {
             return false;
         }
-        Transaction other = (Transaction) object;
+        Transactions other = (Transactions) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

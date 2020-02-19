@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package timsoft.ehr.org.repository;
-
+import timsoft.ehr.org.model.Pump;
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Excategory;
 
 /**
  *
  * @author JIDEX
  */
-public interface ExcategoryRepo extends JpaRepository<Excategory,Long> {
+public interface PumpRepo extends JpaRepository<Pump,Long>{
     
 }

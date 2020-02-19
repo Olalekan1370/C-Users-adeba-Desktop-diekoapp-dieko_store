@@ -5,7 +5,6 @@
  */
 package timsoft.ehr.org.api;
 
-import com.ibm.icu.util.Calendar;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
@@ -16,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
@@ -55,27 +55,27 @@ public class ResourceController {
     @Autowired
     ServletContext context;
 
-@Autowired
+ @Autowired
     NativeQueryService store;
-    @GetMapping("/download_backup")
-    public void getFile(
-            @RequestParam("file_name") String fileName,
-            HttpServletResponse response) {
-        response.setContentType("application/zip");
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-        try {
-            String files = context.getRealPath("/WEB-INF/db_backups_temp/") + fileName;
-            
-            InputStream is = new FileInputStream(new File(files));
-            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
-            response.flushBuffer();
-           // return "Done";
-        } catch (IOException ex) {
-           // throw new RuntimeException("IOError writing file to output stream");
-          //return "Error downloading sql file";
-        }
-
-    }
+//    @GetMapping("/download_backup")
+//    public void getFile(
+//            @RequestParam("file_name") String fileName,
+//            HttpServletResponse response) {
+//        response.setContentType("application/zip");
+//        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+//        try {
+//            String files = context.getRealPath("/WEB-INF/db_backups_temp/") + fileName;
+//            
+//            InputStream is = new FileInputStream(new File(files));
+//            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+//            response.flushBuffer();
+//           // return "Done";
+//        } catch (IOException ex) {
+//           // throw new RuntimeException("IOError writing file to output stream");
+//          //return "Error downloading sql file";
+//        }
+//
+//    }
 
     @GetMapping("/download_app_files")
     public void downloadAppResult(

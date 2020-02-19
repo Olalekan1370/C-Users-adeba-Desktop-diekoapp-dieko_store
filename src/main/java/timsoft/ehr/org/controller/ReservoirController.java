@@ -8,31 +8,24 @@ package timsoft.ehr.org.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.Transactions;
+import timsoft.ehr.org.model.Reservoir;
 
 /**
  *
  * @author HP
  */
-@Component
-@Scope("session")
-public class TransactionController {
-    private List<Transactions> datalist;
+public class ReservoirController {
+     private List<Reservoir> datalist;
     @PostConstruct
     public void init(){
         datalist = new ArrayList<>();
     }
 
-    public List<Transactions> getDatalist() {
+    public List<Reservoir> getDatalist() {
         return datalist;
     }
 
-    public void setDatalist(List<Transactions> datalist) {
+    public void setDatalist(List<Reservoir> datalist) {
         this.datalist = datalist;
     }
-    
- 
 }

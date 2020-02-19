@@ -2,7 +2,6 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="swipe.net.ng_swipeapi_war_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    
     <class>timsoft.ehr.org.model.Expenditure</class>
     <class>timsoft.ehr.org.model.Staff</class>
     <class>timsoft.ehr.org.model.User</class>
@@ -12,9 +11,9 @@
     <class>timsoft.ehr.org.model.Shifting</class>
     <class>timsoft.ehr.org.model.Reservoir</class>
     <class>timsoft.ehr.org.model.Reservoirlog</class>
-    <class>timsoft.ehr.org.model.Transaction</class>
     <class>timsoft.ehr.org.model.Pump</class>
     <class>timsoft.ehr.org.model.Applog</class>
+    <class>timsoft.ehr.org.model.Transactions</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cbtexam?zeroDateTimeBehavior=convertToNull"/>

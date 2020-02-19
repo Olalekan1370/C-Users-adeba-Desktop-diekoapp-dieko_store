@@ -21,7 +21,7 @@
        
         >
         <f:facet name="header">
-           Search Supplier
+           Search Reservoir
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -30,12 +30,12 @@
                 <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              >
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{appHelper.searchterm}" required="true" 
+                        <p:inputText value="#{appHelper.selectedCourse}" required="true" 
                                      requiredMessage="invalid matric number">
                             
                             
                         </p:inputText>
-                            <label>Supplier's name</label>
+                            <label>Stock id</label>
                         </h:panelGroup>
                    
                 </p:panelGrid> 
@@ -46,8 +46,7 @@
        
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
-                             action="#{supplierController.search()}"/>
+                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
         </f:facet>
             
       

@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Add Supplier
+            Edit Stock
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -28,25 +28,21 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
+                        <p:inputText  required="true" 
                                      requiredMessage="invalid course title"/>
-                            <label>Supplier name</label>
+                            <label>Stock name</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value="#{supplier.contactphone}" required="true" requiredMessage="invalid course code"/>
-                            <label>Contact Mobile</label>
+                        <p:inputText  required="true" requiredMessage="invalid course code"/>
+                            <label>Unit price</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{supplier.email}"  required="true" requiredMessage="invalid course unit"/>
-                            <label>Contact Email</label>
+                        <p:inputText  required="true" requiredMessage="invalid course unit"/>
+                            <label>Reservoir list</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText value="#{supplier.adress}" 
-                                        required="true" requiredMessage="invalid course unit"/>
-                            <label>Contact Address</label>
-                        </h:panelGroup>
+                       
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                                     styleClass="success-btn raised-btn" id="save" action="#{supplierController.add()}"/>
+                             styleClass="success-btn raised-btn" id="save" />
                 </p:panelGrid> 
                 
                </p:outputPanel>

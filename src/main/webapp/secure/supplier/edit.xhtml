@@ -45,8 +45,8 @@
                                         required="true" requiredMessage="invalid course unit"/>
                             <label>Contact Address</label>
                         </h:panelGroup>
-                    <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                    <p:commandButton value="Save"  icon="fa fa-refresh" 
+                                     styleClass="success-btn raised-btn" id="save"  action="#{supplierController.update()}"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

@@ -6,12 +6,12 @@
 package timsoft.ehr.org.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Excategory;
+import timsoft.ehr.org.model.Transactions;
 
 /**
  *
  * @author JIDEX
  */
-public interface ExcategoryRepo extends JpaRepository<Excategory,Long> {
+public interface TransactionRepo extends JpaRepository<Transactions,Long>{
     
 }

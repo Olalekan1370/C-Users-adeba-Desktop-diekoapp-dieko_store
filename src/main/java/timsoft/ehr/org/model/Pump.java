@@ -53,7 +53,7 @@ public class Pump implements Serializable {
     @ManyToOne
     private Reservoir reservoirid;
     @OneToMany(mappedBy = "pumpid")
-    private List<Transaction> transactionList;
+    private List<Transactions> transactionList;
 
     public Pump() {
     }
@@ -95,11 +95,11 @@ public class Pump implements Serializable {
     }
 
     @XmlTransient
-    public List<Transaction> getTransactionList() {
+    public List<Transactions> getTransactionList() {
         return transactionList;
     }
 
-    public void setTransactionList(List<Transaction> transactionList) {
+    public void setTransactionList(List<Transactions> transactionList) {
         this.transactionList = transactionList;
     }
 
