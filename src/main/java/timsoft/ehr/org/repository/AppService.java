@@ -19,4 +19,5 @@ public class AppService {
 SupplierRepo supplierRepo;
 @Autowired
 ExcategoryRepo excategoryRepo;
+
 }
