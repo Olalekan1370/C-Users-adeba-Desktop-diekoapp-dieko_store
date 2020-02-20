@@ -5,7 +5,7 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     >
- 
+
     <p:dialog  
         widgetVar="addNew" 
         responsive="true" 
@@ -20,38 +20,37 @@
         <f:facet name="header">
             Add Stock
         </f:facet>
-       
+
         <div class="p-grid ui-fluid">
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             columnClasses="ui-grid-col-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
-                                     requiredMessage="invalid stock name" value="#{stock.name}"/>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText required="true" 
+                                         requiredMessage="invalid stock name" value="#{stock.name}"/>
                             <label>Stock name</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputNumber  required="true" requiredMessage="invalid stock price"
-                                        value="#{stock.unitprice}" symbol="₦"/>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                            <p:inputNumber  required="true" requiredMessage="invalid stock price"
+                                            value="#{stock.unitprice}" symbol="₦"/>
                             <label>Unit price</label>
                         </h:panelGroup>
-                    
-                      
-                    <p:commandButton value="Save"  icon="fa fa-plus" 
-                                     styleClass="success-btn raised-btn" id="save"  action="#{stockController.add}
-                                     " update=":parentform:result"/>
-                </p:panelGrid> 
-                
-               </p:outputPanel>
+
+
+                        <p:commandButton value="Save"  icon="fa fa-plus" 
+                                         styleClass="success-btn raised-btn" id="save" update=":parentform:result"/>
+                    </p:panelGrid> 
+
+                </p:outputPanel>
             </div>
         </div>
-       
-            
-            
-      
+
+
+
+
     </p:dialog>  
-     
+
 
 </ui:composition>

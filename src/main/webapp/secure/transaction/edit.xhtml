@@ -5,7 +5,7 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     >
- 
+
     <p:dialog  
         widgetVar="editNew" 
         responsive="true" 
@@ -20,28 +20,28 @@
         <f:facet name="header">
             Edit Transaction
         </f:facet>
-       
+
         <div class="p-grid ui-fluid">
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             columnClasses="ui-grid-col-12">
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-12">
                         <p:selectOneMenu  required="true" requiredMessage="invalid pump's name"
                                           filter="true" filterMatchMode="contains" value="#{transactions.pumpid.name}">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--" itemValue=""/>
-                       </p:selectOneMenu>
-                         <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
-                                           filter="true" filterMatchMode="contains" value="#{transactions.staffid.fullname}">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
-                       </p:selectOneMenu>
-                         <p:selectOneMenu  required="true" requiredMessage="invalid shifting's name"
-                                           filter="true" filterMatchMode="contains" value="#{transactions.shiftingid.duration}">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Shift--" itemValue=""/>
-                       </p:selectOneMenu>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputNumber value=#{transactions.purchaseprice}  
-                                          required="true" requiredMessage="invalid purchase price" symbol="₦"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--" itemValue=""/>
+                        </p:selectOneMenu>
+                        <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
+                                          filter="true" filterMatchMode="contains" value="#{transactions.staffid.fullname}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
+                        </p:selectOneMenu>
+                        <p:selectOneMenu  required="true" requiredMessage="invalid shifting's name"
+                                          filter="true" filterMatchMode="contains" value="#{transactions.shiftingid.duration}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Shift--" itemValue=""/>
+                        </p:selectOneMenu>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.purchaseprice}"  
+                                           required="true" requiredMessage="invalid purchase price" symbol="₦"/>
                             <label>Purchase price</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -50,47 +50,47 @@
                             <label>Amount</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText value=#{transactions.unitprice}  
-                                        required="true" requiredMessage="invalid unit price"/>
+                            <p:inputText value="#{transactions.unitprice}"  
+                                         required="true" requiredMessage="invalid unit price"/>
                             <label>Unit price</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText  value=#{transactions.invoicenumber}
-                                        required="true" requiredMessage="invalid invoice number"/>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText  value="#{transactions.invoicenumber}"
+                                          required="true" requiredMessage="invalid invoice number"/>
                             <label>Invoice number</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value=#{transactions.quantity}  
-                                        required="true" requiredMessage="invalid quantity"/>
+                            <p:inputNumber value="#{transactions.quantity}"  
+                                           required="true" requiredMessage="invalid quantity"/>
                             <label>Quantity</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.openingbalance}"  
-                                        required="true" requiredMessage="invalid opening balance"/>
+                                           required="true" requiredMessage="invalid opening balance"/>
                             <label>Opening balance</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputNumber value="#{transactions.closingbalance}"  
-                                        required="true" requiredMessage="invalid closing balance"/>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.closingbalance}"  
+                                           required="true" requiredMessage="invalid closing balance"/>
                             <label>Closing balance</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputNumber value="#{transactions.profit}"  
-                                          required="true" requiredMessage="invalid profit" symbol="₦"/>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.profit}"  
+                                           required="true" requiredMessage="invalid profit" symbol="₦"/>
                             <label>Profit</label>
                         </h:panelGroup>
-                    <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
-                </p:panelGrid> 
-                
-               </p:outputPanel>
+                        <p:commandButton value="Save"  icon="fa fa-plus" 
+                                         styleClass="success-btn raised-btn" id="save" />
+                    </p:panelGrid> 
+
+                </p:outputPanel>
             </div>
         </div>
-       
-            
-            
-      
+
+
+
+
     </p:dialog>  
-     
+
 
 </ui:composition>
