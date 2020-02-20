@@ -27,30 +27,29 @@
                     <p:autoUpdate/>
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
-                                     requiredMessage="invalid course title" />
+                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:inputText value="#{user.username}" required="true" 
+                                     requiredMessage="invalid username"/>
                             <label>Username</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText  required="true" requiredMessage="invalid course code"/>
+                        <p:inputText value="#{user.password}"  required="true" requiredMessage="invalid password"/>
                             <label>Password</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText   required="true" requiredMessage="invalid course unit"/>
+                        <p:inputText value=#{user.roletype}  required="true" requiredMessage="invalid role type"/>
                             <label>Role type</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText  
-                                        required="true" requiredMessage="invalid course unit"/>
+                           <p:inputText  value="#{user.status}"
+                                        required="true" requiredMessage="invalid status"/>
                             <label>Status</label>
                         </h:panelGroup>
-                     
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText  
-                                        required="true" requiredMessage="invalid course unit"/>
-                            <label>Staff id</label>
-                        </h:panelGroup>
+                           <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
+                                         filter="true" filterMatchMode="contains">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
+                       </p:selectOneMenu>
+
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />
                 </p:panelGrid> 

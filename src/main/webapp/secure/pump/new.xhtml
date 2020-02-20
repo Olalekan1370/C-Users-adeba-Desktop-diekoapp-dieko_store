@@ -7,18 +7,18 @@
     >
  
     <p:dialog  
-        widgetVar="editNew" 
+        widgetVar="addNew" 
         responsive="true" 
         closeOnEscape="true"
         dynamic="true"
         position="center" 
         closable="true"
-        id="editNew"
+        id="addNew"
         fitViewport="true"
 
         >
         <f:facet name="header">
-            Edit Stock
+            Add Pump
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -28,20 +28,17 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
-                                     requiredMessage="invalid stock name" value="#{stock.name}"/>
-                            <label>Stock name</label>
+                        <p:inputText value="#{pump.name}" required="true" 
+                                     requiredMessage="invalid pump's name"/>
+                            <label>Pump's name</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputNumber  required="true" requiredMessage="invalid stock price"
-                                        value="#{stock.unitprice}" symbol="₦"/>
-                            <label>Unit price</label>
-                        </h:panelGroup>
-                    
-                      
+                   
+                            <p:selectOneMenu  required="true" requiredMessage="invalid reservoir name"
+                                         filter="true" filterMatchMode="contains">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Reservoir--" itemValue=""/>
+                       </p:selectOneMenu>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                                     styleClass="success-btn raised-btn" id="save"  action="#{stockController.update}
-                                     " update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save" />
                 </p:panelGrid> 
                 
                </p:outputPanel>

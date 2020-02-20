@@ -9,19 +9,19 @@
     >
  
     <p:dialog  
-        widgetVar="search_reservoir" 
+        widgetVar="search_reservoirlog" 
         responsive="true" 
         closeOnEscape="true"
         position="center" 
         closable="true"
-        id="search_reservoir"
+        id="search_reservoirlog"
         fitViewport="true"
         width="300"
         height="70"
        
         >
         <f:facet name="header">
-           Search Reservoir
+           Search Reservoir log
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -30,12 +30,12 @@
                 <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              >
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{appHelper.searchterm}" required="true" 
+                        <p:inputText value="#{appHelper.selectedCourse}" required="true" 
                                      requiredMessage="invalid matric number">
                             
                             
                         </p:inputText>
-                            <label>Stock id</label>
+                            <label>Reservoir id</label>
                         </h:panelGroup>
                    
                 </p:panelGrid> 
