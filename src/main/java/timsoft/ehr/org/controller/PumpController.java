@@ -5,16 +5,21 @@
  */
 package timsoft.ehr.org.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Pump;
 
 /**
  *
  * @author HP
  */
-public class PumpController {
+@Component
+@Scope("session")
+public class PumpController implements Serializable{
       private List<Pump> datalist;
     @PostConstruct
     public void init(){

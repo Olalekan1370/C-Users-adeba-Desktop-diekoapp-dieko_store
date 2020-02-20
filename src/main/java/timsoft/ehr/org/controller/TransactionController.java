@@ -5,10 +5,10 @@
  */
 package timsoft.ehr.org.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Transactions;
@@ -19,7 +19,7 @@ import timsoft.ehr.org.model.Transactions;
  */
 @Component
 @Scope("session")
-public class TransactionController {
+public class TransactionController  implements Serializable{
     private List<Transactions> datalist;
     @PostConstruct
     public void init(){

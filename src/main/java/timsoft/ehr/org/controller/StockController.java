@@ -25,23 +25,13 @@ import timsoft.ehr.org.utils.MessageUtil;
  *
  * @author HP
  */
-@Component
-@Scope("session")
-<<<<<<< HEAD
-public class StockController implements Serializable {
 
-    private List<Stock> datalist;
-    @Autowired
-    AppService service;
-    @Autowired
-=======
 @ManagedBean
 public class StockController implements Serializable{
      private List<Stock> datalist;
      @Autowired
      AppService service;
      @Autowired
->>>>>>> ddf80833a8b1263eb7b155bcea60d5ad9af9fb7e
     LoginController login;
 
     @PostConstruct

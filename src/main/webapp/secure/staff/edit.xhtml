@@ -29,40 +29,38 @@
                                  columnClasses="ui-grid-col-12">
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText  required="true" 
-                                          requiredMessage="invalid name"/>
+                                          requiredMessage="invalid name" value="#{staff.fullname}"/>
                             <label>Full name</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                            <p:inputText  required="true" requiredMessage="invalid age"/>
+                            <p:inputText   value="#{staff.age}"/>
                             <label>Age</label>
                         </h:panelGroup>
+                        <p:selectOneMenu value="#{staff.sex}">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Gender--"/>
+                            <f:selectItem itemLabel="Male" itemValue="Male"/>
+                            <f:selectItem itemLabel="Female" itemValue="Female"/>
+                        </p:selectOneMenu>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  required="true" requiredMessage="invalid sex"/>
-                            <label>Sex</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  
-                                required="true" requiredMessage="invalid phonenumber"/>
+                            <p:inputText  value="#{staff.phonenumber}"/>
                             <label>Phone number</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  
-                                required="true" requiredMessage="invalid qualification"/>
+                            <p:inputText  value="#{staff.qualification}"/>
                             <label>Qualification</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  
-                                required="true" requiredMessage="invalid address"/>
+                            <p:inputTextarea value="#{staff.address}"/>
                             <label>Address</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  
-                                required="true" requiredMessage="invalid designation"/>
+                            <p:inputText value="#{staff.designation}"/>
                             <label>Designation</label>
                         </h:panelGroup>
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" />
+                                         styleClass="success-btn raised-btn" id="save" 
+                                         action="#{staffController.add()}" update=":parentform:result"/>
                     </p:panelGrid> 
 
                 </p:outputPanel>
