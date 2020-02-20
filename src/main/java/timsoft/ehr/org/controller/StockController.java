@@ -25,8 +25,7 @@ import timsoft.ehr.org.utils.MessageUtil;
  *
  * @author HP
  */
-@Component
-@Scope("session")
+
 @ManagedBean
 public class StockController implements Serializable{
      private List<Stock> datalist;
@@ -34,34 +33,40 @@ public class StockController implements Serializable{
      AppService service;
      @Autowired
     LoginController login;
+
     @PostConstruct
-    public void init(){
+    public void init() {
         datalist = new ArrayList<>();
+        reload();
     }
-public void filter(){
-    
-    AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
-   datalist = service.getStockRepo()
-           .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
-   if(datalist.isEmpty()){
-       login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
-   }
-}
+
+    public void filter() {
+
+        AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
+        datalist = service.getStockRepo()
+                .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
+        if (datalist.isEmpty()) {
+            login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
+        }
+    }
+
     public void reload() {
         datalist = service.getStockRepo().findAll();
     }
-public void search(){
-    AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
-   datalist = service.getStockRepo().search(app.getSearchterm());
-   if(datalist.isEmpty()){
-       login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
-   }
-}
+
+    public void search() {
+        AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
+        datalist = service.getStockRepo().search(app.getSearchterm());
+        if (datalist.isEmpty()) {
+            login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
+        }
+    }
+
     public void add() {
         try {
             Stock sp = (Stock) FacesUtils.getManagedBean("stock");
             sp.setDatecreated(new Date());
-           
+
             service.getStockRepo().save(sp);
             login.reset("stock");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
@@ -71,6 +76,7 @@ public void search(){
         }
 
     }
+
     public void update() {
         try {
             Stock sp = (Stock) FacesUtils.getManagedBean("stock");
@@ -85,18 +91,18 @@ public void search(){
         }
 
     }
-    
-    public void delete(Long id){
-        try{
+
+    public void delete(Long id) {
+        try {
             service.getStockRepo().delete(id);
             login.log(MessageUtil.RECORD_DELETED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
-        }catch(Exception e){
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             login.log(MessageUtil.INTERNAL_ERROR, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
         }
     }
-    
+
     public List<Stock> getDatalist() {
         return datalist;
     }
@@ -104,7 +110,21 @@ public void search(){
     public void setDatalist(List<Stock> datalist) {
         this.datalist = datalist;
     }
-        
 
-    
+    public AppService getService() {
+        return service;
+    }
+
+    public void setService(AppService service) {
+        this.service = service;
+    }
+
+    public LoginController getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginController login) {
+        this.login = login;
+    }
+
 }

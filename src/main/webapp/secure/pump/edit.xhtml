@@ -23,25 +23,28 @@
 
         <div class="p-grid ui-fluid">
             <div class="p-col-12">
-                <p:outputPanel>
+                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                                 columnClasses="ui-grid-col-12">
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText value="#{pump.name}"  required="true" 
-                                         requiredMessage="invalid pump's name" />
+                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                             columnClasses="ui-grid-col-12">
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:inputText value="#{pump.name}" required="true" 
+                                     requiredMessage="invalid pump's name"/>
                             <label>Pump name</label>
                         </h:panelGroup>
-
-                        <p:selectOneMenu  required="true" requiredMessage="invalid reservoir name"
-                                          filter="true" filterMatchMode="contains">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Reservoir--" itemValue=""/>
-                        </p:selectOneMenu>
-                        <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" />
-                    </p:panelGrid> 
-
-                </p:outputPanel>
+                   
+                            <p:selectOneMenu  required="true" requiredMessage="invalid reservoir name"
+                                              filter="true" filterMatchMode="contains" value="#{pump.reservoirid}" 
+                                              converter="pumpConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="--Reservoir--" itemValue="#{reservoir}"/>
+                                <f:selectItems value="#{reservoirController.datalist}" var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
+                       </p:selectOneMenu>
+                    <p:commandButton value="Save"  icon="fa fa-refresh" 
+                             styleClass="success-btn raised-btn" id="save"  
+                             action="#{pumpController.update()}" update=":parentform:result"/>
+                </p:panelGrid> 
+                
+               </p:outputPanel>
             </div>
         </div>
 

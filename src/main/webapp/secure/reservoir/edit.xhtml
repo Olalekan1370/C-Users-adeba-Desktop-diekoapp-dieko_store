@@ -27,23 +27,31 @@
                     <p:autoUpdate/>
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                   <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText value="#{reservoir.name}" required="true" 
+                                     requiredMessage="invalid name"/>
+                            <label>Research Name</label>
+                        </h:panelGroup>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:inputNumber value="#{reservoir.quantity}" required="true" 
                                      requiredMessage="invalid quantity"/>
                             <label>Quantity</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
                         <p:inputText value="#{reservoir.units}"  required="true" requiredMessage="invalid unit"/>
-                            <label>Units</label>
+                            <label>Measure Units</label>
                         </h:panelGroup>
-                   
-                       <p:selectOneMenu  required="true" requiredMessage="invalid stock name"
-                                         filter="true" filterMatchMode="contains">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Stock--" itemValue=""/>
+                   <p:selectOneMenu  required="true" requiredMessage="invalid stock name"
+                                         filter="true" filterMatchMode="contains"
+                                         value="#{reservoir.stockid}" converter="stockConverter">
+                           <f:selectItem noSelectionOption="true" 
+                                         itemLabel="--Select Stock--" itemValue="#{stock}"/>
+                           <f:selectItems itemLabel="#{rs.name}" var="rs" value="#{stockController.datalist}"
+                                          itemValue="#{rs}"/>
                        </p:selectOneMenu>
-                       
-                    <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                    <p:commandButton value="Save"  icon="fa fa-refresh" 
+                             styleClass="success-btn raised-btn" id="save" 
+                             action="#{reservoirController.update()}"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

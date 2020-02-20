@@ -39,10 +39,9 @@ public class SupplierController implements Serializable{
     @PostConstruct
     public void init() {
         datalist = new ArrayList<>();
-
+        reload();
     }
 public void filter(){
-    
     AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
    datalist = service.getSupplierRepo()
            .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
