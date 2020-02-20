@@ -33,25 +33,38 @@
                             <label>Username</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value="#{user.password}"  required="true" requiredMessage="invalid password"/>
+                        <p:password value="#{user.password}" 
+                                    required="true" requiredMessage="invalid password" 
+                                    feedback="true" match="confirm"/>
                             <label>Password</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value=#{user.roletype}  required="true" requiredMessage="invalid role type"/>
-                            <label>Role type</label>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                           <p:password value="#{user.confirmpassword}" 
+                                       required="true"  id="confirm"
+                                       requiredMessage="invalid password" feedback="true"/>
+                            <label>Password</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText  value="#{user.status}"
-                                        required="true" requiredMessage="invalid status"/>
-                            <label>Status</label>
-                        </h:panelGroup>
+                       <p:selectOneMenu value="#{user.roletype}" required="true" requiredMessage="please select role type">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Role Type--"/>
+                           <f:selectItem itemLabel="Administrator" itemValue="Administrator"/>
+                           <f:selectItem itemLabel="User" itemValue="User"/>
+                       </p:selectOneMenu>
+                       <p:selectOneMenu value="#{user.status}" required="true" requiredMessage="please select role type">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Status--"/>
+                           <f:selectItem itemLabel="Enable" itemValue="Enable"/>
+                           <f:selectItem itemLabel="Disable" itemValue="Disable"/>
+                       </p:selectOneMenu>
+                       
                            <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                          filter="true" filterMatchMode="contains">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue="#{staff}"/>
+                           <f:selectItems value="#{staffController.datalist}" var="rs" itemLabel="#{rs.fullname}"
+                                          itemValue="#{rs}"/>
                        </p:selectOneMenu>
 
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                             styleClass="success-btn raised-btn" id="save" 
+                             action="#{userController.add()}" update=":parentform:result"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

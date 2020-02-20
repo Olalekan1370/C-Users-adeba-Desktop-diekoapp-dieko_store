@@ -35,7 +35,7 @@
                             
                             
                         </p:inputText>
-                            <label>Staff id</label>
+                            <label>Search term</label>
                              
                         </h:panelGroup>
                    
@@ -47,7 +47,8 @@
        
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save" 
+                             update=":parentform:result, :parentform:msg" action="#{userController.search()}"/>
         </f:facet>
             
       

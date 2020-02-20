@@ -13,6 +13,8 @@ import javax.faces.application.FacesMessage.Severity;
  * @author JIDEX
  */
 public class MessageUtil {
+    
+    public final static String DUPLICATE_USER = "Duplicate user";
     public final static String ACCOUNT_ACTIVE="Student with matric number already in session. Kindly contact administrator";
      
     public final static String APP_SESSION = "mocks-app";
