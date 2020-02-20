@@ -8,6 +8,8 @@ package timsoft.ehr.org.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author JIDEX
  */
+@ManagedBean
+@ViewScoped
 @Entity
 @Table(name = "reservoir")
 @XmlRootElement
