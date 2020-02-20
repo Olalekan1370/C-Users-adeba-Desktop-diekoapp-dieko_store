@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,13 +53,15 @@ public class Reservoir implements Serializable {
     @Size(max = 250)
     @Column(name = "units")
     private String units;
+    @Column(name="name")
+    private String name;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
     @Column(name = "lastmodified")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastmodified;
-    @OneToMany(mappedBy = "reservoirid")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "reservoirid")
     private List<Reservoirlog> reservoirlogList;
     @JoinColumn(name = "stockid", referencedColumnName = "id")
     @ManyToOne
@@ -137,6 +140,14 @@ public class Reservoir implements Serializable {
 
     public void setPumpList(List<Pump> pumpList) {
         this.pumpList = pumpList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

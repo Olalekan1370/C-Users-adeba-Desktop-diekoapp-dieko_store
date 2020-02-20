@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Staff;
-import timsoft.ehr.org.model.Staff;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
@@ -67,7 +66,6 @@ public class StaffController implements Serializable {
         try {
             Staff sp = (Staff) FacesUtils.getManagedBean("staff");
             sp.setDatecreated(new Date());
-
             service.getStaffRepo().save(sp);
             login.reset("staff");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
