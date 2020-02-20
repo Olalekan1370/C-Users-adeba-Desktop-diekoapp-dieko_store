@@ -28,15 +28,15 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                         <p:selectOneMenu  required="true" requiredMessage="invalid pump's name"
-                                         filter="true" filterMatchMode="contains">
+                                          filter="true" filterMatchMode="contains" value="#{transactions.pumpid.name}">
                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--" itemValue=""/>
                        </p:selectOneMenu>
                          <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
-                                         filter="true" filterMatchMode="contains">
+                                           filter="true" filterMatchMode="contains" value="#{transactions.staffid.fullname}">
                            <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
                        </p:selectOneMenu>
                          <p:selectOneMenu  required="true" requiredMessage="invalid shifting's name"
-                                         filter="true" filterMatchMode="contains">
+                                           filter="true" filterMatchMode="contains" value="#{transactions.shiftingid.duration}">
                            <f:selectItem noSelectionOption="true" itemLabel="--Select Shift--" itemValue=""/>
                        </p:selectOneMenu>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">

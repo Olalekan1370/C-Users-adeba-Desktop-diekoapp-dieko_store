@@ -29,15 +29,15 @@
                                  columnClasses="ui-grid-col-12">
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText required="true" 
-                                         requiredMessage="invalid depositorname"/>
+                                         requiredMessage="invalid depositorname" value="#{bankdeposit.depositorname}"/>
                             <label>Depositorname</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                            <p:inputText required="true" requiredMessage="invalid amount"/>
+                            <p:inputText required="true" requiredMessage="invalid amount" value="#{bankdeposit.amount}"/>
                             <label>Amount</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  required="true" requiredMessage="invalid bank"/>
+                            <p:inputText  required="true" requiredMessage="invalid bank" value="#{bankdeposit.bank}"/>
                             <label>Bank</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
