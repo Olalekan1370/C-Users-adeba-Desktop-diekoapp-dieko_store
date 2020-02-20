@@ -5,15 +5,16 @@
  */
 package timsoft.ehr.org.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Stock;
-import timsoft.ehr.org.model.Supplier;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
@@ -26,7 +27,8 @@ import timsoft.ehr.org.utils.MessageUtil;
  */
 @Component
 @Scope("session")
-public class StockController {
+@ManagedBean
+public class StockController implements Serializable{
      private List<Stock> datalist;
      @Autowired
      AppService service;

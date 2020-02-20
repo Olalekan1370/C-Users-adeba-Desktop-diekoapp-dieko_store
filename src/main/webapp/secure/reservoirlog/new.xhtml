@@ -28,48 +28,46 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
-                                     requiredMessage="invalid course title"/>
+                        <p:inputText   value="#{reservoirlog.quantity}"required="true" 
+                                     requiredMessage="invalid quantity"/>
                             <label>Quantity</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText required="true" requiredMessage="invalid course code"/>
+                        <p:inputNumber value="#{reservoirlog.cost}" required="true" requiredMessage="invalid cost" symbol="₦"/>
                             <label>Cost</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="invalid course unit"/>
+                        <p:inputText value="#{reservoirlog.unitcost}"  required="true" requiredMessage="invalid unit cost"/>
                             <label>Unit cost</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
+                           <p:inputText  value="#{reservoirlog.datesupplied}"
+                                        required="true" requiredMessage="invalid date supplied"/>
                             <label>Date supplied</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
+                           <p:inputText value="#{reservoirlog.previousreading}" 
+                                        required="true" requiredMessage="invalid previous reading"/>
                             <label>Previous reading</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
+                           <p:inputText value="#{reservoirlog.currentreading}"
+                                        required="true" requiredMessage="invalid current reading"/>
                             <label>Current reading</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
+                            <p:inputText  value="#{reservoirlog.stockname}"
+                                        required="true" requiredMessage="invalid stock name"/>
                             <label>Stock name</label>
                         </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
-                            <label>Reservoir id</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText 
-                                        required="true" requiredMessage="invalid course unit"/>
-                            <label>Supplier id</label>
-                        </h:panelGroup>
+                           <p:selectOneMenu  required="true" requiredMessage="invalid reservior name"
+                                         filter="true" filterMatchMode="contains">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Reservoir--" itemValue=""/>
+                       </p:selectOneMenu>
+                         <p:selectOneMenu  required="true" requiredMessage="invalid supplier's name"
+                                         filter="true" filterMatchMode="contains">
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Supplier--" itemValue=""/>
+                       </p:selectOneMenu>
                        
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />

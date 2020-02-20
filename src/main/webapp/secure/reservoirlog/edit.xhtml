@@ -7,13 +7,13 @@
     >
  
     <p:dialog  
-        widgetVar="addNew" 
+        widgetVar="editNew" 
         responsive="true" 
         closeOnEscape="true"
         dynamic="true"
         position="center" 
         closable="true"
-        id="addNew"
+        id="editNew"
         fitViewport="true"
 
         >
@@ -38,7 +38,7 @@
                             <label>Cost</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="invalid  unit cost"/>
+                        <p:inputText value=#{reservoirlog.unitcost} required="true" requiredMessage="invalid  unit cost"/>
                             <label>Unit cost</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -63,12 +63,12 @@
                         </h:panelGroup>
                              <p:selectOneMenu  required="true" requiredMessage="invalid reservior name"
                                          filter="true" filterMatchMode="contains">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Stock--" itemValue=""/>
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Reservoir--" itemValue=""/>
                        </p:selectOneMenu>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                               <p:selectOneMenu  required="true" requiredMessage="invalid supplier name"
+                               <p:selectOneMenu  required="true" requiredMessage="invalid supplier's name"
                                          filter="true" filterMatchMode="contains">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Stock--" itemValue=""/>
+                           <f:selectItem noSelectionOption="true" itemLabel="--Select Supplier--" itemValue=""/>
                        </p:selectOneMenu>
                                            <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />

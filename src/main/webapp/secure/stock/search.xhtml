@@ -9,12 +9,12 @@
     >
  
     <p:dialog  
-        widgetVar="search_student" 
+        widgetVar="search_stock" 
         responsive="true" 
         closeOnEscape="true"
         position="center" 
         closable="true"
-        id="search_student"
+        id="search_stock"
         fitViewport="true"
         width="300"
         height="70"
@@ -47,7 +47,7 @@
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
                              styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
-                             action="#{stockController.add()}"/>
+                             action="#{stockController.add}"/>
         </f:facet>
             
       
