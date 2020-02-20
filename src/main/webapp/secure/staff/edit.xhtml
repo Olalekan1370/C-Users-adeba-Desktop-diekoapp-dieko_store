@@ -15,7 +15,7 @@
         closable="true"
         id="edit"
         fitViewport="true"
-
+        width="400"
         >
         <f:facet name="header">
             Edit Staff
@@ -58,7 +58,7 @@
                             <label>Designation</label>
                         </h:panelGroup>
 
-                        <p:commandButton value="Save"  icon="fa fa-plus" 
+                        <p:commandButton value="Save"  icon="fa fa-refresh" 
                                          styleClass="success-btn raised-btn" id="save" 
                                          action="#{staffController.add()}" update=":parentform:result"/>
                     </p:panelGrid> 

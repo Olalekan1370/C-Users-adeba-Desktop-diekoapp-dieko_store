@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  * @author JIDEX
  */
 public interface PumpRepo extends JpaRepository<Pump,Long>{
-     @Query(value="select * from pump where name like '%:search%'", nativeQuery=true)
+     @Query(value="select * from pump where name like %:search%", nativeQuery=true)
     List<Pump> search(@Param("search")String search);
     
     @Query(value="select * from pump where DATE(datecreated) between :from and :to", nativeQuery=true)

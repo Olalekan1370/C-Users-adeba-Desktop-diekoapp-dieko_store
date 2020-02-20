@@ -16,7 +16,7 @@ import timsoft.ehr.org.model.Stock;
  * @author JIDEX
  */
 public interface StaffRepo extends JpaRepository<Staff,Long>{
-     @Query(value="select * from staff where fullname like '%:search%'", nativeQuery=true)
+     @Query(value="select * from staff where fullname like %:search%", nativeQuery=true)
     List<Staff> search(@Param("search")String search);
     
     @Query(value="select * from staff where DATE(datecreated) between :from and :to", nativeQuery=true)

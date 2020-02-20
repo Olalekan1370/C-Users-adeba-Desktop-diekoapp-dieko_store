@@ -16,7 +16,7 @@ import timsoft.ehr.org.model.Supplier;
  * @author JIDEX
  */
 public interface StockRepo extends JpaRepository<Stock,Long>{
-     @Query(value="select * from stock where name like '%:search%'", nativeQuery=true)
+     @Query(value="select * from stock where name like %:search%", nativeQuery=true)
     List<Stock> search(@Param("search")String search);
     
     @Query(value="select * from stock where DATE(datecreated) between :from and :to", nativeQuery=true)

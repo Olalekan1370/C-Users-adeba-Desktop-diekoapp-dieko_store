@@ -16,7 +16,7 @@ import timsoft.ehr.org.model.Supplier;
  * @author JIDEX
  */
 public interface SupplierRepo extends JpaRepository<Supplier,Long>{
-    @Query(value="select * from supplier where name like '%:search%' or contactphone like '%:search%' or email like '%:search%'", nativeQuery=true)
+    @Query(value="select * from supplier where name like %:search% or contactphone like %:search% or email like %:search%", nativeQuery=true)
     List<Supplier> search(@Param("search")String search);
     
     @Query(value="select * from supplier where DATE(datecreated) between :from and :to", nativeQuery=true)

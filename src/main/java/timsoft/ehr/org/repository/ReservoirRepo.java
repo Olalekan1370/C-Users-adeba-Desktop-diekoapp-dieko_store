@@ -16,7 +16,7 @@ import timsoft.ehr.org.model.Staff;
  * @author JIDEX
  */
 public interface ReservoirRepo extends JpaRepository<Reservoir,Long>{
-      @Query(value="select * from reservoir where units like '%:search%'  or name like '%:search%'", nativeQuery=true)
+      @Query(value="select * from reservoir where units like %:search%  or name like %:search%", nativeQuery=true)
     List<Reservoir> search(@Param("search")String search);
     
     @Query(value="select * from reservoir where DATE(datecreated) between :from and :to", nativeQuery=true)

@@ -59,7 +59,7 @@
                         <p:outputPanel>    
                             <p:commandLink>
 
-                                <span>##{staffController.datalist} Record(s)</span>
+                                <span>#{staffController.datalist.size()} Record(s)</span>
                             </p:commandLink>
                         </p:outputPanel> 
                     </div>
@@ -131,10 +131,10 @@
                         <p:column headerText="Sex" width="30">
                             <h:outputText value="#{result.sex}" />
                         </p:column>
-                        <p:column headerText="Phonenumber" width="70">
+                        <p:column headerText="Phonenumber" width="100">
                             <h:outputText value="#{result.phonenumber}" />
                         </p:column>
-                        <p:column headerText="Qualification" width="80">
+                        <p:column headerText="Qualification" width="100">
                             <h:outputText value="#{result.qualification}" />
                         </p:column>
                         <p:column headerText="Address" >
@@ -143,9 +143,9 @@
                         <p:column headerText="Designation" width="100">
                             <h:outputText value="#{result.designation}" />
                         </p:column>
-                        <p:column headerText="Date Created" width="90">
+                        <p:column headerText="Date Created" width="120">
                             <h:outputText value="#{result.datecreated}" >
-                                <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
+                                <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a" />
                             </h:outputText>
                         </p:column>
                         <p:column width="25">
