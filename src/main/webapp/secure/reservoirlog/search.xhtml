@@ -9,19 +9,19 @@
     >
  
     <p:dialog  
-        widgetVar="search_stock" 
+        widgetVar="search_reservoirlog" 
         responsive="true" 
         closeOnEscape="true"
         position="center" 
         closable="true"
-        id="search_stock"
+        id="search_reservoirlog"
         fitViewport="true"
         width="300"
         height="70"
        
         >
         <f:facet name="header">
-           Search stock by name
+           Search Reservoir log
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -30,12 +30,12 @@
                 <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              >
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{appHelper.searchterm}" required="true" 
+                        <p:inputText value="#{appHelper.selectedCourse}" required="true" 
                                      requiredMessage="invalid matric number">
                             
                             
                         </p:inputText>
-                            <label>Stock name</label>
+                            <label>Reservoir id</label>
                         </h:panelGroup>
                    
                 </p:panelGrid> 
@@ -46,8 +46,7 @@
        
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
-                             action="#{stockController.add}"/>
+                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
         </f:facet>
             
       

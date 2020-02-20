@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Shifting</ui:define>
+    <ui:define name="title">Manage Reservoir log</ui:define>
 <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
            <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                    <div class="ui-g-12 ui-lg-4">
-                       <h:outputText value="Shifting Module"/>
+                       <h:outputText value="Reservoir log Module"/>
                 </div> 
                <div class="ui-g-12 ui-lg-2">
                    <p:outputPanel>    
@@ -64,7 +64,7 @@
                        </p:outputPanel> 
                     </div>
                <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_shifting').show()">
+                        <p:commandLink  oncomplete="PF('search_reservoirlog').show()">
                            
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                              <span>Search</span>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             <div class="ui-g-12 ui-lg-12">
-                <p:dataTable value="#{shiftController.datalist}" 
+                <p:dataTable value="#{reservoirlogController.datalist}" 
                              var="result" 
                              id="result" paginator="true" paginatorPosition="bottom" rows="100"
                              style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -121,32 +121,39 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Shift Time" >
-                        <h:outputText value="#{result.shifttime}" />
+                    <p:column headerText="Quantity" >
+                        <h:outputText value="#{result.quantity}" />
                         </p:column>
                         
-                    <p:column headerText="Duration" width="160">
-                        <h:outputText value="#{result.duration}" />
+                    <p:column headerText="Cost" width="160">
+                        <h:outputText value="#{result.cost}" />
                         </p:column>
-                    <p:column headerText="User id" width="150">
-                        <h:outputText value="#{result.userid}" />
+                    <p:column headerText="Date Supplied" width="150">
+                        <h:outputText value="#{result.datesupplied}" />
                         </p:column>
-                    <p:column headerText="Staff id" width="150">
-                        <h:outputText value="#{result.staffid}" />
+                    <p:column headerText="Previous Reading" width="150">
+                        <h:outputText value="#{result.previousreading}" />
                         </p:column>
-                    <p:column headerText="Date Created" width="120">
-                        <h:outputText value="#{result.datecreated}" >
-                            <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
-                        </h:outputText>
+                     <p:column headerText="Current Reading" width="150">
+                        <h:outputText value="#{result.currentreading}" />
                         </p:column>
-                    <p:column width="25">
+                     <p:column headerText="Stock Name" width="150">
+                        <h:outputText value="#{result.stockname}" />
+                        </p:column>
+                     <p:column headerText="Reservoir id" width="150">
+                        <h:outputText value="#{result.reservoirreading}" />
+                        </p:column>
+                    <p:column headerText="Supplier id" width="150">
+                        <h:outputText value="#{result.supplierid}" />
+                        </p:column>
+                   <p:column width="25">
                             <p:commandLink style="color:green; font-size:12px;"
                                             title="Edit Record"
                                            
                                            oncomplete="PF('editNew').show()" >
 
                                <i class="fa fa-edit" style="color:#0288D1"/>
-                               <f:setPropertyActionListener target="#{shifting}" value="#{result}"/>
+                               <f:setPropertyActionListener target="#{reservoirlog}" value="#{result}"/>
                             </p:commandLink>
                             
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
@@ -166,15 +173,15 @@
             
 </h:form>
         <h:form id="uploadform">    
-            <ui:include src="./shifting/new.xhtml"/>  
+            <ui:include src="./reservoirlog/new.xhtml"/>  
                  </h:form> 
         
         <h:form id="edit">    
-            <ui:include src="./shifting/edit.xhtml"/>  
+            <ui:include src="./reservoirlog/edit.xhtml"/>  
                  </h:form> 
         
-        <h:form id="search_shifting">    
-            <ui:include src="./shifting/search.xhtml"/>  
+        <h:form id="search_reservoirlog">    
+            <ui:include src="./reservoirlog/search.xhtml"/>  
                  </h:form> 
               
                 

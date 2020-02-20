@@ -64,7 +64,7 @@
                        </p:outputPanel> 
                     </div>
                <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_student').show()">
+                        <p:commandLink  oncomplete="PF('search_stock').show()">
                            
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                              <span>Search</span>
@@ -120,8 +120,7 @@
                         </p:commandLink>
                         </p:panelGrid>
                     </f:facet>
-                    
-                    <p:column headerText="Stock Name" >
+    <p:column headerText="Stock Name" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
                         
@@ -129,7 +128,9 @@
                         <h:outputText value="#{result.unitprice}" >
                             <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
                         </h:outputText>
+
                         </p:column>
+                   
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
                             <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
@@ -139,7 +140,7 @@
                             <p:commandLink style="color:green; font-size:12px;"
                                             title="Edit Record"
                                            
-                                           oncomplete="PF('addNew').show()" >
+                                           oncomplete="PF('editNew').show()" >
 
                                <i class="fa fa-edit" style="color:#0288D1"/>
                                <f:setPropertyActionListener target="#{stock}" value="#{result}"/>

@@ -64,7 +64,7 @@
                        </p:outputPanel> 
                     </div>
                <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_student').show()">
+                        <p:commandLink  oncomplete="PF('search_reservoir').show()">
                            
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                              <span>Search</span>
@@ -121,15 +121,15 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
-                        <h:outputText value="#{result.name}" />
+                    <p:column headerText="Quantity" >
+                        <h:outputText value="#{result.quantity}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
+                    <p:column headerText="Units" width="160">
+                        <h:outputText value="#{result.units}" />
                         </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
+                    <p:column headerText="Stock id" width="150">
+                        <h:outputText value="#{result.stockid}" />
                         </p:column>
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
@@ -140,10 +140,10 @@
                             <p:commandLink style="color:green; font-size:12px;"
                                             title="Edit Record"
                                            
-                                           oncomplete="PF('addNew').show()" >
+                                           oncomplete="PF('editNew').show()" >
 
                                <i class="fa fa-edit" style="color:#0288D1"/>
-                               <f:setPropertyActionListener target="#{supplier}" value="#{result}"/>
+                               <f:setPropertyActionListener target="#{reservoir}" value="#{result}"/>
                             </p:commandLink>
                             
                             <p:commandLink style="color:green; font-size:12px;" title="delete"

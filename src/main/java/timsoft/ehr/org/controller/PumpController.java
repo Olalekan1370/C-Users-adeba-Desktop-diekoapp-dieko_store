@@ -8,25 +8,24 @@ package timsoft.ehr.org.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import timsoft.ehr.org.model.Expenditure;
-import timsoft.ehr.org.model.Reservoir;
+import timsoft.ehr.org.model.Pump;
 
 /**
  *
  * @author HP
  */
-public class ReservoirController {
-     private List<Reservoir> datalist;
+public class PumpController {
+      private List<Pump> datalist;
     @PostConstruct
     public void init(){
         datalist = new ArrayList<>();
     }
 
-    public List<Reservoir> getDatalist() {
+    public List<Pump> getDatalist() {
         return datalist;
     }
 
-    public void setDatalist(List<Reservoir> datalist) {
+    public void setDatalist(List<Pump> datalist) {
         this.datalist = datalist;
     }
 }
