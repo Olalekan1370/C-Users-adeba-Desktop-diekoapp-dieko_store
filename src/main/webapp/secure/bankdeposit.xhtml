@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Staff</ui:define>
+    <ui:define name="title">Manage Bankdeposit</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Staff Module"/>
+                        <h:outputText value="Bankdeposit Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
@@ -64,7 +64,7 @@
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_staff').show()">
+                        <p:commandLink  oncomplete="PF('search_bankdeposit').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{staffController.datalist}" 
+                    <p:dataTable value="#{bankdepositController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -98,8 +98,6 @@
                                 <h:outputText value="Search by Date Range" style="margin-right:10px;"/>
                                 <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                                     <p:calendar value="#{appHelper.dateFrom}" />
-
-
                                     <label>Date From</label>
                                 </h:panelGroup>
                                 <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -121,33 +119,26 @@
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="Full Name" width="160">
-                            <h:outputText value="#{result.fullname}" />
+                        <p:column headerText="Depositorname" >
+                            <h:outputText value="#{result.depositorname}" />
                         </p:column>
 
-                        <p:column headerText="Age" width="100">
-                            <h:outputText value="#{result.age}" />
+                        <p:column headerText="Amount" width="160">
+                            <h:outputText value="#{result.amount}" />
                         </p:column>
-                        <p:column headerText="Sex" width="100">
-                            <h:outputText value="#{result.sex}" />
+                        <p:column headerText="Bank" width="150">
+                            <h:outputText value="#{result.bank}" />
                         </p:column>
-                        <p:column headerText="Phonenumber" width="150">
-                            <h:outputText value="#{result.phonenumber}" />
+                        <p:column headerText="Transactiondate" width="150">
+                            <h:outputText value="#{result.transactiondate}" />
                         </p:column>
-                        <p:column headerText="Qualification" width="150">
-                            <h:outputText value="#{result.qualification}" />
-                        </p:column>
-                        <p:column headerText="Address" width="120">
-                            <h:outputText value="#{result.address}" />
-                        </p:column>
-                        <p:column headerText="Designation" width="150">
-                            <h:outputText value="#{result.designation}" />
-                        </p:column>
-                        <p:column headerText="Date Created" width="120">
-                            <h:outputText value="#{result.datecreated}" >
-                                <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
+                        <p:column headerText="Datedeposit" filterBy="#{result.datedeposit}" sortBy="#{result.datedeposit}" 
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{result.datedeposit}" >
+                                <f:convertDateTime pattern="yyyy/MM/dd" timeZone="GMT+01"/>
                             </h:outputText>
                         </p:column>
+
                         <p:column width="25">
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
@@ -155,7 +146,7 @@
                                            oncomplete="PF('addNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{staff}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{bankdeposit}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
@@ -175,15 +166,15 @@
 
         </h:form>
         <h:form id="addNew">    
-            <ui:include src="./staff/new.xhtml"/>  
+            <ui:include src="./bankdeposit/new.xhtml"/>  
         </h:form> 
 
         <h:form id="edit">    
-            <ui:include src="./staff/edit.xhtml"/>  
+            <ui:include src="./bankdeposit/edit.xhtml"/>  
         </h:form> 
 
-        <h:form id="search_staff">    
-            <ui:include src="./staff/search.xhtml"/>  
+        <h:form id="search_bankdeposit">    
+            <ui:include src="./bankdeposit/search.xhtml"/>  
         </h:form> 
 
 

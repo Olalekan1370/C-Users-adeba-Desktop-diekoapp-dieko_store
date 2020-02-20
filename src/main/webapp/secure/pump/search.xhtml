@@ -5,9 +5,9 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:pe="http://primefaces.org/ui/extensions"
     xmlns:h="http://java.sun.com/jsf/html"
-    
+
     >
- 
+
     <p:dialog  
         widgetVar="search_pump" 
         responsive="true" 
@@ -18,39 +18,38 @@
         fitViewport="true"
         width="300"
         height="70"
-       
+
         >
         <f:facet name="header">
-           Search Pump
+            Search Pump
         </f:facet>
-       
+
         <div class="p-grid ui-fluid">
             <div class="p-col-12 ui-g-12">
                 <p:outputPanel id="pholder">
-                <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             >
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{appHelper.selectedCourse}" required="true" 
-                                     requiredMessage="invalid matric number">
-                            
-                            
-                        </p:inputText>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 >
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{appHelper.searchterm}" required="true" 
+                                         requiredMessage="invalid reservoir">
+
+                            </p:inputText>
                             <label>Reservoir id</label>
                         </h:panelGroup>
-                   
-                </p:panelGrid> 
+
+                    </p:panelGrid> 
                     <p:autoUpdate/>
                 </p:outputPanel>
             </div>
         </div>
-       
+
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
                              styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
         </f:facet>
-            
-      
+
+
     </p:dialog>  
-     
+
 
 </ui:composition>
