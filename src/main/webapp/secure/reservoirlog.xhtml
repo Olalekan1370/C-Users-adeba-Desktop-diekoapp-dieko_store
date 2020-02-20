@@ -1,0 +1,181 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="title">Manage Reservoir log</ui:define>
+<ui:define name="head">
+        <style type="text/css">
+            .ui-outputlabel {
+                display: block;
+                margin: 1em 0
+            }
+
+            .ui-selectonemenu, 
+            .ui-autocomplete {
+                margin-bottom: 1em;
+            }
+
+            .ui-slider {
+                margin-bottom: 2em;
+            }
+            .zeroborder{
+                padding:0px;
+                padding:0px;
+            }
+            .leftborder{
+                margin-left:-16px;
+                margin-right:-16px;
+                margin-top:-18px !important;
+            }
+            .ui-datatable  .ui-column-filter{
+                display:none;
+                visibility: hidden;
+            }
+            .rightdata {
+                text-align: right !important;
+            }
+        </style>
+
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="parentform" style="padding:0px; maring:0px;">
+            <p:growl id="msg" showDetail="true">
+                <p:autoUpdate/>
+            </p:growl>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" 
+                                         responsive="true" closeOnEscape="false" closable="false">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+            <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
+           <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
+                   <div class="ui-g-12 ui-lg-4">
+                       <h:outputText value="Reservoir log Module"/>
+                </div> 
+               <div class="ui-g-12 ui-lg-2">
+                   <p:outputPanel>    
+                   <p:commandLink>
+                          
+                       <span>#0 Record(s)</span>
+                        </p:commandLink>
+                       </p:outputPanel> 
+                    </div>
+               <div class="ui-g-12 ui-lg-2">
+                        <p:commandLink  oncomplete="PF('search_student').show()">
+                           
+                            <i class="fa fa-search" style="margin-right:5px;"></i>
+                             <span>Search</span>
+                        </p:commandLink>
+                    </div>
+                    <div class="ui-g-12 ui-lg-2">
+                        <p:commandLink onclick="PF('addNew').show()">
+                           
+                            <i class="fa fa-plus" style="margin-right:5px;"></i>
+                             <span>Add New</span>
+                        </p:commandLink>
+                    </div>
+                    <div class="ui-g-12 ui-lg-2">
+                        <p:commandLink >
+                            
+                            <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                            <span>Refresh</span>
+                            
+                        </p:commandLink>
+                    </div>
+                </div>
+            <div class="ui-g-12 ui-lg-12">
+                <p:dataTable value="#{reservoirlogController.datalist}" 
+                             var="result" 
+                             id="result" paginator="true" paginatorPosition="bottom" rows="100"
+                             style="margin:0px;" scrollable="true" scrollHeight="380"
+                             rowKey="#{result.id}">
+                    <f:facet name="header">
+                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank"
+                        style="margin-top:10px;">
+                        <h:outputText value="Search by Date Range" style="margin-right:10px;"/>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:calendar value="#{appHelper.dateFrom}" />
+                            
+                            
+                            <label>Date From</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:calendar value="#{appHelper.dateTo}" />
+                            
+                            <label>Date To</label>
+                        </h:panelGroup>
+                        <p:commandLink>
+                                     
+                          <i class="fa fa-search" style="color:#eb4924"/>
+                          <span>Search</span>
+                        </p:commandLink>
+                        <p:commandLink 
+                                       >
+                          <i class="fa fa-close" style="color:#eb4924"/>
+                          <span>Export to Excel</span>
+                              
+                        </p:commandLink>
+                        </p:panelGrid>
+                    </f:facet>
+                    
+                    <p:column headerText="Full Name" >
+                        <h:outputText value="#{result.name}" />
+                        </p:column>
+                        
+                    <p:column headerText="Contact Email" width="160">
+                        <h:outputText value="#{result.email}" />
+                        </p:column>
+                    <p:column headerText="Contact phone" width="150">
+                        <h:outputText value="#{result.contactphone}" />
+                        </p:column>
+                    <p:column headerText="Date Created" width="120">
+                        <h:outputText value="#{result.datecreated}" >
+                            <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
+                        </h:outputText>
+                        </p:column>
+                    <p:column width="25">
+                            <p:commandLink style="color:green; font-size:12px;"
+                                            title="Edit Record"
+                                           
+                                           oncomplete="PF('addNew').show()" >
+
+                               <i class="fa fa-edit" style="color:#0288D1"/>
+                               <f:setPropertyActionListener target="#{supplier}" value="#{result}"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink style="color:green; font-size:12px;" title="delete"
+                                            update="result">
+
+                                <i class="fa fa-close" style="color:#eb4924"/>
+                                  <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
+                              
+                            </p:commandLink>
+                        </p:column>
+                    <p:autoUpdate/>
+                </p:dataTable>
+          
+           
+                </div>
+        </div>
+            
+</h:form>
+        <h:form id="uploadform">    
+            <ui:include src="./reservoirlog/new.xhtml"/>  
+                 </h:form> 
+        
+        <h:form id="edit">    
+            <ui:include src="./reservoirlog/edit.xhtml"/>  
+                 </h:form> 
+        
+        <h:form id="search_reservoirlog">    
+            <ui:include src="./reservoirlog/search.xhtml"/>  
+                 </h:form> 
+              
+                
+            
+    </ui:define>
+
+</ui:composition>
