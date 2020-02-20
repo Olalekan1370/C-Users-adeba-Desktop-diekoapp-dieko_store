@@ -29,20 +29,19 @@
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:inputText required="true" 
-                                     requiredMessage="invalid course title"/>
+                                     requiredMessage="invalid stock name" value="#{stock.name}"/>
                             <label>Stock name</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText  required="true" requiredMessage="invalid course code"/>
+                        <p:inputNumber  required="true" requiredMessage="invalid stock price"
+                                        value="#{stock.unitprice}" symbol="₦"/>
                             <label>Unit price</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="invalid course unit"/>
-                            <label>Reservoir list</label>
-                        </h:panelGroup>
+                    
                       
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                                     styleClass="success-btn raised-btn" id="save"  action="#{stockController.add()}
+                                     " update=":parentform:result"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

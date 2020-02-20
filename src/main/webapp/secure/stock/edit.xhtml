@@ -7,7 +7,7 @@
     >
  
     <p:dialog  
-        widgetVar="addNew" 
+        widgetVar="editNew" 
         responsive="true" 
         closeOnEscape="true"
         dynamic="true"
@@ -28,21 +28,20 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" 
-                                     requiredMessage="invalid course title"/>
+                        <p:inputText required="true" 
+                                     requiredMessage="invalid stock name" value="#{stock.name}"/>
                             <label>Stock name</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText  required="true" requiredMessage="invalid course code"/>
+                        <p:inputNumber  required="true" requiredMessage="invalid stock price"
+                                        value="#{stock.unitprice}" symbol="₦"/>
                             <label>Unit price</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="invalid course unit"/>
-                            <label>Reservoir list</label>
-                        </h:panelGroup>
-                       
+                    
+                      
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                                     styleClass="success-btn raised-btn" id="save"  action="#{stockController.update()}
+                                     " update=":parentform:result"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

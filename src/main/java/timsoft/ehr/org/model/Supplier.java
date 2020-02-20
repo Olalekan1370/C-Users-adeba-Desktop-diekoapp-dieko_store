@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
@@ -49,7 +49,7 @@ public class Supplier implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "contactphone")
-    private String contactphone;
+    private Integer contactphone;
     @Size(max = 250)
     @Column(name = "adress")
     private String adress;
@@ -60,9 +60,9 @@ public class Supplier implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Size(max = 250)
     @Column(name = "lastmodified")
-    private String lastmodified;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
     @OneToMany(mappedBy = "supplierid")
     private List<Reservoirlog> reservoirlogList;
 
@@ -89,11 +89,11 @@ public class Supplier implements Serializable {
         this.name = name;
     }
 
-    public String getContactphone() {
+    public Integer getContactphone() {
         return contactphone;
     }
 
-    public void setContactphone(String contactphone) {
+    public void setContactphone(Integer contactphone) {
         this.contactphone = contactphone;
     }
 
@@ -121,11 +121,11 @@ public class Supplier implements Serializable {
         this.datecreated = datecreated;
     }
 
-    public String getLastmodified() {
+    public Date getLastmodified() {
         return lastmodified;
     }
 
-    public void setLastmodified(String lastmodified) {
+    public void setLastmodified(Date lastmodified) {
         this.lastmodified = lastmodified;
     }
 

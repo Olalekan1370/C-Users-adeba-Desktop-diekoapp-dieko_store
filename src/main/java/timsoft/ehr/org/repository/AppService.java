@@ -40,4 +40,55 @@ public class AppService {
     @Autowired
     UserRepo UserRepo;
 
+    public SupplierRepo getSupplierRepo() {
+        return supplierRepo;
+    }
+
+    public ExcategoryRepo getExcategoryRepo() {
+        return excategoryRepo;
+    }
+
+    public StockRepo getStockRepo() {
+        return stockRepo;
+    }
+
+    public ShiftingRepo getShiftingRepo() {
+        return shiftingRepo;
+    }
+
+    public ReservoirlogRepo getReservoirlogRepo() {
+        return reservoirlogRepo;
+    }
+
+    public ReservoirRepo getReservoirRepo() {
+        return reservoirRepo;
+    }
+
+    public PumpRepo getPumpRepo() {
+        return pumpRepo;
+    }
+
+    public ExpenditureRepo getExpenditureRepo() {
+        return expenditureRepo;
+    }
+
+    public ApplogRepo getApplogRepo() {
+        return applogRepo;
+    }
+
+    public StaffRepo getStaffRepo() {
+        return staffRepo;
+    }
+
+    public TransactionRepo getTransactionRepo() {
+        return transactionRepo;
+    }
+
+    public UserRepo getUserRepo() {
+        return UserRepo;
+    }
+    
+    
+
 }
+

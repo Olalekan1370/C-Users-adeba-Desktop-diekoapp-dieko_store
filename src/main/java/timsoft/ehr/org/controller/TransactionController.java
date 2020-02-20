@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.Transaction;
+import timsoft.ehr.org.model.Transactions;
 
 /**
  *
@@ -20,17 +20,17 @@ import timsoft.ehr.org.model.Transaction;
 @Component
 @Scope("session")
 public class TransactionController {
-    private List<Transaction> datalist;
+    private List<Transactions> datalist;
     @PostConstruct
     public void init(){
         datalist = new ArrayList<>();
     }
 
-    public List<Transaction> getDatalist() {
+    public List<Transactions> getDatalist() {
         return datalist;
     }
 
-    public void setDatalist(List<Transaction> datalist) {
+    public void setDatalist(List<Transactions> datalist) {
         this.datalist = datalist;
     }
     

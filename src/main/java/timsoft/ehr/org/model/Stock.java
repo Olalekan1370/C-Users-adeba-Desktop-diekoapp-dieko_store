@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped

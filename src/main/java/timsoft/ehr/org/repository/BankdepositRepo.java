@@ -5,14 +5,13 @@
  */
 package timsoft.ehr.org.repository;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.User;
+import timsoft.ehr.org.model.Bankdeposit;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
-public interface UserRepo extends JpaRepository<User,Long>{
+public interface BankdepositRepo extends JpaRepository<Bankdeposit,Long>{
     
 }

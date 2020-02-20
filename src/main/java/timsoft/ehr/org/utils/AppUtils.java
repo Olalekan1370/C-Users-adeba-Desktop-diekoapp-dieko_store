@@ -6,9 +6,12 @@
 package timsoft.ehr.org.utils;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -113,5 +116,10 @@ public class AppUtils {
         }else{
             return result;
         }
+    }
+    public static String getDate(Date d){
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        ft.setTimeZone(TimeZone.getTimeZone("GMT+01"));
+        return ft.format(d);
     }
 }

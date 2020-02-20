@@ -20,4 +20,10 @@ public class MessageUtil {
     public final static String ERROR = "Error";
     public final static Severity SUCCESS_TAG = FacesMessage.SEVERITY_INFO;
     public final static Severity ERROR_TAG = FacesMessage.SEVERITY_ERROR;
+    public final static String INTERNAL_ERROR="An error occur...";
+    public final static String RECORD_NOT_FOUND="Record not found";
+    public final static String RECORD_CREATED="Record Successfully Created";
+    public final static String RECORD_DELETED="Record Successfully Deleted";
+    
+    
 }

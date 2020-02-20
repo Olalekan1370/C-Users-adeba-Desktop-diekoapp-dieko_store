@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Staff</ui:define>
+    <ui:define name="title">Manage Expenditure</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; margin:0px;">
+        <h:form id="parentform" style="padding:0px; maring:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Staff Module"/>
+                        <h:outputText value="Expenditure Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
@@ -64,7 +64,7 @@
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_student').show()">
+                        <p:commandLink  oncomplete="PF('search_expenditure').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{staffController.datalist}" 
+                    <p:dataTable value="#{expenditureController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -121,33 +121,18 @@
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="Full Name" >
-                            <h:outputText value="#{result.fullname}" />
+                        <p:column headerText="Categoryname" >
+                            <h:outputText value="#{result.excategoryid.name}" />
+                        </p:column>
+                        
+                        <p:column headerText="Description" >
+                            <h:outputText value="#{result.description}" />
+                        </p:column>
+                        
+                        <p:column headerText="Amount" >
+                            <h:outputText value="#{result.amount}" />
                         </p:column>
 
-                        <p:column headerText="Age" width="160">
-                            <h:outputText value="#{result.age}" />
-                        </p:column>
-                        <p:column headerText="Sex" width="150">
-                            <h:outputText value="#{result.sex}" />
-                        </p:column>
-                        <p:column headerText="Phonenumber" width="150">
-                            <h:outputText value="#{result.phonenumber}" />
-                        </p:column>
-                        <p:column headerText="Qualification" width="150">
-                            <h:outputText value="#{result.qualification}" />
-                        </p:column>
-                        <p:column headerText="Address" width="150">
-                            <h:outputText value="#{result.address}" />
-                        </p:column>
-                        <p:column headerText="Designation" width="150">
-                            <h:outputText value="#{result.designation}" />
-                        </p:column>
-                        <p:column headerText="Date Created" width="120">
-                            <h:outputText value="#{result.datecreated}" >
-                                <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
-                            </h:outputText>
-                        </p:column>
                         <p:column width="25">
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
@@ -155,7 +140,7 @@
                                            oncomplete="PF('addNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{staff}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{expenditure}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
@@ -174,16 +159,16 @@
             </div>
 
         </h:form>
-        <h:form id="uploadform">    
-            <ui:include src="./staff/new.xhtml"/>  
+        <h:form id="addNew">    
+            <ui:include src="./expenditure/new.xhtml"/>  
         </h:form> 
 
         <h:form id="edit">    
-            <ui:include src="./staff/edit.xhtml"/>  
+            <ui:include src="./expenditure/edit.xhtml"/>  
         </h:form> 
 
-        <h:form id="search_staff">    
-            <ui:include src="./staff/search.xhtml"/>  
+        <h:form id="search_expenditure">    
+            <ui:include src="./expenditure/search.xhtml"/>  
         </h:form> 
 
 

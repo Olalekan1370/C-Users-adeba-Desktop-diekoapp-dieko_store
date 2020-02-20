@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
@@ -53,11 +54,11 @@ public class Pump implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
+    @OneToMany(mappedBy = "pumpid")
+    private List<Transactions> transactionsList;
     @JoinColumn(name = "reservoirid", referencedColumnName = "id")
     @ManyToOne
     private Reservoir reservoirid;
-    @OneToMany(mappedBy = "pumpid")
-    private List<Transaction> transactionList;
 
     public Pump() {
     }
@@ -90,21 +91,21 @@ public class Pump implements Serializable {
         this.datecreated = datecreated;
     }
 
+    @XmlTransient
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+
     public Reservoir getReservoirid() {
         return reservoirid;
     }
 
     public void setReservoirid(Reservoir reservoirid) {
         this.reservoirid = reservoirid;
-    }
-
-    @XmlTransient
-    public List<Transaction> getTransactionList() {
-        return transactionList;
-    }
-
-    public void setTransactionList(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
     }
 
     @Override
@@ -133,3 +134,4 @@ public class Pump implements Serializable {
     }
     
 }
+

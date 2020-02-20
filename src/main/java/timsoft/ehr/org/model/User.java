@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
@@ -67,11 +67,11 @@ public class User implements Serializable {
     private String status;
     @OneToMany(mappedBy = "userid")
     private List<Applog> applogList;
+    @OneToMany(mappedBy = "userid")
+    private List<Shifting> shiftingList;
     @JoinColumn(name = "staffid", referencedColumnName = "id")
     @ManyToOne
     private Staff staffid;
-    @OneToMany(mappedBy = "userid")
-    private List<Shifting> shiftingList;
 
     public User() {
     }
@@ -145,14 +145,6 @@ public class User implements Serializable {
         this.applogList = applogList;
     }
 
-    public Staff getStaffid() {
-        return staffid;
-    }
-
-    public void setStaffid(Staff staffid) {
-        this.staffid = staffid;
-    }
-
     @XmlTransient
     public List<Shifting> getShiftingList() {
         return shiftingList;
@@ -160,6 +152,14 @@ public class User implements Serializable {
 
     public void setShiftingList(List<Shifting> shiftingList) {
         this.shiftingList = shiftingList;
+    }
+
+    public Staff getStaffid() {
+        return staffid;
+    }
+
+    public void setStaffid(Staff staffid) {
+        this.staffid = staffid;
     }
 
     @Override
