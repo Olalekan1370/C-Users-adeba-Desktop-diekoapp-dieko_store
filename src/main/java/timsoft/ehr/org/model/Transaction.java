@@ -7,6 +7,8 @@ package timsoft.ehr.org.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author JIDEX
+ * 
  */
+@ManagedBean
+@ViewScoped
 @Entity
 @Table(name = "transaction")
 @XmlRootElement

@@ -34,16 +34,22 @@
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
                         <p:inputText  required="true" requiredMessage="invalid course code"/>
-                            <label>Contact Mobile</label>
+                            <label>Password</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{supplier.email}"  required="true" requiredMessage="invalid course unit"/>
-                            <label>Contact Email</label>
+                        <p:inputText   required="true" requiredMessage="invalid course unit"/>
+                            <label>Role type</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText value="#{supplier.adress}" 
+                           <p:inputText  
                                         required="true" requiredMessage="invalid course unit"/>
-                            <label>Contact Address</label>
+                            <label>Status</label>
+                        </h:panelGroup>
+                     
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Staff id</label>
                         </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />

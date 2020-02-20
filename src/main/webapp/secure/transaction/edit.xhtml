@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Edit User
+            Edit Transaction
         </f:facet>
        
         <div class="p-grid ui-fluid">
@@ -28,27 +28,57 @@
                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                              columnClasses="ui-grid-col-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText required="true" 
+                        <p:inputText  required="true" 
                                      requiredMessage="invalid course title"/>
-                            <label>Username</label>
+                            <label>Pump id</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
                         <p:inputText  required="true" requiredMessage="invalid course code"/>
-                            <label>Password</label>
+                            <label>Staff id</label>
                         </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:inputText  required="true" requiredMessage="invalid course unit"/>
-                            <label>Role type</label>
+                            <label>Shifting id</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                            <p:inputText  
                                         required="true" requiredMessage="invalid course unit"/>
-                            <label>Status</label>
+                            <label>Purchase price</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Amount</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Unit price</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                            <p:inputText  
                                         required="true" requiredMessage="invalid course unit"/>
-                            <label>Staff id</label>
+                            <label>Invoice number</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Quantity</label>
+                        </h:panelGroup>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Opening balance</label>
+                        </h:panelGroup>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Closing balance</label>
+                        </h:panelGroup>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputText  
+                                        required="true" requiredMessage="invalid course unit"/>
+                            <label>Profit</label>
                         </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" />

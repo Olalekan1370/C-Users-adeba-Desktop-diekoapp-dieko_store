@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage users</ui:define>
+    <ui:define name="title">Manage Transaction</ui:define>
 <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
            <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                    <div class="ui-g-12 ui-lg-4">
-                       <h:outputText value="Supplier Module"/>
+                       <h:outputText value="Transaction Module"/>
                 </div> 
                <div class="ui-g-12 ui-lg-2">
                    <p:outputPanel>    
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             <div class="ui-g-12 ui-lg-12">
-                <p:dataTable value="#{userController.datalist}" 
+                <p:dataTable value="#{transactionController.datalist}" 
                              var="result" 
                              id="result" paginator="true" paginatorPosition="bottom" rows="100"
                              style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -121,8 +121,8 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Username" >
-                        <h:outputText value="#{result.username}" />
+                    <p:column headerText="Full Name" >
+                        <h:outputText value="#{result.name}" />
                         </p:column>
                         
                     <p:column headerText="Contact Email" width="160">
@@ -163,15 +163,15 @@
             
 </h:form>
         <h:form id="uploadform">    
-            <ui:include src="./users/new.xhtml"/>  
+            <ui:include src="./transaction/new.xhtml"/>  
                  </h:form> 
         
         <h:form id="edit">    
-            <ui:include src="./users/edit.xhtml"/>  
+            <ui:include src="./transaction/edit.xhtml"/>  
                  </h:form> 
         
-        <h:form id="search_users">    
-            <ui:include src="./users/search.xhtml"/>  
+        <h:form id="search_transaction">    
+            <ui:include src="./transaction/search.xhtml"/>  
                  </h:form> 
               
                 
