@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class AppService {
 
     @Autowired
+    BankdepositRepo bankdepositRepo;
+    @Autowired
     SupplierRepo supplierRepo;
     @Autowired
     ExcategoryRepo excategoryRepo;

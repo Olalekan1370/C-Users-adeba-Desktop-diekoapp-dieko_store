@@ -7,18 +7,18 @@
     >
 
     <p:dialog  
-        widgetVar="addNew" 
+        widgetVar="edit" 
         responsive="true" 
         closeOnEscape="true"
         dynamic="true"
         position="center" 
         closable="true"
-        id="addNew"
+        id="edit"
         fitViewport="true"
 
         >
         <f:facet name="header">
-            Add Staff
+            Edit Bankdeposit
         </f:facet>
 
         <div class="p-grid ui-fluid">
@@ -29,38 +29,25 @@
                                  columnClasses="ui-grid-col-12">
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText required="true" 
-                                         requiredMessage="invalid name"/>
-                            <label>Full name</label>
+                                         requiredMessage="invalid depositorname"/>
+                            <label>Depositorname</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                            <p:inputText required="true" requiredMessage="invalid age"/>
-                            <label>Age</label>
+                            <p:inputText required="true" requiredMessage="invalid amount"/>
+                            <label>Amount</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  required="true" requiredMessage="invalid sex"/>
-                            <label>Sex</label>
+                            <p:inputText  required="true" requiredMessage="invalid bank"/>
+                            <label>Bank</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText 
-                                required="true" requiredMessage="invalid phonenumber"/>
-                            <label>Phone number</label>
+                            <p:calendar value="#{bankdeposit.transactiondate}" pattern="yyyy-MM-dd" navigator="true" showTodayButton="true"/>  
+                            <label>Transactiondate</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText 
-                                required="true" requiredMessage="invalid qualification"/>
-                            <label>Qualification</label>
+                            <p:calendar value="#{bankdeposit.datedeposit}" pattern="yyyy-MM-dd" navigator="true" showTodayButton="true"/>
+                            <label>Datedeposit</label>
                         </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText 
-                                required="true" requiredMessage="invalid address"/>
-                            <label>Address</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText 
-                                required="true" requiredMessage="invalid designation"/>
-                            <label>Designation</label>
-                        </h:panelGroup>
-
                         <p:commandButton value="Save"  icon="fa fa-plus" 
                                          styleClass="success-btn raised-btn" id="save" />
                     </p:panelGrid> 

@@ -43,156 +43,72 @@
                                 </a>
                             </li>
                             <li role="menuitem">
-                               
-                                <p:commandLink styleClass="ripplelink" action="#{loginController.logoutAdmin}">
-                                      <i class="material-icons" >&#xE8AC;</i>
-                                    <span>Logout</span>
-                                </p:commandLink>
-                                
+
                             </li>
                         </ul>
                     </ui:fragment>
                     <pu:menu widgetVar="me" style="background-color:white;">
-                        <p:menuitem value="Exam Reviews" url="result_reviews.xhtml" icon="fa fa-tasks"/>
-                       <p:menuitem  value="Question Mapping" icon="fa fa-upload" url="mapping.xhtml"/>
-                        <p:menuitem id="um_dashboard" value="Dashboard" icon="&#xE871;" url="reports.xhtml"/>
-                        <p:menuitem id="um_utils" value="Course" icon="fa fa-address-card-o"
-                                    url="course.xhtml"/>
-                        <p:menuitem  value="Course Reg" icon="fa fa-address-card-o" url="course_reg.xhtml"/>
-                        <p:menuitem  value="Exam Session" icon="fa fa-clone" url="exam_session.xhtml"/>
-                        <p:menuitem  value="Passages" icon="fa fa-clone" url="passage.xhtml"/>
-                        <p:menuitem  value="Question" icon="fa fa-book" url="question.xhtml"/>
-                        <p:menuitem  value="Student" icon="fa fa-users" url="students.xhtml"/>
-                        <p:menuitem  value="Lecturer" icon="fa fa-user-circle" url="lecturer.xhtml"/>
-                        <p:menuitem  value="Upload Manager" icon="fa fa-upload" url="file_logs.xhtml"/>
-                        <p:menuitem  value="Backup Restore" icon="fa fa-cogs" url="backup_restore.xhtml"/>
-                         </pu:menu>
+                        <p:menuitem value="Reservoir" url="reservoir.xhtml" icon="fa fa-tasks"/>
+
+                        <p:menuitem id="um_dashboard" value="Stock" icon="&#xE871;" url="stock.xhtml"/>
+                        <p:menuitem id="um_utils" value="Bankdeposits" icon="fa fa-address-card-o"
+                                    url="bankdeposit.xhtml"/>
+                        <p:menuitem  value="Transactions" icon="fa fa-address-card-o" url="transaction.xhtml"/>
+                        <p:menuitem  value="Expenditure" icon="fa fa-clone" url="expenditure.xhtml"/>
+                        <p:menuitem  value="Expenditure Category" icon="fa fa-clone" url="excategory.xhtml"/>
+                        <p:menuitem  value="Shifts" icon="fa fa-book" url="shifting.xhtml"/>
+                        <p:menuitem  value="Staffs" icon="fa fa-users" url="staff.xhtml"/>
+                        <p:menuitem  value="Users" icon="fa fa-users" url="users.xhtml"/>
+                        <p:menuitem  value="Supplier" icon="fa fa-user-circle" url="supplier.xhtml"/>
+
+                    </pu:menu>
                 </div>
             </div>
         </div>
+
         <p:dialog  
-        widgetVar="app_setting"
-        responsive="true" 
-        closeOnEscape="true"
-        dynamic="true"
-        position="center" 
-        closable="true"
-        id="app_setting"
-        fitViewport="true"
-        width="400"
-        >
-        <f:facet name="header">
-            Application Settings
-        </f:facet>
-        
-        <div class="p-grid ui-fluid">
-            <div class="p-col-12">
-                <p:outputPanel id="newp">
-                <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             >
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value=
-                                     "#{settingController.settings.attemptBeforeSubmission}" />
-                        
-                            <label>Attempt Before Submission</label>
-                        </h:panelGroup> 
-                        <p:outputLabel value="Did you want to allow custom question to be separate?"/>
-                    <p:selectBooleanCheckbox 
-                        value="#{settingController.settings.custom_question_combine}"
-                                             />
-                    <p:outputLabel value="Open passage in dialog?"/>
-                    <p:selectBooleanCheckbox 
-                        value="#{settingController.settings.passage_on_dialog}"
-                                             />
-                    <p:outputLabel value="Allow Email Sender"/>
-                    <p:selectBooleanCheckbox 
-                                             value="#{settingController.settings.emailactive}"
-                                             />
-                    <p:outputLabel value="Allow Immediate Score Receiving?"/>
-                    <p:selectBooleanCheckbox  
-                                             value="#{settingController.settings.scoreImmediate}"/>
-                    <p:outputLabel value="Allow Lecturer  receive result after making?"/>
-                    <p:selectBooleanCheckbox  
-                                             value="#{settingController.settings.resultDownloadOpen}"/>
-                    <p:outputLabel value="Allow multiple course selection for single exam?"/>
-                    <p:selectBooleanCheckbox  
-                                             value="#{settingController.settings.multipleCourseSelection}"/>
-                   <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value=
-                                     "#{settingController.settings.backup_location}" />
-                        
-                            <label>Backup Location</label>
-                        </h:panelGroup>
-                    <f:facet name="footer">
-                        <p:commandButton value="Update Setting"  icon="fa fa-refresh" 
-                                         action="#{settingController.updateSetting}"
-                             styleClass="success-btn raised-btn" />
-                    </f:facet>
-               
-                </p:panelGrid> 
-                    <p:autoUpdate/>
-                </p:outputPanel>
+            widgetVar="passwordDialog"
+            responsive="true" 
+            closeOnEscape="true"
+            dynamic="true"
+            position="center" 
+            closable="true"
+            id="passwordDialog"
+            fitViewport="true"
+            width="400"
+            >
+            <f:facet name="header">
+                Password Management
+            </f:facet>
+
+            <div class="p-grid ui-fluid">
+                <div class="p-col-12">
+                    <p:outputPanel id="password_panel">
+                        <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                     >
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                                <p:password value=
+                                            "#{appHelper.oldpass}" />
+
+                                <label>Old Password</label>
+                            </h:panelGroup>
+
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                                <p:password value=
+                                            "#{appHelper.newpass}" />
+
+                                <label>New Password</label>
+                            </h:panelGroup>
+
+
+                        </p:panelGrid> 
+                        <p:autoUpdate/>
+                    </p:outputPanel>
+                </div>
             </div>
-        </div>
-       
-            
-            
-      
-    </p:dialog> 
-        <p:dialog  
-        widgetVar="passwordDialog"
-        responsive="true" 
-        closeOnEscape="true"
-        dynamic="true"
-        position="center" 
-        closable="true"
-        id="passwordDialog"
-        fitViewport="true"
-        width="400"
-        >
-        <f:facet name="header">
-           Password Management
-        </f:facet>
-        
-        <div class="p-grid ui-fluid">
-            <div class="p-col-12">
-                <p:outputPanel id="password_panel">
-                <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             >
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:password value=
-                                    "#{appHelper.oldpass}" />
-                        
-                            <label>Old Password</label>
-                        </h:panelGroup>
-                    
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:password value=
-                                    "#{appHelper.newpass}" />
-                        
-                            <label>New Password</label>
-                        </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:password value=
-                                    "#{appHelper.confirmPassword}" />
-                        
-                            <label>Confirm Password</label>
-                        </h:panelGroup>
-               
-                </p:panelGrid> 
-                    <p:autoUpdate/>
-                </p:outputPanel>
-            </div>
-        </div>
-       
-            
-                    <f:facet name="footer">
-                        <p:commandButton value="Change Password"  icon="fa fa-refresh" 
-                                         
-                                         styleClass="success-btn raised-btn"  action="#{loginController.changeUserPassword}"/>
-                    </f:facet>
-            
-      
-    </p:dialog> 
+
+
+
+        </p:dialog> 
     </h:form>
 </ui:composition>
