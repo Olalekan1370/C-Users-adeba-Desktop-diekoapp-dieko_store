@@ -37,6 +37,7 @@ public class StockController implements Serializable{
     @PostConstruct
     public void init() {
         datalist = new ArrayList<>();
+        reload();
     }
 
     public void filter() {

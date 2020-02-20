@@ -34,11 +34,14 @@
                         </h:panelGroup>
                    
                             <p:selectOneMenu  required="true" requiredMessage="invalid reservoir name"
-                                         filter="true" filterMatchMode="contains">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Reservoir--" itemValue=""/>
+                                              filter="true" filterMatchMode="contains" value="#{pump.reservoirid}" 
+                                              converter="pumpConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="--Reservoir--" itemValue="#{reservoir}"/>
+                                <f:selectItems value="#{reservoirController.datalist}" var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
                        </p:selectOneMenu>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                             styleClass="success-btn raised-btn" id="save" />
+                             styleClass="success-btn raised-btn" id="save"  
+                             action="#{pumpController.add()}" update=":parentform:result"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

@@ -71,14 +71,15 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" 
+                                       action="#{loginController.reset('pump')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  update=":parentform:result" action="#{pumpController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -107,7 +108,7 @@
 
                                     <label>Date To</label>
                                 </h:panelGroup>
-                                <p:commandLink>
+                                <p:commandLink action="#{pumpController.filter()}"  update="result, :parentform:msg">
 
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
@@ -125,10 +126,14 @@
                             <h:outputText value="#{result.name}" />
                         </p:column>
 
-                        <p:column headerText="Reservoir Id" width="160">
-                            <h:outputText value="#{result.reservoirid.recordid}" />
+                        <p:column headerText="Reservoir" width="130">
+                            <h:outputText value="#{result.reservoirid.name}" />
                         </p:column>
-
+<p:column headerText="Date Created" width="120">
+    <h:outputText value="#{result.datecreated}" >
+                            <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>
+                        </h:outputText>
+                        </p:column>
                         <p:column width="25">
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
@@ -140,7 +145,7 @@
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result">
+                                           update="result" action="#{pumpController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
