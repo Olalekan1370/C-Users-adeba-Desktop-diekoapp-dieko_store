@@ -121,22 +121,32 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
-                        <h:outputText value="#{result.name}" />
+                    <p:column headerText="Quantity" >
+                        <h:outputText value="#{result.quantity}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
+                    <p:column headerText="Cost" width="160">
+                        <h:outputText value="#{result.cost}" />
                         </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
+                    <p:column headerText="Date Supplied" width="150">
+                        <h:outputText value="#{result.datesupplied}" />
                         </p:column>
-                    <p:column headerText="Date Created" width="120">
-                        <h:outputText value="#{result.datecreated}" >
-                            <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
-                        </h:outputText>
+                    <p:column headerText="Previous Reading" width="150">
+                        <h:outputText value="#{result.previousreading}" />
                         </p:column>
-                    <p:column width="25">
+                     <p:column headerText="Current Reading" width="150">
+                        <h:outputText value="#{result.currentreading}" />
+                        </p:column>
+                     <p:column headerText="Stock Name" width="150">
+                        <h:outputText value="#{result.stockname}" />
+                        </p:column>
+                     <p:column headerText="Reservoir id" width="150">
+                        <h:outputText value="#{result.reservoirreading}" />
+                        </p:column>
+                    <p:column headerText="Supplier id" width="150">
+                        <h:outputText value="#{result.supplierid}" />
+                        </p:column>
+                   <p:column width="25">
                             <p:commandLink style="color:green; font-size:12px;"
                                             title="Edit Record"
                                            

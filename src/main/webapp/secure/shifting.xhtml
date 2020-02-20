@@ -121,15 +121,18 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
-                        <h:outputText value="#{result.name}" />
+                    <p:column headerText="Shift Time" >
+                        <h:outputText value="#{result.shifttime}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
+                    <p:column headerText="Duration" width="160">
+                        <h:outputText value="#{result.duration}" />
                         </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
+                    <p:column headerText="User id" width="150">
+                        <h:outputText value="#{result.userid}" />
+                        </p:column>
+                    <p:column headerText="Staff id" width="150">
+                        <h:outputText value="#{result.staffid}" />
                         </p:column>
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >

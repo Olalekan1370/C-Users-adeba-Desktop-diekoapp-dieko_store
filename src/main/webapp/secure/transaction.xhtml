@@ -121,15 +121,39 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
-                        <h:outputText value="#{result.name}" />
+                    <p:column headerText="Pump id" >
+                        <h:outputText value="#{result.pumpid}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
+                    <p:column headerText="Staff id" width="160">
+                        <h:outputText value="#{result.staffid}" />
                         </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
+                    <p:column headerText="Shifting id" width="150">
+                        <h:outputText value="#{result.shiftingid}" />
+                        </p:column>
+                     <p:column headerText="Purchase price" width="150">
+                        <h:outputText value="#{result.purchaseprice}" />
+                        </p:column>
+                     <p:column headerText="Amount" width="150">
+                        <h:outputText value="#{result.amount}" />
+                        </p:column>
+                      <p:column headerText="Unit price" width="150">
+                        <h:outputText value="#{result.unitprice}" />
+                        </p:column>
+                    <p:column headerText="Invoice number" width="150">
+                        <h:outputText value="#{result.invoicenumber}" />
+                        </p:column>
+                    <p:column headerText="Quantity" width="150">
+                        <h:outputText value="#{result.quantity}" />
+                        </p:column>
+                     <p:column headerText="Opening balance" width="150">
+                        <h:outputText value="#{result.openingbalance}" />
+                        </p:column>
+                    <p:column headerText="Closing balance" width="150">
+                        <h:outputText value="#{result.closingbalance}" />
+                        </p:column>
+                    <p:column headerText="Profit" width="150">
+                        <h:outputText value="#{result.profit}" />
                         </p:column>
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >

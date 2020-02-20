@@ -121,16 +121,14 @@
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Full Name" >
+                    <p:column headerText=" Name" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
                         
-                    <p:column headerText="Contact Email" width="160">
-                        <h:outputText value="#{result.email}" />
+                    <p:column headerText="Unit price" width="160">
+                        <h:outputText value="#{result.unitprice}" />
                         </p:column>
-                    <p:column headerText="Contact phone" width="150">
-                        <h:outputText value="#{result.contactphone}" />
-                        </p:column>
+                   
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
                             <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
