@@ -5,13 +5,13 @@
  */
 package timsoft.ehr.org.repository;
 
+import javax.transaction.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Supplier;
 
 /**
  *
  * @author JIDEX
  */
-public interface SupplierRepo extends JpaRepository<Supplier,Long>{
+public interface TransactionRepo extends JpaRepository<Transaction,Long>{
     
 }

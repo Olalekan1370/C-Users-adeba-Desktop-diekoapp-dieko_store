@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Transaction;
 
@@ -17,7 +18,7 @@ import timsoft.ehr.org.model.Transaction;
  * @author HP
  */
 @Component
-@SessionScoped
+@Scope("session")
 public class TransactionController {
     private List<Transaction> datalist;
     @PostConstruct

@@ -8,12 +8,16 @@ package timsoft.ehr.org.controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Staff;
 
 /**
  *
  * @author HP
  */
+@Component
+@Scope("session")
 public class StaffController {
      private List<Staff> datalist;
     @PostConstruct

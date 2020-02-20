@@ -8,15 +8,36 @@ package timsoft.ehr.org.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 /**
  *
  * @author Olalekan
  */
 @Service
 public class AppService {
-@Autowired
-SupplierRepo supplierRepo;
-@Autowired
-ExcategoryRepo excategoryRepo;
+
+    @Autowired
+    SupplierRepo supplierRepo;
+    @Autowired
+    ExcategoryRepo excategoryRepo;
+    @Autowired
+    StockRepo stockRepo;
+    @Autowired
+    ShiftingRepo shiftingRepo;
+    @Autowired
+    ReservoirlogRepo reservoirlogRepo;
+    @Autowired
+    ReservoirRepo reservoirRepo;
+    @Autowired
+    PumpRepo pumpRepo;
+    @Autowired
+    ExpenditureRepo expenditureRepo;
+    @Autowired
+    ApplogRepo applogRepo;
+    @Autowired
+    StaffRepo staffRepo;
+    @Autowired
+    TransactionRepo transactionRepo;
+    @Autowired
+    UserRepo UserRepo;
+
 }

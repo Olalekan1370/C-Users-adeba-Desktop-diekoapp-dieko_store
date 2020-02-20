@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package timsoft.ehr.org.repository;
-
+import timsoft.ehr.org.model.Reservoirlog;
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Supplier;
 
 /**
  *
  * @author JIDEX
  */
-public interface SupplierRepo extends JpaRepository<Supplier,Long>{
+public interface ReservoirlogRepo extends JpaRepository<Reservoirlog,Long>{
     
 }
