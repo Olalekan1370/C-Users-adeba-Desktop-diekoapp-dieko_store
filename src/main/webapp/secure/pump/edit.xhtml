@@ -1,0 +1,53 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    >
+ 
+    <p:dialog  
+        widgetVar="addNew" 
+        responsive="true" 
+        closeOnEscape="true"
+        dynamic="true"
+        position="center" 
+        closable="true"
+        id="addNew"
+        fitViewport="true"
+
+        >
+        <f:facet name="header">
+            Edit Pump
+        </f:facet>
+       
+        <div class="p-grid ui-fluid">
+            <div class="p-col-12">
+                <p:outputPanel>
+                    <p:autoUpdate/>
+                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                             columnClasses="ui-grid-col-12">
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:inputText  required="true" 
+                                     requiredMessage="invalid course title"/>
+                            <label>Pump's name</label>
+                        </h:panelGroup>
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                        <p:inputText  required="true" requiredMessage="invalid course code"/>
+                            <label>Reservoir id</label>
+                        </h:panelGroup>
+                    <p:commandButton value="Save"  icon="fa fa-plus" 
+                             styleClass="success-btn raised-btn" id="save" />
+                </p:panelGrid> 
+                
+               </p:outputPanel>
+            </div>
+        </div>
+       
+            
+            
+      
+    </p:dialog>  
+     
+
+</ui:composition>
