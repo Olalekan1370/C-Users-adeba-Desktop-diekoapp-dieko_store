@@ -17,7 +17,7 @@ import timsoft.ehr.org.model.User;
  * @author JIDEX
  */
 public interface UserRepo extends JpaRepository<User,Long>{
-    @Query("select st from User st where st.staffid.fullname like ':search' or st.username like ':search'")
+    @Query("select st from User st where st.staffid.fullname like :search or st.username like :search")
     List<User> search(@Param("search")String search);
     
     @Query(value="select * from user where DATE(datecreated) between :from and :to", nativeQuery=true)
