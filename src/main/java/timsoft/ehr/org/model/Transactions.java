@@ -6,6 +6,7 @@
 package timsoft.ehr.org.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Olalekan
+ * @author JIDEX
  */
 @ManagedBean
 @ViewScoped
@@ -44,7 +45,6 @@ public class Transactions implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Size(max = 250)
     @Column(name = "invoicenumber")
     private String invoicenumber;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -61,19 +61,19 @@ public class Transactions implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Column(name = "trandate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date trandate;
     @Column(name = "purchaseprice")
     private Double purchaseprice;
     @Column(name = "profit")
     private Double profit;
+    @Column(name = "trandate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date trandate;
+    @JoinColumn(name = "stockid", referencedColumnName = "id")
+    @ManyToOne
+    private Stock stockid;
     @JoinColumn(name = "staffid", referencedColumnName = "id")
     @ManyToOne
     private Staff staffid;
-    @JoinColumn(name = "shiftingid", referencedColumnName = "id")
-    @ManyToOne
-    private Shifting shiftingid;
     @JoinColumn(name = "pumpid", referencedColumnName = "id")
     @ManyToOne
     private Pump pumpid;
@@ -115,14 +115,6 @@ public class Transactions implements Serializable {
 
     public void setClosingbalance(Double closingbalance) {
         this.closingbalance = closingbalance;
-    }
-
-    public Date getTrandate() {
-        return trandate;
-    }
-
-    public void setTrandate(Date trandate) {
-        this.trandate = trandate;
     }
 
     public Integer getQuantity() {
@@ -173,20 +165,28 @@ public class Transactions implements Serializable {
         this.profit = profit;
     }
 
+    public Date getTrandate() {
+        return trandate;
+    }
+
+    public void setTrandate(Date trandate) {
+        this.trandate = trandate;
+    }
+
+    public Stock getStockid() {
+        return stockid;
+    }
+
+    public void setStockid(Stock stockid) {
+        this.stockid = stockid;
+    }
+
     public Staff getStaffid() {
         return staffid;
     }
 
     public void setStaffid(Staff staffid) {
         this.staffid = staffid;
-    }
-
-    public Shifting getShiftingid() {
-        return shiftingid;
-    }
-
-    public void setShiftingid(Shifting shiftingid) {
-        this.shiftingid = shiftingid;
     }
 
     public Pump getPumpid() {
@@ -221,5 +221,6 @@ public class Transactions implements Serializable {
     public String toString() {
         return "timsoft.ehr.org.model.Transactions[ id=" + id + " ]";
     }
+    
     
 }

@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.Transactions;
+import timsoft.ehr.org.model.Pump;
 import timsoft.ehr.org.model.Transactions;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
@@ -33,12 +33,20 @@ public class TransactionController  implements Serializable{
     AppService service;
     @Autowired
     LoginController login;
+    List<Pump> pumplist;
     @PostConstruct
     public void init(){
+        pumplist = new ArrayList<>();
         datalist = new ArrayList<>();
        reload();
     }
-
+    public void computePrice(){
+        
+    }
+public void filterPump(){
+    Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
+    pumplist = service.getPumpRepo().findByStockname(tr.getStockid().getId());
+}
     public void filter() {
 
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
@@ -106,6 +114,30 @@ public class TransactionController  implements Serializable{
 
     public void setDatalist(List<Transactions> datalist) {
         this.datalist = datalist;
+    }
+
+    public AppService getService() {
+        return service;
+    }
+
+    public void setService(AppService service) {
+        this.service = service;
+    }
+
+    public LoginController getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginController login) {
+        this.login = login;
+    }
+
+    public List<Pump> getPumplist() {
+        return pumplist;
+    }
+
+    public void setPumplist(List<Pump> pumplist) {
+        this.pumplist = pumplist;
     }
     
  

@@ -70,6 +70,7 @@ public class UserController implements Serializable {
             sp.setDatecreated(new Date());
             service.getUserRepo().save(sp);
             login.reset("user");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             }else{
                 login.log(MessageUtil.DUPLICATE_USER, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
@@ -87,6 +88,7 @@ public class UserController implements Serializable {
             sp.setDatecreated(new Date());
             service.getUserRepo().save(sp);
             login.reset("user");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {

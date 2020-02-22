@@ -59,7 +59,7 @@
                         <p:outputPanel>    
                             <p:commandLink>
 
-                                <span>#0 Record(s)</span>
+                                <span>#{transactionController.datalist.size()} Record(s)</span>
                             </p:commandLink>
                         </p:outputPanel> 
                     </div>
@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('transactions')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink action="#{transactionController.reload()}" update=":parentform:result">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -107,7 +107,7 @@
 
                                     <label>Date To</label>
                                 </h:panelGroup>
-                                <p:commandLink>
+                                <p:commandLink action="#{transactionController.filter()}" update="result">
 
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
@@ -120,40 +120,42 @@
                                 </p:commandLink>
                             </p:panelGrid>
                         </f:facet>
-
-                        <p:column headerText="Pump id" width="100">
-                            <h:outputText value="#{result.pumpid}" />
-                        </p:column>
-
-                        <p:column headerText="Staff id" width="80">
-                            <h:outputText value="#{result.staffid}" />
-                        </p:column>
-                        <p:column headerText="Shifting id" width="100">
-                            <h:outputText value="#{result.shiftingid}" />
-                        </p:column>
-                        <p:column headerText="Purchase price" width="120">
-                            <h:outputText value="#{result.purchaseprice}" />
-                        </p:column>
-                        <p:column headerText="Amount" width="100">
-                            <h:outputText value="#{result.amount}" />
-                        </p:column>
-                        <p:column headerText="Unit price" width="80">
-                            <h:outputText value="#{result.unitprice}" />
-                        </p:column>
-                        <p:column headerText="Invoice number" width="130">
+<p:column headerText="Invoice">
                             <h:outputText value="#{result.invoicenumber}" />
                         </p:column>
-                        <p:column headerText="Quantity" width="80">
+                        <p:column headerText="Product" width="70">
+                            <h:outputText value="#{result.pumpid.name}" />
+                        </p:column>
+
+                        <p:column headerText="Sold By" width="100">
+                            <h:outputText value="#{result.staffid.fullname}" />
+                        </p:column>
+                        <p:column headerText="QTY" width="30">
                             <h:outputText value="#{result.quantity}" />
                         </p:column>
-                        <p:column headerText="Opening balance" width="150">
+                        <p:column headerText="Sales price" width="100">
+                            <h:outputText value="#{result.unitprice}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Amount">
+                            <h:outputText value="#{result.amount}" />
+                        </p:column>
+                         <p:column headerText="Opening balance">
                             <h:outputText value="#{result.openingbalance}" />
                         </p:column>
-                        <p:column headerText="Closing balance" width="120">
+                        <p:column headerText="Closing balance">
                             <h:outputText value="#{result.closingbalance}" />
                         </p:column>
-                        <p:column headerText="Profit" width="100">
-                            <h:outputText value="#{result.profit}" />
+                        <p:column headerText="Purchase price" >
+                            <h:outputText value="#{result.purchaseprice}" >
+                                 <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Profit" >
+                            <h:outputText value="#{result.profit}">
+                                 <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
                         </p:column>
 
                         <p:column width="25">
@@ -163,11 +165,11 @@
                                            oncomplete="PF('editNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{transaction}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{transactions}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result">
+                                           update="result" action="#{transactionController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Olalekan
+ * @author JIDEX
  */
 @ManagedBean
 @ViewScoped
@@ -67,11 +67,9 @@ public class User implements Serializable {
     @Column(name = "status")
     private String status;
     @Transient
-     private String confirmpassword;
+    private String confirmpassword;
     @OneToMany(mappedBy = "userid")
     private List<Applog> applogList;
-    @OneToMany(mappedBy = "userid")
-    private List<Shifting> shiftingList;
     @JoinColumn(name = "staffid", referencedColumnName = "id")
     @ManyToOne
     private Staff staffid;
@@ -83,20 +81,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getConfirmpassword() {
-        return confirmpassword;
-    }
-
-    public void setConfirmpassword(String confirmpassword) {
-        this.confirmpassword = confirmpassword;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getConfirmpassword() {
+        return confirmpassword;
+    }
+
+    public void setConfirmpassword(String confirmpassword) {
+        this.confirmpassword = confirmpassword;
     }
 
     public Date getDatecreated() {
@@ -154,15 +152,6 @@ public class User implements Serializable {
 
     public void setApplogList(List<Applog> applogList) {
         this.applogList = applogList;
-    }
-
-    @XmlTransient
-    public List<Shifting> getShiftingList() {
-        return shiftingList;
-    }
-
-    public void setShiftingList(List<Shifting> shiftingList) {
-        this.shiftingList = shiftingList;
     }
 
     public Staff getStaffid() {

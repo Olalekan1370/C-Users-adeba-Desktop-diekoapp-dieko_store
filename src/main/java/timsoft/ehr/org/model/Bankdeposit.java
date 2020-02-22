@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Olalekan
+ * @author JIDEX
  */
 @ManagedBean
 @ViewScoped

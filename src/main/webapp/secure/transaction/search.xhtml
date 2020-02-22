@@ -35,7 +35,7 @@
                             
                             
                         </p:inputText>
-                            <label>Pump id</label>
+                            <label>Stock Name/Invoice No</label>
                         </h:panelGroup>
                    
                 </p:panelGrid> 
@@ -46,7 +46,8 @@
        
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save" 
+                             update=":parentform:result" action="#{transactionController.search()}"/>
         </f:facet>
             
       

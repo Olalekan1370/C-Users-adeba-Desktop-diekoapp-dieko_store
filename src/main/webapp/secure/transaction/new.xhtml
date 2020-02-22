@@ -25,44 +25,51 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                                 columnClasses="ui-grid-col-12">
-                        <p:selectOneMenu  required="true" requiredMessage="invalid pump's name"
-                                          filter="true" filterMatchMode="contains" value="#{transactions.pumpid.name}">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--"/>
+                    <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+                                 >
+                        <p:selectOneMenu  required="true" requiredMessage="invalid Product name"
+                                          filter="true" filterMatchMode="contains" 
+                                          value="#{transactions.stockid}" converter="stockConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--"
+                                          itemValue="#{stock}"/>
+                            <f:selectItems value="#{stockController.datalist}" var="st"
+                                           itemLabel="#{st.name}" itemValue="#{st}"/>
+                            <p:ajax update="pump" listener="#{transactionController.filterPump()}"/>
+                        </p:selectOneMenu>
+                        <p:selectOneMenu  required="true" requiredMessage="invalid Product name"
+                                          filter="true" filterMatchMode="contains" 
+                                          value="#{transactions.pumpid}" converter="pumpConverter"
+                                          id="pump">
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--"
+                                          itemValue="#{pump}"/>
+                            <f:selectItems value="#{transactionController.pumplist}" var="st"
+                                           itemLabel="#{st.name}" itemValue="#{st}"/>
                         </p:selectOneMenu>
                         <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
-                                          filter="true" filterMatchMode="contains">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" value="#{transactions.staffid.fullname}"/>
+                                          filter="true" filterMatchMode="contains"
+                                          converter="staffConverter">
+                            <f:selectItem noSelectionOption="true" 
+                                          itemLabel="--Sold By--" 
+                                          value="#{staff}"/>
+                            <f:selectItems value="#{staffController.datalist}" var="rs"
+                                           itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu  required="true" requiredMessage="invalid shifting's name"
-                                          filter="true" filterMatchMode="contains" value="#{transactions.shiftingid.duration}">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Shift--" itemValue=""/>
-                        </p:selectOneMenu>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{transactions.purchaseprice}"  
-                                           required="true" requiredMessage="invalid purchase price" symbol="₦"/>
-                            <label>Purchase price</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{transactions.amount}"  
-                                           required="true" requiredMessage="invalid purchase price" symbol="₦"/>
-                            <label>Amount</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText value="#{transactions.unitprice}"  
-                                         required="true" requiredMessage="invalid unit price"/>
-                            <label>Unit price</label>
-                        </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputText  value="#{transactions.invoicenumber}"
-                                          required="true" requiredMessage="invalid invoice number"/>
-                            <label>Invoice number</label>
+                            <p:inputNumber value="#{transactions.unitprice}"  
+                                           symbol="₦" disabled="true"/>
+                            <label>Sales price</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.quantity}"  
                                            required="true" requiredMessage="invalid quantity"/>
                             <label>Quantity</label>
+                            <p:ajax listener="#{transactionController.computePrice()}" update="amount"/>
+                        </h:panelGroup>
+                        
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.amount}"  
+                                           symbol="₦" disabled="true" id="amount"/>
+                            <label>Amount</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.openingbalance}"  
@@ -74,14 +81,11 @@
                                            required="true" requiredMessage="invalid closing balance"/>
                             <label>Closing balance</label>
                         </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{transactions.profit}"  
-                                           required="true" requiredMessage="invalid profit" symbol="₦"/>
-                            <label>Profit</label>
-                        </h:panelGroup>
+                        
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" />
+                                         styleClass="success-btn raised-btn" id="save" 
+                                         action="#{transactionController.add()}" update=":parentform:result"/>
                     </p:panelGrid> 
 
                 </p:outputPanel>

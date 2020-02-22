@@ -6,8 +6,8 @@
 package timsoft.ehr.org.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
@@ -20,17 +20,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Olalekan
+ * @author JIDEX
  */
 @ManagedBean
 @ViewScoped
@@ -47,19 +44,17 @@ public class Shifting implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Column(name = "userid")
+    private BigInteger userid;
     @Column(name = "starttime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date starttime;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    
     @Column(name = "endtime")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endtime;
-    @OneToMany(mappedBy = "shiftingid")
-    private List<Transactions> transactionsList;
-    
     @JoinColumn(name = "staffid", referencedColumnName = "id")
     @ManyToOne
     private Staff staffid;
@@ -79,22 +74,12 @@ public class Shifting implements Serializable {
         this.id = id;
     }
 
-
-    public Date getDatecreated() {
-        return datecreated;
+    public BigInteger getUserid() {
+        return userid;
     }
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
-    }
-
-    @XmlTransient
-    public List<Transactions> getTransactionsList() {
-        return transactionsList;
-    }
-
-    public void setTransactionsList(List<Transactions> transactionsList) {
-        this.transactionsList = transactionsList;
+    public void setUserid(BigInteger userid) {
+        this.userid = userid;
     }
 
     public Date getStarttime() {
@@ -103,6 +88,14 @@ public class Shifting implements Serializable {
 
     public void setStarttime(Date starttime) {
         this.starttime = starttime;
+    }
+
+    public Date getDatecreated() {
+        return datecreated;
+    }
+
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
     }
 
     public Date getEndtime() {

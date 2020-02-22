@@ -20,4 +20,7 @@ public interface PumpRepo extends JpaRepository<Pump,Long>{
     
     @Query(value="select * from pump where DATE(datecreated)=:from or DATE(datecreated)=:to or DATE(datecreated) between :from and :to", nativeQuery=true)
     List<Pump> filterByDateRange(@Param("from")String from, @Param("to")String to);
+    
+    @Query("select st from Pump st where st.reservoirid.stockid.id=:id")
+    List<Pump> findByStockname(@Param("id")Long id);
 }

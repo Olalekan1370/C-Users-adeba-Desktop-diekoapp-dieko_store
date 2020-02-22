@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Olalekan
+ * @author JIDEX
  */
 @ManagedBean
 @ViewScoped
@@ -45,7 +45,6 @@ public class Stock implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Size(max = 250)
     @Column(name = "name")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -54,6 +53,8 @@ public class Stock implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
+    @OneToMany(mappedBy = "stockid")
+    private List<Transactions> transactionsList;
     @OneToMany(mappedBy = "stockid")
     private List<Reservoir> reservoirList;
 
@@ -94,6 +95,15 @@ public class Stock implements Serializable {
 
     public void setDatecreated(Date datecreated) {
         this.datecreated = datecreated;
+    }
+
+    @XmlTransient
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactionsList(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
     }
 
     @XmlTransient
