@@ -25,9 +25,9 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                                 columnClasses="ui-grid-col-12">
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                    <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+                                 >
+                          <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText required="true" 
                                          requiredMessage="invalid stock name" value="#{stock.name}"/>
                             <label>Stock name</label>
@@ -35,12 +35,18 @@
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
                             <p:inputNumber  required="true" requiredMessage="invalid stock price"
                                             value="#{stock.unitprice}" symbol="₦"/>
-                            <label>Unit price</label>
+                            <label>Sale price</label>
+                        </h:panelGroup>
+<h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                            <p:inputNumber  required="true" requiredMessage="invalid purchase price"
+                                            value="#{stock.purchaseprice}" symbol="₦"/>
+                            <label>Purchase price</label>
                         </h:panelGroup>
 
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" update=":parentform:result"/>
+                                         styleClass="success-btn raised-btn" id="save" 
+                                         update=":parentform:result" action="#{stockController.update()}"/>
                     </p:panelGrid> 
 
                 </p:outputPanel>

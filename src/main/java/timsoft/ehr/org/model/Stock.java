@@ -50,6 +50,8 @@ public class Stock implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "unitprice")
     private Double unitprice;
+    @Column(name="purchaseprice")
+    private Double purchaseprice;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
@@ -87,6 +89,14 @@ public class Stock implements Serializable {
 
     public void setUnitprice(Double unitprice) {
         this.unitprice = unitprice;
+    }
+
+    public Double getPurchaseprice() {
+        return purchaseprice;
+    }
+
+    public void setPurchaseprice(Double purchaseprice) {
+        this.purchaseprice = purchaseprice;
     }
 
     public Date getDatecreated() {

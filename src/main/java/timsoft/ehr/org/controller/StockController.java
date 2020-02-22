@@ -69,6 +69,7 @@ public class StockController implements Serializable{
 
             service.getStockRepo().save(sp);
             login.reset("stock");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,6 +84,7 @@ public class StockController implements Serializable{
             sp.setDatecreated(new Date());
             service.getStockRepo().save(sp);
             login.reset("stock");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {

@@ -131,6 +131,9 @@
                     <p:column headerText="Reserve Name" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
+                    <p:column headerText="Stock Name" width="120">
+                        <h:outputText value="#{result.stockid.name}" />
+                        </p:column>
                     <p:column headerText="Quantity" width="50" >
                         <h:outputText value="#{result.quantity}" />
                         </p:column>
@@ -138,9 +141,7 @@
                     <p:column headerText="Units" width="30">
                         <h:outputText value="#{result.units}" />
                         </p:column>
-                    <p:column headerText="Stock Name" width="70">
-                        <h:outputText value="#{result.stockid.name}" />
-                        </p:column>
+                    
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
                             <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>

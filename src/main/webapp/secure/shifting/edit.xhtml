@@ -25,8 +25,8 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-                                 />
+                    <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+                                 >
                     <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                       filter="true" filterMatchMode="contains"
                                       value="#{shifting.staffid}" converter="staffConverter">
@@ -41,10 +41,18 @@
                                      navigator="true" maxdate="#{shiftController.currentdate}"/>
                         <label>Start time</label>
                     </h:panelGroup>
+                    
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:calendar value="#{end.starttime}" required="true" 
+                                     requiredMessage="invalid start time" 
+                                     showHour="true" showMinute="true" showSecond="true"
+                                     navigator="true" maxdate="#{shiftController.currentdate}"/>
+                        <label>Start time</label>
+                    </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-refresh" 
                                      styleClass="success-btn raised-btn" id="save" 
                                      action="#{shiftController.update()}"/>
-
+                    </p:panelGrid>
                 </p:outputPanel>
             </div>
         </div>

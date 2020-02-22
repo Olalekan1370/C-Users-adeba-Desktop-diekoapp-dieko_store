@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  * @author JIDEX
  */
 public interface ShiftingRepo extends JpaRepository<Shifting,Long>{
-     @Query("select st from Shifting where st.staffid.fullname like %:search% or st.staffid.phonenumber like %:search%")
+     @Query("select st from Shifting st where st.staffid.fullname like %:search% or st.staffid.phonenumber like %:search%")
     List<Shifting> search(@Param("search")String search);
     
     @Query(value="select * from shifting where DATE(datecreated)=:from or DATE(datecreated)=:to or DATE(datecreated) between :from and :to", nativeQuery=true)

@@ -57,8 +57,8 @@
                        
                            <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                          filter="true" filterMatchMode="contains"
-                                         value="#{user.staffid}" converter="staffConverter">
-                           <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue="#{staff}"/>
+                                         value="#{user.staffid}" converter="staffConverter" label="--Staff--">
+                           
                            <f:selectItems value="#{staffController.datalist}" var="rs" itemLabel="#{rs.fullname}"
                                           itemValue="#{rs}"/>
                        </p:selectOneMenu>

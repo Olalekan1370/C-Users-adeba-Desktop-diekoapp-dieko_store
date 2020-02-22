@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Pump;
+import timsoft.ehr.org.model.Reservoir;
+import timsoft.ehr.org.model.Reservoirlog;
 import timsoft.ehr.org.model.Stock;
 import timsoft.ehr.org.model.Transactions;
 import timsoft.ehr.org.repository.AppService;
@@ -35,8 +37,10 @@ public class TransactionController  implements Serializable{
     @Autowired
     LoginController login;
     List<Pump> pumplist;
+    Reservoirlog log;
     @PostConstruct
     public void init(){
+        log = new Reservoirlog();
         pumplist = new ArrayList<>();
         datalist = new ArrayList<>();
        reload();
@@ -44,12 +48,21 @@ public class TransactionController  implements Serializable{
     public void computePrice(){
         Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
         tr.setAmount(tr.getQuantity()*tr.getUnitprice());
+         List<Reservoirlog> lt = service.getReservoirlogRepo().list(tr.getPumpid().getId());
+    if(lt.isEmpty()==false){
+         log = lt.get(0);
+        tr.setPurchaseprice(log.getUnitcost());
+        Double amount = tr.getUnitprice()*tr.getQuantity();
+        Double cost = tr.getPurchaseprice()*tr.getQuantity();
+        tr.setProfit(amount-cost);
+    }
     }
 public void filterPump(){
     Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
     pumplist = service.getPumpRepo().findByStockname(tr.getStockid().getId());
     Stock st = service.getStockRepo().findOne(tr.getStockid().getId());
     tr.setUnitprice(st.getUnitprice());
+   
    
 }
     public void filter() {
@@ -77,6 +90,8 @@ public void filterPump(){
         try {
             Transactions sp = (Transactions) FacesUtils.getManagedBean("transactions");
             sp.setDatecreated(new Date());
+            Reservoir reserve = log.getReservoirid();
+            
             service.getTransactionRepo().save(sp);
             login.reset("transactions");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
@@ -142,6 +157,14 @@ public void filterPump(){
 
     public void setPumplist(List<Pump> pumplist) {
         this.pumplist = pumplist;
+    }
+
+    public Reservoirlog getLog() {
+        return log;
+    }
+
+    public void setLog(Reservoirlog log) {
+        this.log = log;
     }
     
  

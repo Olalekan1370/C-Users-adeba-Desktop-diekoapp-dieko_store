@@ -47,12 +47,12 @@
                         </p:selectOneMenu>
                         <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                           filter="true" filterMatchMode="contains"
-                                          converter="staffConverter">
+                                          converter="staffConverter" value="#{transactions.staffid}">
                             <f:selectItem noSelectionOption="true" 
                                           itemLabel="--Sold By--" 
-                                          value="#{staff}"/>
-                            <f:selectItems value="#{staffController.datalist}" var="rs"
-                                           itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
+                                          itemValue="#{staff}"/>
+                            <f:selectItems value="#{staffController.datalist}" var="s"
+                                           itemLabel="#{s.fullname}" itemValue="#{s}"/>
                         </p:selectOneMenu>
                         <p:outputPanel id="price">
                             <p:autoUpdate/>
@@ -64,9 +64,11 @@
                         </p:outputPanel>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.quantity}"  
-                                           required="true" requiredMessage="invalid quantity"/>
+                                           required="true" requiredMessage="invalid quantity">
+                                 <p:ajax listener="#{transactionController.computePrice}" update="amount"/>
+                            </p:inputNumber>
                             <label>Quantity</label>
-                            <p:ajax listener="#{transactionController.computePrice()}" update="amount"/>
+                           
                         </h:panelGroup>
                         
                         <p:outputPanel id="amount">

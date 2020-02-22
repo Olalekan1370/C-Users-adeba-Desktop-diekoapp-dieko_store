@@ -47,10 +47,10 @@
                         </p:selectOneMenu>
                         <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                           filter="true" filterMatchMode="contains"
-                                          converter="staffConverter">
+                                          converter="staffConverter" value="#{transactions.staffid}">
                             <f:selectItem noSelectionOption="true" 
                                           itemLabel="--Sold By--" 
-                                          value="#{staff}"/>
+                                          itemValue="#{staff}"/>
                             <f:selectItems value="#{staffController.datalist}" var="rs"
                                            itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
                         </p:selectOneMenu>
@@ -61,10 +61,12 @@
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.quantity}"  
-                                           required="true" requiredMessage="invalid quantity"/>
+                                           required="true" requiredMessage="invalid quantity">
+                                  <p:ajax listener="#{transactionController.computePrice()}" update="amount"/>
+                     
+                            </p:inputNumber>
                             <label>Quantity</label>
-                            <p:ajax listener="#{transactionController.computePrice()}" update="amount"/>
-                        </h:panelGroup>
+                             </h:panelGroup>
                         
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.amount}"  

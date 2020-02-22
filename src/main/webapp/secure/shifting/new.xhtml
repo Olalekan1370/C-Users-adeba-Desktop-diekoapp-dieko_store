@@ -25,12 +25,12 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-                                 />
+                    <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+                                 >
                     <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
                                       filter="true" filterMatchMode="contains"
                                       value="#{shifting.staffid}" converter="staffConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="--Staff Name--" itemValue="#{staff}"/>
+                        <f:selectItem noSelectionOption="true" itemLabel="--Staff Name--"/>
                         <f:selectItems value="#{staffController.datalist}" var="rs"
                                        itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
                     </p:selectOneMenu>
@@ -41,9 +41,17 @@
                                      navigator="true" maxdate="#{shiftController.currentdate}"/>
                         <label>Start time</label>
                     </h:panelGroup>
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:calendar value="#{shifting.endtime}" required="true" 
+                                     requiredMessage="invalid start time" 
+                                     showHour="true" showMinute="true" showSecond="true"
+                                     navigator="true" maxdate="#{shiftController.currentdate}"/>
+                        <label>End time</label>
+                    </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                                      styleClass="success-btn raised-btn" id="save" 
                                      action="#{shiftController.add()}"/>
+                    </p:panelGrid>
 
                 </p:outputPanel>
             </div>

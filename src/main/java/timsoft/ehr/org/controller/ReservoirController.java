@@ -69,6 +69,7 @@ public class ReservoirController implements Serializable {
             Reservoirlog log  = new Reservoirlog();
             service.getReservoirRepo().save(sp);
             login.reset("reservoir");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,6 +84,7 @@ public class ReservoirController implements Serializable {
             sp.setDatecreated(new Date());
             service.getReservoirRepo().save(sp);
             login.reset("reservoir");
+             reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {

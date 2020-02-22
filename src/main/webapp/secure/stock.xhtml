@@ -124,16 +124,21 @@
                         <h:outputText value="#{result.name}" />
                         </p:column>
                         
-                    <p:column headerText="Unit Price" width="150">
+                    <p:column headerText="Sales Price" width="150">
                         <h:outputText value="#{result.unitprice}" >
                             <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
                         </h:outputText>
 
                         </p:column>
-                   
-                    <p:column headerText="Date Created" width="120">
+                   <p:column headerText="Purchase Price" width="150">
+                       <h:outputText value="#{result.purchaseprice}" >
+                            <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
+                        </h:outputText>
+
+                        </p:column>
+                    <p:column headerText="Date Created" width="200">
                         <h:outputText value="#{result.datecreated}" >
-                            <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
+                            <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a" />
                         </h:outputText>
                         </p:column>
                     <p:column width="25">

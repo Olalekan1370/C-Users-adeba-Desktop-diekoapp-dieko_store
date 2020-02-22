@@ -49,7 +49,7 @@ public class Supplier implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "contactphone")
-    private Integer contactphone;
+    private String contactphone;
     @Size(max = 250)
     @Column(name = "adress")
     private String adress;
@@ -89,11 +89,11 @@ public class Supplier implements Serializable {
         this.name = name;
     }
 
-    public Integer getContactphone() {
+    public String getContactphone() {
         return contactphone;
     }
 
-    public void setContactphone(Integer contactphone) {
+    public void setContactphone(String contactphone) {
         this.contactphone = contactphone;
     }
 
