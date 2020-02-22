@@ -15,7 +15,7 @@
         closable="true"
         id="edit"
         fitViewport="true"
-        width="400"
+        width="300"
         >
         <f:facet name="header">
             Edit Staff
@@ -25,8 +25,8 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                                 columnClasses="ui-grid-col-12">
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+                                >
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText  required="true" 
                                           requiredMessage="invalid name" value="#{staff.fullname}"/>

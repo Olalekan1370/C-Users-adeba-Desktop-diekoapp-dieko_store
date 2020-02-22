@@ -61,6 +61,9 @@ public class Transactions implements Serializable {
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
+    @Column(name = "trandate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date trandate;
     @Column(name = "purchaseprice")
     private Double purchaseprice;
     @Column(name = "profit")
@@ -112,6 +115,14 @@ public class Transactions implements Serializable {
 
     public void setClosingbalance(Double closingbalance) {
         this.closingbalance = closingbalance;
+    }
+
+    public Date getTrandate() {
+        return trandate;
+    }
+
+    public void setTrandate(Date trandate) {
+        this.trandate = trandate;
     }
 
     public Integer getQuantity() {
