@@ -59,7 +59,7 @@
                    <p:outputPanel>    
                    <p:commandLink>
                           
-                       <span>#0 Record(s)</span>
+                       <span>#{shiftController.datalist.size()} Record(s)</span>
                         </p:commandLink>
                        </p:outputPanel> 
                     </div>
@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('shifting')}">
                            
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                              <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  update=":parentform:result" action="#{shiftController.reload()}">
                             
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -107,7 +107,7 @@
                             
                             <label>Date To</label>
                         </h:panelGroup>
-                        <p:commandLink>
+                        <p:commandLink action="#{shiftController.filter()}" update="result">
                                      
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
@@ -120,23 +120,23 @@
                         </p:commandLink>
                         </p:panelGrid>
                     </f:facet>
-                    
-                    <p:column headerText="Shift Time" >
-                        <h:outputText value="#{result.shifttime}" />
+                    <p:column headerText="Employee" >
+                        <h:outputText value="#{result.staffid.fullname}" />
+                        </p:column>
+                    <p:column headerText="Start Time" >
+                        <h:outputText value="#{result.starttime}">
+                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss a" timeZone="GMT+01"/>
+                        </h:outputText>
                         </p:column>
                         
-                    <p:column headerText="Duration" width="160">
-                        <h:outputText value="#{result.duration}" />
-                        </p:column>
-                    <p:column headerText="User id" width="150">
-                        <h:outputText value="#{result.userid}" />
-                        </p:column>
-                    <p:column headerText="Staff id" width="150">
-                        <h:outputText value="#{result.staffid}" />
+                    <p:column headerText="End Time" >
+                        <h:outputText value="#{result.endtime}">
+                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss a" timeZone="GMT+01"/>
+                        </h:outputText>
                         </p:column>
                     <p:column headerText="Date Created" width="120">
                         <h:outputText value="#{result.datecreated}" >
-                            <f:convertDateTime timeZone="GMT+01" parent="yyyy/MM/dd HH:mm:ss a"/>
+                            <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>
                         </h:outputText>
                         </p:column>
                     <p:column width="25">
@@ -150,7 +150,7 @@
                             </p:commandLink>
                             
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                            update="result">
+                                           update="result" action="#{shiftController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                   <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />

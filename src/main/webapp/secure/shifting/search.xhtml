@@ -21,7 +21,7 @@
 
         >
         <f:facet name="header">
-            Search Shifting
+            Search Attendant
         </f:facet>
 
         <div class="p-grid ui-fluid">
@@ -35,7 +35,7 @@
 
 
                         </p:inputText>
-                        <label>Staff id</label>
+                        <label>Staff Name</label>
                     </h:panelGroup>
 
                     <p:autoUpdate/>
@@ -45,7 +45,8 @@
 
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save" 
+                             update=":parentform:result, :parentform:msg" action="#{shiftController.search()}"/>
         </f:facet>
 
 

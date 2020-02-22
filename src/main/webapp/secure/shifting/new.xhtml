@@ -18,7 +18,7 @@
 
         >
         <f:facet name="header">
-            Add Shifting
+            Add New Attendance
         </f:facet>
 
         <div class="p-grid ui-fluid">
@@ -27,26 +27,23 @@
                     <p:autoUpdate/>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
                                  columnClasses="ui-grid-col-12"/>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{shifting.shifttime}" required="true" 
-                                     requiredMessage="invalid shift time"/>
-                        <label>Shift time</label>
-                    </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value="#{shifting.duration}"  required="true" requiredMessage="invalid duration"/>
-                        <label>Duration</label>
-                    </h:panelGroup>
-
-                    <p:selectOneMenu  required="true" requiredMessage="invalid user's name"
-                                      filter="true" filterMatchMode="contains">
-                        <f:selectItem noSelectionOption="true" itemLabel="--Select User--" itemValue=""/>
-                    </p:selectOneMenu>
                     <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
-                                      filter="true" filterMatchMode="contains">
-                        <f:selectItem noSelectionOption="true" itemLabel="--Select Staff--" itemValue=""/>
+                                      filter="true" filterMatchMode="contains"
+                                      value="#{shifting.staffid}" converter="staffConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="--Staff Name--" itemValue="#{staff}"/>
+                        <f:selectItems value="#{staffController.datalist}" var="rs"
+                                       itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
                     </p:selectOneMenu>
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:calendar value="#{shifting.starttime}" required="true" 
+                                     requiredMessage="invalid start time" 
+                                     showHour="true" showMinute="true" showSecond="true"
+                                     navigator="true" maxdate="#{shiftController.currentdate}"/>
+                        <label>Start time</label>
+                    </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
-                                     styleClass="success-btn raised-btn" id="save" />
+                                     styleClass="success-btn raised-btn" id="save" 
+                                     action="#{shiftController.add()}"/>
 
                 </p:outputPanel>
             </div>

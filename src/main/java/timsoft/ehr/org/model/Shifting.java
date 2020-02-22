@@ -47,20 +47,19 @@ public class Shifting implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Column(name = "shifttime")
+    @Column(name = "starttime")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date shifttime;
+    private Date starttime;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Size(max = 250)
-    @Column(name = "duration")
-    private String duration;
+    
+    @Column(name = "endtime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endtime;
     @OneToMany(mappedBy = "shiftingid")
     private List<Transactions> transactionsList;
-    @JoinColumn(name = "userid", referencedColumnName = "id")
-    @ManyToOne
-    private User userid;
+    
     @JoinColumn(name = "staffid", referencedColumnName = "id")
     @ManyToOne
     private Staff staffid;
@@ -80,13 +79,6 @@ public class Shifting implements Serializable {
         this.id = id;
     }
 
-    public Date getShifttime() {
-        return shifttime;
-    }
-
-    public void setShifttime(Date shifttime) {
-        this.shifttime = shifttime;
-    }
 
     public Date getDatecreated() {
         return datecreated;
@@ -94,14 +86,6 @@ public class Shifting implements Serializable {
 
     public void setDatecreated(Date datecreated) {
         this.datecreated = datecreated;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
     }
 
     @XmlTransient
@@ -113,12 +97,20 @@ public class Shifting implements Serializable {
         this.transactionsList = transactionsList;
     }
 
-    public User getUserid() {
-        return userid;
+    public Date getStarttime() {
+        return starttime;
     }
 
-    public void setUserid(User userid) {
-        this.userid = userid;
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 
     public Staff getStaffid() {
