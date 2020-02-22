@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -26,7 +25,8 @@ import timsoft.ehr.org.utils.MessageUtil;
  * @author HP
  */
 
-@ManagedBean
+@Component
+@Scope("session")
 public class StockController implements Serializable{
      private List<Stock> datalist;
      @Autowired

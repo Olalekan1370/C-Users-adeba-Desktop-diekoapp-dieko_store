@@ -15,7 +15,7 @@
         closable="true"
         id="addNew"
         fitViewport="true"
-
+        width="400"
         >
         <f:facet name="header">
             Add Staff
@@ -58,7 +58,7 @@
                             <label>Designation</label>
                         </h:panelGroup>
 
-                        <p:commandButton value="Update"  icon="fa fa-refresh" 
+                        <p:commandButton value="Save"  icon="fa fa-plus" 
                                          styleClass="success-btn raised-btn" id="save" 
                                          action="#{staffController.update()}" update=":parentform:result"/>
                     </p:panelGrid> 
