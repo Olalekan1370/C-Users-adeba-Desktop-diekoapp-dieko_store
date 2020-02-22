@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Pump;
+import timsoft.ehr.org.model.Stock;
 import timsoft.ehr.org.model.Transactions;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
@@ -41,14 +42,17 @@ public class TransactionController  implements Serializable{
        reload();
     }
     public void computePrice(){
-        
+        Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
+        tr.setAmount(tr.getQuantity()*tr.getUnitprice());
     }
 public void filterPump(){
     Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
     pumplist = service.getPumpRepo().findByStockname(tr.getStockid().getId());
+    Stock st = service.getStockRepo().findOne(tr.getStockid().getId());
+    tr.setUnitprice(st.getUnitprice());
+   
 }
     public void filter() {
-
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
         datalist = service.getTransactionRepo()
                 .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));

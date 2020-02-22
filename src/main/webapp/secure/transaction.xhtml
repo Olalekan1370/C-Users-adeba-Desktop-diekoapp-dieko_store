@@ -120,11 +120,14 @@
                                 </p:commandLink>
                             </p:panelGrid>
                         </f:facet>
-<p:column headerText="Invoice">
+                        <p:column headerText="Invoice">
                             <h:outputText value="#{result.invoicenumber}" />
                         </p:column>
-                        <p:column headerText="Product" width="70">
-                            <h:outputText value="#{result.pumpid.name}" />
+                        <p:column headerText="Product">
+                            <h:outputText value="#{result.stockid.name}" />
+                        </p:column>
+                        <p:column headerText="Pump" width="70">
+                            <h:outputText value="#{result.pumpid.reservoirid.name}-#{result.pumpid.name}" />
                         </p:column>
 
                         <p:column headerText="Sold By" width="100">
@@ -141,7 +144,7 @@
                         <p:column headerText="Amount">
                             <h:outputText value="#{result.amount}" />
                         </p:column>
-                         <p:column headerText="Opening balance">
+                        <p:column headerText="Opening balance">
                             <h:outputText value="#{result.openingbalance}" />
                         </p:column>
                         <p:column headerText="Closing balance">
@@ -149,12 +152,12 @@
                         </p:column>
                         <p:column headerText="Purchase price" >
                             <h:outputText value="#{result.purchaseprice}" >
-                                 <f:convertNumber type="currency" currencySymbol="₦"/>
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Profit" >
                             <h:outputText value="#{result.profit}">
-                                 <f:convertNumber type="currency" currencySymbol="₦"/>
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
 

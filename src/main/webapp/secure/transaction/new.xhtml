@@ -34,7 +34,7 @@
                                           itemValue="#{stock}"/>
                             <f:selectItems value="#{stockController.datalist}" var="st"
                                            itemLabel="#{st.name}" itemValue="#{st}"/>
-                            <p:ajax update="pump" listener="#{transactionController.filterPump()}"/>
+                            <p:ajax update="pump,price" listener="#{transactionController.filterPump()}"/>
                         </p:selectOneMenu>
                         <p:selectOneMenu  required="true" requiredMessage="invalid Product name"
                                           filter="true" filterMatchMode="contains" 
@@ -54,11 +54,14 @@
                             <f:selectItems value="#{staffController.datalist}" var="rs"
                                            itemLabel="#{rs.fullname}" itemValue="#{rs}"/>
                         </p:selectOneMenu>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:outputPanel id="price">
+                            <p:autoUpdate/>
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.unitprice}"  
-                                           symbol="₦" disabled="true"/>
+                                           symbol="₦" disabled="true" />
                             <label>Sales price</label>
                         </h:panelGroup>
+                        </p:outputPanel>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.quantity}"  
                                            required="true" requiredMessage="invalid quantity"/>
@@ -66,11 +69,13 @@
                             <p:ajax listener="#{transactionController.computePrice()}" update="amount"/>
                         </h:panelGroup>
                         
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:outputPanel id="amount">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.amount}"  
-                                           symbol="₦" disabled="true" id="amount"/>
+                                           symbol="₦" disabled="true" />
                             <label>Amount</label>
                         </h:panelGroup>
+                        </p:outputPanel>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.openingbalance}"  
                                            required="true" requiredMessage="invalid opening balance"/>

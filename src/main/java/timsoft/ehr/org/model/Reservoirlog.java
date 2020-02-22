@@ -51,6 +51,10 @@ public class Reservoirlog implements Serializable {
     private Double cost;
     @Column(name = "unitcost")
     private Double unitcost;
+    @Column(name="available")
+    private Integer available;
+    @Column(name="pumpid")
+    private Long pumpid;
     @Column(name = "datesupplied")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datesupplied;
@@ -107,6 +111,22 @@ public class Reservoirlog implements Serializable {
 
     public void setUnitcost(Double unitcost) {
         this.unitcost = unitcost;
+    }
+
+    public Integer getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Integer available) {
+        this.available = available;
+    }
+
+    public Long getPumpid() {
+        return pumpid;
+    }
+
+    public void setPumpid(Long pumpid) {
+        this.pumpid = pumpid;
     }
 
     public Date getDatesupplied() {
