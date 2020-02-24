@@ -37,18 +37,42 @@ public class ReservoirController implements Serializable {
     LoginController login;
     private Reservoir currentReservoir;
     private List<Reservoirlog> reservelogs;
+    Double qty;
+Double previous;
 
     @PostConstruct
     public void init() {
+        qty = 0.0;
         reservelogs = new ArrayList<>();
         currentReservoir = new Reservoir();
         datalist = new ArrayList<>();
         reload();
     }
 
+    public void updateQuantity() {
+        Reservoir sp = (Reservoir) FacesUtils.getManagedBean("reservoir");
+        qty = sp.getQuantity();
+    }
+    public void updateQuantity2() {
+       Reservoirlog sp = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+        qty = sp.getQuantity();
+        System.out.println(qty);
+    }
+    public void updatePrevious() {
+       Reservoirlog sp = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+        previous = sp.getPreviousreading();
+        System.out.println(previous);
+    }
+public void updateDeficit() {
+        Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+        System.out.println(" QTY: "+ qty);
+        System.out.println("Previous:.............."+previous);
+        log.setDeficitamount(log.getCurrentreading() - (qty+previous));
+    }
     public void loadDefinicit() {
         Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
-        log.setDeficitamount(log.getCurrentreading() - log.getQuantity());
+        log.setQuantity(qty);
+        log.setDeficitamount(log.getCurrentreading() - (qty+previous));
     }
 
     public void addLog() {
@@ -61,6 +85,9 @@ public class ReservoirController implements Serializable {
             log.setUnitcost(log.getCost() / log.getQuantity());
             currentReservoir.setLastmodified(new Date());
             service.getReservoirlogRepo().save(log);
+            login.reset("reservoirlog");
+            loadChildren(currentReservoir);
+            login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
             e.printStackTrace();
             login.log(MessageUtil.INTERNAL_ERROR, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
@@ -200,6 +227,14 @@ public class ReservoirController implements Serializable {
 
     public void setReservelogs(List<Reservoirlog> reservelogs) {
         this.reservelogs = reservelogs;
+    }
+
+    public Double getQty() {
+        return qty;
+    }
+
+    public void setQty(Double qty) {
+        this.qty = qty;
     }
 
 }

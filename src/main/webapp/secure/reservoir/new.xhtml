@@ -49,8 +49,10 @@
                                           itemValue="#{rs}"/>
                        </p:selectOneMenu>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputNumber value="#{reservoir.quantity}" required="true" 
-                                     requiredMessage="invalid quantity"/>
+                        <p:inputNumber value="#{reservoir.quantity}" >
+                            <p:ajax listener="#{reservoirController.updateQuantity()}" 
+                                       ignoreAutoUpdate="true"/>
+                        </p:inputNumber>
                             <label>Quantity</label>
                         </h:panelGroup>
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -65,14 +67,18 @@
                        </p:selectOneMenu>
                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                        <p:inputNumber value="#{reservoirlog.previousreading}" required="true" 
-                                     requiredMessage="previous reading is required"/>
+                                     requiredMessage="previous reading is required">
+                           <p:ajax listener="#{reservoirController.updatePrevious()}" 
+                                      ignoreAutoUpdate="true"/>
+                       </p:inputNumber>
                             <label>Previous Reading</label>
                         </h:panelGroup>
                        
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                            <p:inputNumber value="#{reservoirlog.currentreading}" required="true" 
                                      requiredMessage="current reading is required">
-                               <p:ajax listener="#{reservoirController.loadDefinicit()}" update="deficitpanel"/>
+                               <p:ajax listener="#{reservoirController.loadDefinicit()}" update="deficitpanel"
+                                       ignoreAutoUpdate="true"/>
                            </p:inputNumber>
                             <label>Current Reading</label>
                         </h:panelGroup>
