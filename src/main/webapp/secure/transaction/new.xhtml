@@ -30,18 +30,18 @@
                         <p:selectOneMenu  required="true" requiredMessage="invalid Product name"
                                           filter="true" filterMatchMode="contains" 
                                           value="#{transactions.stockid}" converter="stockConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--"
-                                          itemValue="#{stock}"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="--Select Product--"
+                                          />
                             <f:selectItems value="#{stockController.datalist}" var="st"
                                            itemLabel="#{st.name}" itemValue="#{st}"/>
                             <p:ajax update="pump,price" listener="#{transactionController.filterPump()}"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu  required="true" requiredMessage="invalid Product name"
+                        <p:selectOneMenu  required="true" requiredMessage="invalid location"
                                           filter="true" filterMatchMode="contains" 
                                           value="#{transactions.pumpid}" converter="pumpConverter"
                                           id="pump">
-                            <f:selectItem noSelectionOption="true" itemLabel="--Select Pump--"
-                                          itemValue="#{pump}"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="--Product Channel--"
+                                          />
                             <f:selectItems value="#{transactionController.pumplist}" var="st"
                                            itemLabel="#{st.name}" itemValue="#{st}"/>
                         </p:selectOneMenu>
@@ -50,7 +50,7 @@
                                           converter="staffConverter" value="#{transactions.staffid}">
                             <f:selectItem noSelectionOption="true" 
                                           itemLabel="--Sold By--" 
-                                          itemValue="#{staff}"/>
+                                          />
                             <f:selectItems value="#{staffController.datalist}" var="s"
                                            itemLabel="#{s.fullname}" itemValue="#{s}"/>
                         </p:selectOneMenu>

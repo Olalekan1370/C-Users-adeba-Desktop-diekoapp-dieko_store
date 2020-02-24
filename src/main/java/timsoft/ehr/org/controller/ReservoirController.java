@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Reservoir;
 import timsoft.ehr.org.model.Reservoirlog;
+import timsoft.ehr.org.model.Stock;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
@@ -34,11 +35,55 @@ public class ReservoirController implements Serializable {
     AppService service;
     @Autowired
     LoginController login;
+    private Reservoir currentReservoir;
+    private List<Reservoirlog> reservelogs;
 
     @PostConstruct
     public void init() {
+        reservelogs = new ArrayList<>();
+        currentReservoir = new Reservoir();
         datalist = new ArrayList<>();
         reload();
+    }
+
+    public void loadDefinicit() {
+        Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+        log.setDeficitamount(log.getCurrentreading() - log.getQuantity());
+    }
+
+    public void addLog() {
+        try {
+            Stock st = service.getStockRepo().findOne(currentReservoir.getStockid().getId());
+            Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+            log.setDatecreated(new Date());
+            log.setStockname(st.getName());
+            log.setReservoirid(currentReservoir);
+            log.setUnitcost(log.getCost() / log.getQuantity());
+            currentReservoir.setLastmodified(new Date());
+            service.getReservoirlogRepo().save(log);
+        } catch (Exception e) {
+            e.printStackTrace();
+            login.log(MessageUtil.INTERNAL_ERROR, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
+        }
+    }
+
+    public void filterLog() {
+        AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
+        reservelogs = service.getReservoirlogRepo()
+                .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
+        if (reservelogs.isEmpty()) {
+            login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
+        }
+    }
+
+    public void deleteLog(Long id) {
+        service.getReservoirlogRepo().delete(id);
+        loadChildren(currentReservoir);
+    }
+
+    public void loadChildren(Reservoir parentid) {
+        reservelogs = service.getReservoirlogRepo().listByParent(parentid.getId());
+        currentReservoir = parentid;
     }
 
     public void filter() {
@@ -54,6 +99,7 @@ public class ReservoirController implements Serializable {
     public void reload() {
         datalist = service.getReservoirRepo().findAll();
     }
+
     public void search() {
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
         datalist = service.getReservoirRepo().search(app.getSearchterm());
@@ -66,9 +112,20 @@ public class ReservoirController implements Serializable {
         try {
             Reservoir sp = (Reservoir) FacesUtils.getManagedBean("reservoir");
             sp.setDatecreated(new Date());
-            Reservoirlog log  = new Reservoirlog();
+            Stock st = service.getStockRepo().findOne(sp.getStockid().getId());
+            Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
+            log.setDatecreated(new Date());
+            log.setStockname(st.getName());
+            log.setQuantity(sp.getQuantity());
+            log.setReservoirid(sp);
+            log.setUnitcost(log.getCost() / sp.getQuantity());
+            sp.setLastmodified(new Date());
+            List<Reservoirlog> loglist = new ArrayList<>();
+            loglist.add(log);
+            sp.setReservoirlogList(loglist);
             service.getReservoirRepo().save(sp);
             login.reset("reservoir");
+            login.reset("reservoirlog");
             reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
@@ -84,7 +141,7 @@ public class ReservoirController implements Serializable {
             sp.setDatecreated(new Date());
             service.getReservoirRepo().save(sp);
             login.reset("reservoir");
-             reload();
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {
@@ -112,4 +169,37 @@ public class ReservoirController implements Serializable {
     public void setDatalist(List<Reservoir> datalist) {
         this.datalist = datalist;
     }
+
+    public AppService getService() {
+        return service;
+    }
+
+    public void setService(AppService service) {
+        this.service = service;
+    }
+
+    public LoginController getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginController login) {
+        this.login = login;
+    }
+
+    public Reservoir getCurrentReservoir() {
+        return currentReservoir;
+    }
+
+    public void setCurrentReservoir(Reservoir currentReservoir) {
+        this.currentReservoir = currentReservoir;
+    }
+
+    public List<Reservoirlog> getReservelogs() {
+        return reservelogs;
+    }
+
+    public void setReservelogs(List<Reservoirlog> reservelogs) {
+        this.reservelogs = reservelogs;
+    }
+
 }

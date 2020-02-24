@@ -11,6 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,9 @@ public class Reservoir implements Serializable {
     @Column(name = "id")
     private Long id;
     @Column(name = "quantity")
-    private Integer quantity;
+    private Double quantity;
+    @Column(name="deficitamount")
+    private Double deficitamount;
     @Size(max = 50)
     @Column(name = "units")
     private String units;
@@ -61,12 +64,12 @@ public class Reservoir implements Serializable {
     @Size(max = 100)
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "reservoirid")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "reservoirid")
     private List<Reservoirlog> reservoirlogList;
     @JoinColumn(name = "stockid", referencedColumnName = "id")
     @ManyToOne
     private Stock stockid;
-    @OneToMany(mappedBy = "reservoirid")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "reservoirid")
     private List<Pump> pumpList;
 
     public Reservoir() {
@@ -84,11 +87,19 @@ public class Reservoir implements Serializable {
         this.id = id;
     }
 
-    public Integer getQuantity() {
+    public Double getDeficitamount() {
+        return deficitamount;
+    }
+
+    public void setDeficitamount(Double deficitamount) {
+        this.deficitamount = deficitamount;
+    }
+
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 

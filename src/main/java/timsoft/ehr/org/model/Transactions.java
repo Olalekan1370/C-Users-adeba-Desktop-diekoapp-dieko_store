@@ -53,7 +53,7 @@ public class Transactions implements Serializable {
     @Column(name = "closingbalance")
     private Double closingbalance;
     @Column(name = "quantity")
-    private Integer quantity;
+    private Double quantity;
     @Column(name = "unitprice")
     private Double unitprice;
     @Column(name = "amount")
@@ -65,6 +65,10 @@ public class Transactions implements Serializable {
     private Double purchaseprice;
     @Column(name = "profit")
     private Double profit;
+    @Column(name="deficitamount")
+    private Double deficitamount;
+    @Column(name="gain")
+    private Double gain;
     @Column(name = "trandate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date trandate;
@@ -93,6 +97,14 @@ public class Transactions implements Serializable {
         this.id = id;
     }
 
+    public Double getGain() {
+        return gain;
+    }
+
+    public void setGain(Double gain) {
+        this.gain = gain;
+    }
+
     public String getInvoicenumber() {
         return invoicenumber;
     }
@@ -117,11 +129,11 @@ public class Transactions implements Serializable {
         this.closingbalance = closingbalance;
     }
 
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
@@ -147,6 +159,14 @@ public class Transactions implements Serializable {
 
     public void setDatecreated(Date datecreated) {
         this.datecreated = datecreated;
+    }
+
+    public Double getDeficitamount() {
+        return deficitamount;
+    }
+
+    public void setDeficitamount(Double deficitamount) {
+        this.deficitamount = deficitamount;
     }
 
     public Double getPurchaseprice() {

@@ -15,6 +15,12 @@ import org.springframework.data.repository.query.Param;
  * @author JIDEX
  */
 public interface ReservoirlogRepo extends JpaRepository<Reservoirlog,Long>{
+    @Query("select st from Reservoirlog st where st.reservoirid.id=:reservoirid order by st.id desc")
+    List<Reservoirlog> listByParent(@Param("reservoirid")Long reservoirid);
     @Query(value="select * from reservoirlog  where pumpid=:pumpid and available>0 limit 1 order by available", nativeQuery=true)
     List<Reservoirlog> list(@Param("pumpid")Long pumpid);
+    
+     @Query(value="select * from reservoirlog where DATE(datesupplied)=:from or DATE(datesupplied)=:to or DATE(datesupplied) between :from and :to", nativeQuery=true)
+    List<Reservoirlog> filterByDateRange(@Param("from")String from, @Param("to")String to);
+
 }

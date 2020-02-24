@@ -30,7 +30,8 @@ import timsoft.ehr.org.utils.MessageUtil;
  */
 @Component
 @Scope("session")
-public class TransactionController  implements Serializable{
+public class TransactionController implements Serializable {
+
     private List<Transactions> datalist;
     @Autowired
     AppService service;
@@ -38,33 +39,35 @@ public class TransactionController  implements Serializable{
     LoginController login;
     List<Pump> pumplist;
     Reservoirlog log;
+    Stock stock;
     @PostConstruct
-    public void init(){
+    public void init() {
+        stock = new Stock();
         log = new Reservoirlog();
         pumplist = new ArrayList<>();
         datalist = new ArrayList<>();
-       reload();
+        reload();
     }
-    public void computePrice(){
-        Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
-        tr.setAmount(tr.getQuantity()*tr.getUnitprice());
-         List<Reservoirlog> lt = service.getReservoirlogRepo().list(tr.getPumpid().getId());
-    if(lt.isEmpty()==false){
-         log = lt.get(0);
-        tr.setPurchaseprice(log.getUnitcost());
-        Double amount = tr.getUnitprice()*tr.getQuantity();
-        Double cost = tr.getPurchaseprice()*tr.getQuantity();
-        tr.setProfit(amount-cost);
+
+    public void computePrice() {
+        Transactions tr = (Transactions)FacesUtils.getManagedBean("transactions");
+        tr.setAmount(tr.getQuantity() * tr.getUnitprice());
+        List<Reservoirlog> lt = service.getReservoirlogRepo().list(tr.getPumpid().getId());
+            tr.setPurchaseprice(stock.getPurchaseprice());
+            Double amount = tr.getUnitprice() * tr.getQuantity();
+            Double cost = tr.getPurchaseprice() * tr.getQuantity();
+            tr.setProfit(amount - cost);
+        
     }
+
+    public void filterPump() {
+        Transactions tr = (Transactions) FacesUtils.getManagedBean("transactions");
+        pumplist = service.getPumpRepo().findByStockname(tr.getStockid().getId());
+        stock = service.getStockRepo().findOne(tr.getStockid().getId());
+        tr.setUnitprice(stock.getUnitprice());
+
     }
-public void filterPump(){
-    Transactions tr =(Transactions)FacesUtils.getManagedBean("transactions");
-    pumplist = service.getPumpRepo().findByStockname(tr.getStockid().getId());
-    Stock st = service.getStockRepo().findOne(tr.getStockid().getId());
-    tr.setUnitprice(st.getUnitprice());
-   
-   
-}
+
     public void filter() {
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
         datalist = service.getTransactionRepo()
@@ -91,7 +94,7 @@ public void filterPump(){
             Transactions sp = (Transactions) FacesUtils.getManagedBean("transactions");
             sp.setDatecreated(new Date());
             Reservoir reserve = log.getReservoirid();
-            
+
             service.getTransactionRepo().save(sp);
             login.reset("transactions");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
@@ -127,6 +130,7 @@ public void filterPump(){
             login.log(MessageUtil.INTERNAL_ERROR, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
         }
     }
+
     public List<Transactions> getDatalist() {
         return datalist;
     }
@@ -166,6 +170,5 @@ public void filterPump(){
     public void setLog(Reservoirlog log) {
         this.log = log;
     }
-    
- 
+
 }

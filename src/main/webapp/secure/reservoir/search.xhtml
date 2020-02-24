@@ -47,7 +47,7 @@
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
                              styleClass="success-btn raised-btn" id="save" 
-                             update=":parentform:result" action="#{reservoirController.search()}"/>
+                             update=":parentform:result, :parentform:msg" action="#{reservoirController.search()}"/>
         </f:facet>
             
       

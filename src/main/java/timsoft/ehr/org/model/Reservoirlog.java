@@ -45,12 +45,14 @@ public class Reservoirlog implements Serializable {
     @Column(name = "id")
     private Long id;
     @Column(name = "quantity")
-    private Integer quantity;
+    private Double quantity;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "cost")
     private Double cost;
     @Column(name = "unitcost")
     private Double unitcost;
+    @Column(name="deficitamount")
+    private Double deficitamount;
     @Column(name="available")
     private Integer available;
     @Column(name="pumpid")
@@ -58,12 +60,15 @@ public class Reservoirlog implements Serializable {
     @Column(name = "datesupplied")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datesupplied;
+     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datecreated")
+    private Date datecreated;
     @Size(max = 250)
     @Column(name = "previousreading")
-    private String previousreading;
+    private Double previousreading;
     @Size(max = 250)
     @Column(name = "currentreading")
-    private String currentreading;
+    private Double currentreading;
     @Size(max = 250)
     @Column(name = "stockname")
     private String stockname;
@@ -89,12 +94,28 @@ public class Reservoirlog implements Serializable {
         this.id = id;
     }
 
-    public Integer getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public Date getDatecreated() {
+        return datecreated;
+    }
+
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
+    }
+
+    public Double getDeficitamount() {
+        return deficitamount;
+    }
+
+    public void setDeficitamount(Double deficitamount) {
+        this.deficitamount = deficitamount;
     }
 
     public Double getCost() {
@@ -137,19 +158,19 @@ public class Reservoirlog implements Serializable {
         this.datesupplied = datesupplied;
     }
 
-    public String getPreviousreading() {
+    public Double getPreviousreading() {
         return previousreading;
     }
 
-    public void setPreviousreading(String previousreading) {
+    public void setPreviousreading(Double previousreading) {
         this.previousreading = previousreading;
     }
 
-    public String getCurrentreading() {
+    public Double getCurrentreading() {
         return currentreading;
     }
 
-    public void setCurrentreading(String currentreading) {
+    public void setCurrentreading(Double currentreading) {
         this.currentreading = currentreading;
     }
 

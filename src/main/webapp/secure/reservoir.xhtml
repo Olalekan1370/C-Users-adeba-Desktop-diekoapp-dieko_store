@@ -52,7 +52,7 @@
                         </p:confirmDialog>
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
            <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
-                   <div class="ui-g-12 ui-lg-3">
+                   <div class="ui-g-12 ui-lg-5">
                        <h:outputText value="Researvior Module"/>
                 </div> 
                <div class="ui-g-12 ui-lg-1">
@@ -77,13 +77,7 @@
                              <span>Add New</span>
                         </p:commandLink>
                     </div>
-               <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink>
-                           
-                            <i class="fa fa-plus" style="margin-right:5px;"></i>
-                             <span>New Supply</span>
-                        </p:commandLink>
-                    </div>
+               
                     <div class="ui-g-12 ui-lg-2">
                         <p:commandLink update=":parentform:result" action="#{reservoirController.reload()}">
                             
@@ -131,10 +125,10 @@
                     <p:column headerText="Reserve Name" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
-                    <p:column headerText="Stock Name" width="120">
+                    <p:column headerText="Stock Name" width="150">
                         <h:outputText value="#{result.stockid.name}" />
                         </p:column>
-                    <p:column headerText="Quantity" width="50" >
+                    <p:column headerText="Quantity" width="70" >
                         <h:outputText value="#{result.quantity}" />
                         </p:column>
                         
@@ -142,12 +136,20 @@
                         <h:outputText value="#{result.units}" />
                         </p:column>
                     
-                    <p:column headerText="Date Created" width="120">
+                    <p:column headerText="Date Created" width="200">
                         <h:outputText value="#{result.datecreated}" >
                             <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>
                         </h:outputText>
                         </p:column>
-                    <p:column width="25">
+                    <p:column width="50">
+                        <p:commandLink style="color:pink; font-size:12px;"
+                                            title="New Supply"
+                                            oncomplete="PF('reservelog').show()"  
+                                            action="#{reservoirController.loadChildren(result)}">
+
+                               <i class="fa fa-vcard" style="color:#7CB342"/>
+                              
+                            </p:commandLink>
                             <p:commandLink style="color:green; font-size:12px;"
                                             title="Edit Record"
                                            
@@ -185,7 +187,9 @@
             <ui:include src="./reservoir/search.xhtml"/>  
                  </h:form> 
               
-                
+                <h:form id="reservelogs_form">    
+                    <ui:include src="./reservoir/logs.xhtml"/>  
+                 </h:form> 
             
     </ui:define>
 
