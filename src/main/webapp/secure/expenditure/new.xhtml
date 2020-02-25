@@ -25,10 +25,8 @@
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                                 columnClasses="ui-grid-col-12">
-
-
+                    <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+                                 >
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText value="#{expenditure.description}" required="true" 
                                          requiredMessage="invalid description"/>
@@ -41,7 +39,9 @@
                         </h:panelGroup>
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" />
+                                         styleClass="success-btn raised-btn" 
+                                         id="save" update=":parentform:result"
+                                         action="#{expenditureController.add()}"/>
                     </p:panelGrid> 
 
                 </p:outputPanel>

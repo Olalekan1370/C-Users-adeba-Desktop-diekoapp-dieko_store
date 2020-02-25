@@ -32,7 +32,6 @@
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText value="#{appHelper.searchterm}" required="true" 
                                          requiredMessage="invalid name">
-
                             </p:inputText>
                             <label>Depositorname</label>
                         </h:panelGroup>
@@ -45,7 +44,8 @@
 
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
-                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"/>
+                             styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
+                             action="#{bankdepositController.search()}"/>
         </f:facet>
 
 

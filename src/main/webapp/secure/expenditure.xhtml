@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('expenditure')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  update=":parentform:result" action="#{expenditureController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -124,11 +124,11 @@
                         <p:column headerText="Categoryname" >
                             <h:outputText value="#{result.excategoryid.name}" />
                         </p:column>
-                        
+
                         <p:column headerText="Description" >
                             <h:outputText value="#{result.description}" />
                         </p:column>
-                        
+
                         <p:column headerText="Amount" >
                             <h:outputText value="#{result.amount}" />
                         </p:column>
@@ -144,7 +144,7 @@
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result">
+                                           update="result" action="#{expenditureController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />

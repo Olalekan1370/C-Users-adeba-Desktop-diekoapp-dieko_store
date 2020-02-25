@@ -89,8 +89,13 @@ public class AppService {
     public UserRepo getUserRepo() {
         return UserRepo;
     }
-    
-    
+
+    public BankdepositRepo getBankdepositRepo() {
+        return bankdepositRepo;
+    }
+
+    public void setBankdepositRepo(BankdepositRepo bankdepositRepo) {
+        this.bankdepositRepo = bankdepositRepo;
+    }
 
 }
-
