@@ -28,15 +28,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JIDEX
+ * @author Olalekan
  */
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "expenditure")
+@Table(name = "bankdeposit")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Expenditure.findAll", query = "SELECT e FROM Expenditure e")})
+    @NamedQuery(name = "Expenditure.findAll", query = "SELECT e FROM Expenditure e")
+    , @NamedQuery(name = "Expenditure.findById", query = "SELECT e FROM Expenditure e WHERE e.id = :id")
+    , @NamedQuery(name = "Expenditure.findByDatecreated", query = "SELECT e FROM Expenditure e WHERE e.datecreated = :datecreated")
+    , @NamedQuery(name = "Expenditure.findByAmount", query = "SELECT e FROM Expenditure e WHERE e.amount = :amount")
+    , @NamedQuery(name = "Expenditure.findByTransdate", query = "SELECT e FROM Expenditure e WHERE e.transdate = :transdate")})
 public class Expenditure implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,6 +59,9 @@ public class Expenditure implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "amount")
     private Double amount;
+    @Column(name = "transdate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date transdate;
     @JoinColumn(name = "excategoryid", referencedColumnName = "id")
     @ManyToOne
     private Excategory excategoryid;
@@ -99,6 +106,14 @@ public class Expenditure implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Date getTransdate() {
+        return transdate;
+    }
+
+    public void setTransdate(Date transdate) {
+        this.transdate = transdate;
     }
 
     public Excategory getExcategoryid() {

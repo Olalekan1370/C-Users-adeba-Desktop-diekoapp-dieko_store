@@ -13,6 +13,8 @@ import javax.faces.bean.ViewScoped;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,15 +40,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Excategory.findAll", query = "SELECT e FROM Excategory e")})
 public class Excategory implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
-    private Long id;
     @Size(max = 250)
     @Column(name = "name")
     private String name;
+
+    private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
@@ -68,13 +71,6 @@ public class Excategory implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Date getDatecreated() {
         return datecreated;
@@ -117,5 +113,13 @@ public class Excategory implements Serializable {
     public String toString() {
         return "timsoft.ehr.org.model.Excategory[ id=" + id + " ]";
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
