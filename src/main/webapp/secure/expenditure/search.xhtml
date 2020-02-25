@@ -31,11 +31,11 @@
                                  >
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText value="#{appHelper.searchterm}" required="true" 
-                                         requiredMessage="invalid description">
+                                         requiredMessage="invalid categoryname">
 
 
                             </p:inputText>
-                            <label>Description</label>
+                            <label>Categoryname</label>
                         </h:panelGroup>
 
                     </p:panelGrid> 
@@ -47,7 +47,7 @@
         <f:facet name="footer">
             <p:commandButton value="Search"  icon="fa fa-search" 
                              styleClass="success-btn raised-btn" id="save"  update=":parentform:result"
-                             action="#{bankdepositController.search()}"/>
+                             action="#{expenditureController.search()}"/>
         </f:facet>
 
     </p:dialog>  
