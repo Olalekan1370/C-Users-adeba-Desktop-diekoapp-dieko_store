@@ -93,7 +93,7 @@
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
                                  rowKey="#{result.id}">
                         <f:facet name="header">
-                            <p:panelGrid columns="5" styleClass="ui-panelgrid-blank"
+                            <p:panelGrid columns="6" styleClass="ui-panelgrid-blank"
                                          style="margin-top:10px;">
                                 <h:outputText value="Search by Date Range" style="margin-right:10px;"/>
                                 <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -112,12 +112,14 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
-                                <p:commandLink 
+                                <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-
-                                </p:commandLink>
+                                    <p:dataExporter target="result" type="xls" fileName="transactions"/>
+                                </h:commandLink>
+                                <p:commandButton id="toggler" type="button" value="Columns"  icon="fa fa-navicon" />
+                                <p:columnToggler datasource="result" trigger="toggler" />
                             </p:panelGrid>
                         </f:facet>
                         <p:column headerText="Invoice">
@@ -127,7 +129,7 @@
                             <h:outputText value="#{result.stockid.name}" />
                         </p:column>
                         <p:column headerText="Channel" >
-                            <h:outputText value="#{result.pumpid.name}-#{result.pumpid.name}" />
+                            <h:outputText value="#{result.pumpid.reservoirid.name}-#{result.pumpid.name}" />
                         </p:column>
 
                         <p:column headerText="Sold By" width="100">
@@ -142,7 +144,9 @@
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Amount">
-                            <h:outputText value="#{result.amount}" />
+                            <h:outputText value="#{result.amount}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
                         </p:column>
                         <p:column headerText="Opening balance">
                             <h:outputText value="#{result.openingbalance}" />
@@ -155,13 +159,27 @@
                                 <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
+                        <p:column headerText="Loss" >
+                            <h:outputText value="#{result.deficitamount}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Gain" >
+                            <h:outputText value="#{result.gain}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
                         <p:column headerText="Profit" >
                             <h:outputText value="#{result.profit}">
                                 <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
-
-                        <p:column width="25">
+                        <p:column headerText="Tran Date" >
+                            <h:outputText value="#{result.trandate}">
+                                <f:convertDateTime pattern="yyyy/MM/dd" timeZone="GMT+01"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column width="25" exportable="false">
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
 

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author JIDEX
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 @Entity
 @Table(name = "reservoir")
 @XmlRootElement

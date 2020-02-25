@@ -15,6 +15,7 @@
     <class>timsoft.ehr.org.model.Applog</class>
     <class>timsoft.ehr.org.model.Transactions</class>
     <class>timsoft.ehr.org.model.Bankdeposit</class>
+    <class>timsoft.ehr.org.model.VwBalance</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cbtexam?zeroDateTimeBehavior=convertToNull"/>

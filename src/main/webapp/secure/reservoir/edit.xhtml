@@ -34,7 +34,7 @@
                         </h:panelGroup>
                        <p:selectOneMenu  required="true" requiredMessage="supplier name is required"
                                          filter="true" filterMatchMode="contains"
-                                         value="#{reservoir.stockid}" converter="supplierConverter">
+                                         value="#{reservoirlog.supplierid}" converter="supplierConverter">
                            <f:selectItem noSelectionOption="true" 
                                          itemLabel="--Supplier--" />
                            <f:selectItems itemLabel="#{rs.name}" var="rs" value="#{supplierController.datalist}"
@@ -53,6 +53,11 @@
                                      requiredMessage="invalid quantity"/>
                             <label>Quantity</label>
                         </h:panelGroup>
+                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                           <p:inputNumber value="#{reservoirlog.cost}" required="true" 
+                                       requiredMessage="invalid quantity" symbol="₦"/>
+                            <label>Cost</label>
+                        </h:panelGroup>
                        <p:selectOneMenu value="#{reservoir.units}" required="true" requiredMessage="invalid units">
                            <f:selectItem itemLabel="--Product Units--" noSelectionOption="true"/>
                            <f:selectItem itemLabel="KG" itemValue="KG"/>
@@ -66,23 +71,27 @@
                        
                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                            <p:inputNumber value="#{reservoirlog.currentreading}" required="true" 
-                                     requiredMessage="current reading is required"/>
+                                     requiredMessage="current reading is required">
+                               <p:ajax listener="#{reservoirController.loadDefinicit()}" update="deficitpanel"/>
+                           </p:inputNumber>
                             <label>Current Reading</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                       <p:outputPanel id="deficitpanel">
+                           <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                            <p:inputNumber value="#{reservoirlog.deficitamount}" required="true" 
                                      requiredMessage="deficit amount required"/>
                             <label>Deficit Amount</label>
                         </h:panelGroup>
+                       </p:outputPanel>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:calendar value="#{reservoirlog.datesupplied}" required="true" 
                                         requiredMessage="date supplied is required" navigator="true"
                                         pattern="yyyy-MM-dd"/>
                             <label>Date Supplied</label>
                         </h:panelGroup>
-                    <p:commandButton value="Save"  icon="fa fa-refresh" 
+                    <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save" 
-                             action="#{reservoirController.update()}" update=":parentform:result"/>
+                             action="#{reservoirController.add()}" update=":parentform:result"/>
                 </p:panelGrid> 
                 
                </p:outputPanel>

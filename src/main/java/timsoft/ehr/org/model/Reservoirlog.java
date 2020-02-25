@@ -51,22 +51,20 @@ public class Reservoirlog implements Serializable {
     private Double cost;
     @Column(name = "unitcost")
     private Double unitcost;
-    @Column(name="deficitamount")
+    @Column(name = "deficitamount")
     private Double deficitamount;
-    @Column(name="available")
+    @Column(name = "available")
     private Integer available;
-    @Column(name="pumpid")
+    @Column(name = "pumpid")
     private Long pumpid;
     @Column(name = "datesupplied")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datesupplied;
-     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="datecreated")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "datecreated")
     private Date datecreated;
-    @Size(max = 250)
     @Column(name = "previousreading")
     private Double previousreading;
-    @Size(max = 250)
     @Column(name = "currentreading")
     private Double currentreading;
     @Size(max = 250)
@@ -222,5 +220,5 @@ public class Reservoirlog implements Serializable {
     public String toString() {
         return "timsoft.ehr.org.model.Reservoirlog[ id=" + id + " ]";
     }
-    
+
 }

@@ -58,6 +58,8 @@ public class Transactions implements Serializable {
     private Double unitprice;
     @Column(name = "amount")
     private Double amount;
+    @Column(name="cashavailable")
+    private Double cashavailable;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
@@ -135,6 +137,14 @@ public class Transactions implements Serializable {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getCashavailable() {
+        return cashavailable;
+    }
+
+    public void setCashavailable(Double cashavailable) {
+        this.cashavailable = cashavailable;
     }
 
     public Double getUnitprice() {

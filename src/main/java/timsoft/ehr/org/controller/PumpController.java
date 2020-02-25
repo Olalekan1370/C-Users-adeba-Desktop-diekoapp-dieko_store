@@ -67,6 +67,7 @@ public class PumpController implements Serializable{
             sp.setDatecreated(new Date());
             service.getPumpRepo().save(sp);
             login.reset("pump");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +82,7 @@ public class PumpController implements Serializable{
             sp.setDatecreated(new Date());
             service.getPumpRepo().save(sp);
             login.reset("pump");
+            reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {
