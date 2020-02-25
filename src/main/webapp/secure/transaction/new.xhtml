@@ -36,7 +36,7 @@
                                            itemLabel="#{st.name}" itemValue="#{st}"/>
                             <p:ajax update="pump,price" listener="#{transactionController.filterPump()}"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu  required="true" requiredMessage="invalid location"
+                        <p:selectOneMenu  required="true" requiredMessage="product channel is required"
                                           filter="true" filterMatchMode="contains" 
                                           value="#{transactions.pumpid}" converter="pumpConverter"
                                           id="pump">
@@ -45,15 +45,27 @@
                             <f:selectItems value="#{transactionController.pumplist}" var="st"
                                            itemLabel="#{st.name}" itemValue="#{st}"/>
                         </p:selectOneMenu>
-                        <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
-                                          filter="true" filterMatchMode="contains"
-                                          converter="staffConverter" value="#{transactions.staffid}">
-                            <f:selectItem noSelectionOption="true" 
-                                          itemLabel="--Sold By--" 
-                                          />
-                            <f:selectItems value="#{staffController.datalist}" var="s"
-                                           itemLabel="#{s.fullname}" itemValue="#{s}"/>
-                        </p:selectOneMenu>
+                       
+                        <p:outputPanel id="openbalance">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.openingbalance}"  
+                                           required="true" requiredMessage="invalid opening balance" >
+                                <p:ajax listener="#{transactionController.updateOpening}"  
+                                        ignoreAutoUpdate="true"/>
+                            </p:inputNumber>
+                            <label>Opening balance</label>
+                        </h:panelGroup>
+                        </p:outputPanel>
+                        <p:outputPanel id="closebalance">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputNumber value="#{transactions.closingbalance}"  
+                                           required="true" requiredMessage="invalid closing balance">
+                                <p:ajax listener="#{transactionController.computePrice}" update="amount, qty" 
+                                        ignoreAutoUpdate="true"/>
+                            </p:inputNumber>
+                            <label>Closing balance</label>
+                        </h:panelGroup>
+                        </p:outputPanel>
                         <p:outputPanel id="price">
                             <p:autoUpdate/>
                             <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -62,34 +74,61 @@
                             <label>Sales price</label>
                         </h:panelGroup>
                         </p:outputPanel>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:outputPanel id="qty">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.quantity}"  
-                                           required="true" requiredMessage="invalid quantity">
-                                 <p:ajax listener="#{transactionController.computePrice}" update="amount"/>
+                                           disabled="true">
                             </p:inputNumber>
                             <label>Quantity</label>
                            
                         </h:panelGroup>
+                        </p:outputPanel>
                         
                         <p:outputPanel id="amount">
                             <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputNumber value="#{transactions.amount}"  
-                                           symbol="₦" disabled="true" />
-                            <label>Amount</label>
+                                           symbol="₦"  disabled="true"/>
+                            <label>Cost</label>
                         </h:panelGroup>
                         </p:outputPanel>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{transactions.openingbalance}"  
-                                           required="true" requiredMessage="invalid opening balance"/>
-                            <label>Opening balance</label>
+                            <p:outputPanel id="cash">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                                <p:inputNumber value="#{transactions.cashavailable}"  
+                                           symbol="₦" >
+                                    <p:ajax listener="#{transactionController.computeAmount()}" update="loss, gain" 
+                                        ignoreAutoUpdate="true"/>
+                                     </p:inputNumber>
+                            <label>Cash At Hand</label>
                         </h:panelGroup>
-                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{transactions.closingbalance}"  
-                                           required="true" requiredMessage="invalid closing balance"/>
-                            <label>Closing balance</label>
+                        </p:outputPanel>
+                            <p:outputPanel id="loss">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                                <p:inputNumber value="#{transactions.deficitamount}"  
+                                               symbol="₦" disabled="true"/>
+                            <label>Deficit</label>
                         </h:panelGroup>
-                        
-
+                        </p:outputPanel>
+                            <p:outputPanel id="gain">
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                                <p:inputNumber value="#{transactions.gain}"  
+                                               symbol="₦" disabled="true"/>
+                            <label>Gain</label>
+                        </h:panelGroup>
+                            </p:outputPanel>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:calendar value="#{transactions.trandate}"  
+                                        navigator="true" pattern="yyyy-MM-dd" maxdate="#{transactionController.currentDate}"/>
+                            <label>Transaction Date</label>
+                        </h:panelGroup>
+                         <p:selectOneMenu  required="true" requiredMessage="invalid staff's name"
+                                          filter="true" filterMatchMode="contains"
+                                          converter="staffConverter" value="#{transactions.staffid}">
+                            <f:selectItem noSelectionOption="true" 
+                                          itemLabel="--Sold By--" 
+                                          />
+                            <f:selectItems value="#{staffController.datalist}" var="s"
+                                           itemLabel="#{s.fullname}" itemValue="#{s}"/>
+                        </p:selectOneMenu>
                         <p:commandButton value="Save"  icon="fa fa-plus" 
                                          styleClass="success-btn raised-btn" id="save" 
                                          action="#{transactionController.add()}" update=":parentform:result"/>

@@ -56,17 +56,16 @@ Double previous;
     public void updateQuantity2() {
        Reservoirlog sp = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
         qty = sp.getQuantity();
-        System.out.println(qty);
+       
     }
     public void updatePrevious() {
        Reservoirlog sp = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
         previous = sp.getPreviousreading();
-        System.out.println(previous);
+        
     }
 public void updateDeficit() {
         Reservoirlog log = (Reservoirlog) FacesUtils.getManagedBean("reservoirlog");
-        System.out.println(" QTY: "+ qty);
-        System.out.println("Previous:.............."+previous);
+        
         log.setDeficitamount(log.getCurrentreading() - (qty+previous));
     }
     public void loadDefinicit() {
@@ -74,7 +73,17 @@ public void updateDeficit() {
         log.setQuantity(qty);
         log.setDeficitamount(log.getCurrentreading() - (qty+previous));
     }
-
+void changeLog(Reservoirlog log){
+    log.setCost(login.getDouble(log.getCost()));
+            log.setCurrentreading(login.getDouble(log.getCurrentreading()));
+            log.setDeficitamount(login.getDouble(log.getDeficitamount()));
+            log.setQuantity(login.getDouble(log.getQuantity()));
+            log.setUnitcost(login.getDouble(log.getUnitcost()));
+}
+void changeResever(Reservoir r){
+    r.setDeficitamount(login.getDouble(r.getDeficitamount()));
+    r.setQuantity(login.getDouble(r.getQuantity()));
+}
     public void addLog() {
         try {
             Stock st = service.getStockRepo().findOne(currentReservoir.getStockid().getId());
@@ -83,6 +92,7 @@ public void updateDeficit() {
             log.setStockname(st.getName());
             log.setReservoirid(currentReservoir);
             log.setUnitcost(log.getCost() / log.getQuantity());
+            changeLog(log);
             currentReservoir.setLastmodified(new Date());
             service.getReservoirlogRepo().save(log);
             login.reset("reservoirlog");
@@ -147,6 +157,8 @@ public void updateDeficit() {
             log.setReservoirid(sp);
             log.setUnitcost(log.getCost() / sp.getQuantity());
             sp.setLastmodified(new Date());
+            changeLog(log);
+            changeResever(sp);
             List<Reservoirlog> loglist = new ArrayList<>();
             loglist.add(log);
             sp.setReservoirlogList(loglist);
