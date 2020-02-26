@@ -113,19 +113,19 @@
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
                         </p:commandLink>
-                        <p:commandLink 
+                        <h:commandLink 
                                        >
-                          <i class="fa fa-close" style="color:#eb4924"/>
+                          <i class="fa fa-file-excel-o" style="color:#eb4924"/>
                           <span>Export to Excel</span>
-                              
-                        </p:commandLink>
+                             <p:dataExporter target="result" type="xls" fileName="reservoir"/>  
+                        </h:commandLink>
                         </p:panelGrid>
                     </f:facet>
                     
-                    <p:column headerText="Reserve Name" >
+                    <p:column headerText="Reserve Name" width="100" >
                         <h:outputText value="#{result.name}" />
                         </p:column>
-                    <p:column headerText="Stock Name" width="150">
+                    <p:column headerText="Stock Name" width="120">
                         <h:outputText value="#{result.stockid.name}" />
                         </p:column>
                     <p:column headerText="Quantity" width="70" >

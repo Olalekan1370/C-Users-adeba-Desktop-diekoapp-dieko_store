@@ -112,19 +112,19 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
-                                <p:commandLink 
+                                <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-
-                                </p:commandLink>
+                                     <p:dataExporter target="result" type="xls" fileName="users"/>
+                                </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
                         <p:column headerText="Full Name" >
                             <h:outputText value="#{result.staffid.fullname}" />
                         </p:column>
-                        <p:column headerText="Username" >
+                        <p:column headerText="Username" width="120" >
                             <h:outputText value="#{result.username}" />
                         </p:column>
                         <p:column headerText="Roletype" width="100">

@@ -17,7 +17,7 @@ import timsoft.ehr.org.model.Expenditure;
  */
 public interface ExpenditureRepo extends JpaRepository<Expenditure, Long> {
 
-    @Query(value = "select st from Expenditure st where st.excategoryid.name like %:search% or st.staffid.fullname like %:search%")
+    @Query("select st from Expenditure st where st.excategoryid.name like %:search% or st.staffid.fullname like %:search%")
     List<Expenditure> search(@Param("search") String search);
 
     @Query(value = "select * from expenditure where DATE(datecreated)=:from or DATE(datecreated)=:to or DATE(datecreated) between :from and :to", nativeQuery = true)

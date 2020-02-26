@@ -112,12 +112,12 @@
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
                         </p:commandLink>
-                        <p:commandLink 
+                        <h:commandLink 
                                        >
                           <i class="fa fa-close" style="color:#eb4924"/>
                           <span>Export to Excel</span>
-                              
-                        </p:commandLink>
+                              <p:dataExporter target="result" type="xls" fileName="shifting"/> 
+                        </h:commandLink>
                         </p:panelGrid>
                     </f:facet>
                     <p:column headerText="Employee" >

@@ -110,12 +110,12 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
-                                <p:commandLink 
+                                <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-
-                                </p:commandLink>
+                                    <p:dataExporter target="result" type="xls" fileName="bankdeposit"/>
+                                </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
@@ -139,7 +139,7 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column width="25">
+                        <p:column width="25" exportable="false">
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
 
