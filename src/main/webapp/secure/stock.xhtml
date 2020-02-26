@@ -112,25 +112,25 @@
                           <i class="fa fa-search" style="color:#eb4924"/>
                           <span>Search</span>
                         </p:commandLink>
-                        <p:commandLink 
+                        <h:commandLink 
                                        >
                           <i class="fa fa-close" style="color:#eb4924"/>
                           <span>Export to Excel</span>
-                              
-                        </p:commandLink>
+                             <p:dataExporter target="result" type="xls" fileName="stock"/>  
+                        </h:commandLink>
                         </p:panelGrid>
                     </f:facet>
-    <p:column headerText="Stock Name" >
-                        <h:outputText value="#{result.name}" />
+    <p:column headerText="Stock Name" width="120" >
+                        <h:outputText value="#{result.name}"  />
                         </p:column>
                         
-                    <p:column headerText="Sales Price" width="150">
+                    <p:column headerText="Sales Price" width="120">
                         <h:outputText value="#{result.unitprice}" >
                             <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
                         </h:outputText>
 
                         </p:column>
-                   <p:column headerText="Purchase Price" width="150">
+                   <p:column headerText="Purchase Price" width="120">
                        <h:outputText value="#{result.purchaseprice}" >
                             <f:convertNumber type="currency" maxFractionDigits="2" currencySymbol="₦"/>
                         </h:outputText>
