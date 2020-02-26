@@ -27,15 +27,25 @@
                     <p:autoUpdate/>
                     <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
                                  >
+                        <p:selectOneMenu value="#{expenditure.excategoryid}" converter="categoryConverter">
+                            <f:selectItem itemLabel="--Category--" noSelectionOption=""/>
+                            <f:selectItems value="#{excategoryController.datalist}" var="rs" itemLabel="#{rs.name}" itemValue="#{rs}"/>
+                        </p:selectOneMenu>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                             <p:inputText value="#{expenditure.description}" required="true" 
                                          requiredMessage="invalid description"/>
                             <label>Description</label>
                         </h:panelGroup>
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                            <p:inputNumber value="#{expenditure.amount}" required="true" 
-                                           requiredMessage="invalid amount" symbol="₦" />
+                            <p:inputNumber value="#{expenditure.amount}"  
+                                           symbol="₦" disabled="true" requiredMessage="invalid amount" />
                             <label>Amount</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:calendar value="#{transactions.trandate}"  
+                                        navigator="true" pattern="yyyy-MM-dd" maxdate="#{transactionController.currentDate}"/>
+                            <label>Transaction Date</label>
                         </h:panelGroup>
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
