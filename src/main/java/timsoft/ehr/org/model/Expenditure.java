@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "bankdeposit")
+@Table(name = "expenditure")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Expenditure.findAll", query = "SELECT e FROM Expenditure e")

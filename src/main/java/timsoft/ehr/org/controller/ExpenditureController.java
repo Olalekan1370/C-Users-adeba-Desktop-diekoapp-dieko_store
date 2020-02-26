@@ -33,11 +33,21 @@ public class ExpenditureController implements Serializable {
     AppService service;
     @Autowired
     LoginController login;
+    private Date currentDate;
 
     @PostConstruct
     public void init() {
+        currentDate = new Date();
         datalist = new ArrayList<>();
         reload();
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 
     public void filter() {
