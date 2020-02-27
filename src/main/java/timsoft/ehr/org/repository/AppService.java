@@ -16,6 +16,16 @@ import org.springframework.stereotype.Service;
 public class AppService {
 
     @Autowired
+    VwBalanceRepo vwBalanceRepo;
+
+    public VwBalanceRepo getVwBalanceRepo() {
+        return vwBalanceRepo;
+    }
+
+    public void setVwBalanceRepo(VwBalanceRepo vwBalanceRepo) {
+        this.vwBalanceRepo = vwBalanceRepo;
+    }
+    @Autowired
     BankdepositRepo bankdepositRepo;
     @Autowired
     SupplierRepo supplierRepo;

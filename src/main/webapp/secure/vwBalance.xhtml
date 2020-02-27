@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Bankdeposit</ui:define>
+    <ui:define name="title">Manage vwBalances</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -53,32 +53,32 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Bankdeposit Module"/>
+                        <h:outputText value="VwBalance Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
                             <p:commandLink>
 
-                                <span>#0 Record(s)</span>
+                                <span>#{vwBalanceController.datalist.size()}Record(s)</span>
                             </p:commandLink>
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_bankdeposit').show()">
+                        <p:commandLink  onclick="PF('search_vwBalances').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('bankdeposit')}">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('vwBalance')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  update=":parentform:result" action="#{bankdepositController.reload()}">
+                        <p:commandLink update=":parentform:result" action="#{vwBalanceController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{bankdepositController.datalist}" 
+                    <p:dataTable value="#{vwBalanceController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -98,6 +98,7 @@
                                 <h:outputText value="Search by Date Range" style="margin-right:10px;"/>
                                 <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                                     <p:calendar value="#{appHelper.dateFrom}" />
+
                                     <label>Date From</label>
                                 </h:panelGroup>
                                 <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -105,7 +106,7 @@
 
                                     <label>Date To</label>
                                 </h:panelGroup>
-                                <p:commandLink action="#{bankdepositController.filter()}" update="result">
+                                <p:commandLink action="#{vwBalanceController.filter()}">
 
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
@@ -114,50 +115,54 @@
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-                                    <p:dataExporter target="result" type="xls" fileName="bankdeposit"/>
+                                    <p:dataExporter target="result" type="xls" fileName="vwBalances"/>
                                 </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="Depositorname" >
-                            <h:outputText value="#{result.depositorname}" />
+                        <p:column headerText="Full Name" width="120" >
+                            <h:outputText value="#{result.fullname}"  />
                         </p:column>
-
-                        <p:column headerText="Amount" width="160">
-                            <h:outputText value="#{result.amount}" />
-                            <f:convertNumber type="currency" currencySymbol="₦"/>
+                        <p:column headerText="Quantity" width="50">
+                            <h:outputText value="#{result.quantity}" />
                         </p:column>
-                        <p:column headerText="Bank" width="150">
-                            <h:outputText value="#{result.bank}" />
-                        </p:column>
-                        <p:column headerText="Transactiondate" width="150">
-                            <h:outputText value="#{result.transactiondate}" />
-                        </p:column>
-                        <p:column headerText="Datedeposit" filterBy="#{result.datedeposit}" sortBy="#{result.datedeposit}" 
-                                  filterMatchMode="contains">
-                            <h:outputText value="#{result.datedeposit}" >
-                                <f:convertDateTime pattern="yyyy/MM/dd" timeZone="GMT+01"/>
+                        <p:column headerText="Unitprice" width="50">
+                            <h:outputText value="#{result.unitprice}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
-
-                        <p:column width="25" exportable="false">
-                            <p:commandLink style="color:green; font-size:12px;"
-                                           title="Edit Record"
-
-                                           oncomplete="PF('addNew').show()" >
-
-                                <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{bankdeposit}" value="#{result}"/>
-                            </p:commandLink>
-
-                            <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result" action="#{bankdepositController.delete(result.id)}">
-
-                                <i class="fa fa-close" style="color:#eb4924"/>
-                                <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
-
-                            </p:commandLink>
+                        <p:column headerText="Amount" width="90" >
+                            <h:outputText value="#{result.amount}">
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
                         </p:column>
+                        <p:column headerText="Openingbalance" width="100">
+                            <h:outputText value="#{result.openingbalance}">
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Closingbalance" width="100">
+                            <h:outputText value="#{result.closingbalance}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Gain" width="50">
+                            <h:outputText value="#{result.gain}">
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Loss" width="50">
+                            <h:outputText value="#{result.loss}">
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Monthnames" width="90">   
+                            <h:outputText value="#{result.monthnames}" />
+                        </p:column>
+                        <p:column headerText="Years" width="50">
+                            <h:outputText value="#{result.years}" />
+                        </p:column>
+
                         <p:autoUpdate/>
                     </p:dataTable>
 
@@ -166,19 +171,9 @@
             </div>
 
         </h:form>
-        <h:form id="addNew">    
-            <ui:include src="./bankdeposit/new.xhtml"/>  
+        <h:form id="search_vwBalances">    
+            <ui:include src="./vwBalance/search.xhtml"/>  
         </h:form> 
-
-        <h:form id="edit">    
-            <ui:include src="./bankdeposit/edit.xhtml"/>  
-        </h:form> 
-
-        <h:form id="search_bankdeposit">    
-            <ui:include src="./bankdeposit/search.xhtml"/>  
-        </h:form> 
-
-
 
     </ui:define>
 

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.User;
-import timsoft.ehr.org.model.User;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
