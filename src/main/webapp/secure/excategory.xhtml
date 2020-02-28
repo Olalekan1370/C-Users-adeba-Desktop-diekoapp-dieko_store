@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; maring:0px;">
+        <h:form id="parentform" style="padding:0px; margin:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -71,14 +71,14 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink onclick="PF('addNew').show()">
+                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('excategory')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink >
+                        <p:commandLink  update=":parentform:result" action="#{excategoryController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -112,12 +112,12 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
-                                <p:commandLink 
+                                <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-
-                                </p:commandLink>
+                                     <p:dataExporter target="result" type="xls" fileName="excategory"/>
+                                </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
@@ -136,7 +136,7 @@
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result">
+                                           update="result" action="#{excategoryController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />

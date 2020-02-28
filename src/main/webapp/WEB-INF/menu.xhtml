@@ -1,4 +1,3 @@
-
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
@@ -49,20 +48,29 @@
                     </ui:fragment>
                     <pu:menu widgetVar="me" style="background-color:white;">
                         <p:menuitem  value="Dashboard" icon="&#xE871;"
-                                    url="dashboard.html"  style="color:#2E7D32; font-size:12px;"/>
-                                     <p:separator/>
-                        <p:menuitem value="Reservoir" url="reservoir.xhtml" icon="fa fa-tasks"/>
-<p:menuitem value="Channel" url="pump.xhtml" icon="fa fa-tasks"/>
-                        <p:menuitem id="um_dashboard" value="Stock" icon="&#xE871;" url="stock.xhtml"/>
+                                     url="dashboard.html"  style="color:#2E7D32; font-size:12px;"/>
+                        <p:separator/>
+                        <p:menuitem value="Reservoir" url="reservoir.xhtml" icon="fa fa-archive"/>
+                        <p:separator/>
+                        <p:menuitem value="Channel" url="pump.xhtml" icon="fa fa-beer"/>
+                        <p:separator/>
+                        <p:menuitem id="um_dashboard" value="Stock" icon="fa fa-sticky-note" url="stock.xhtml"/>
+                        <p:separator/>
                         <p:menuitem id="um_utils" value="Bankdeposits" icon="fa fa-address-card-o"
                                     url="bankdeposit.xhtml"/>
-                        <p:menuitem  value="Transactions" icon="fa fa-address-card-o" url="transaction.xhtml"/>
-                        <p:menuitem  value="Expenditure" icon="fa fa-clone" url="expenditure.xhtml"/>
+                        <p:separator/>
+                        <p:menuitem  value="Transactions" icon="fa fa-exchange" url="transaction.xhtml"/>
+                        <p:separator/>
+                        <p:menuitem  value="Expenditure" icon="fa fa-folder-open" url="expenditure.xhtml"/>
+                        <p:separator/>
                         <p:menuitem  value="Expenditure Category" icon="fa fa-clone" url="excategory.xhtml"/>
-                        <p:menuitem  value="Shifts" icon="fa fa-book" url="shifting.xhtml"/>
+                        <p:separator/>
+                        <p:menuitem  value="Shifts" icon="fa fa-clock-o" url="shifting.xhtml"/>
+                        <p:separator/>
                         <p:menuitem  value="Staffs" icon="fa fa-users" url="staff.xhtml"/>
-                        <p:menuitem  value="Users" icon="fa fa-users" url="users.xhtml"/>
-                        <p:menuitem  value="Supplier" icon="fa fa-user-circle" url="supplier.xhtml"/>
+                        <p:menuitem  value="Users" icon="fa fa-user" url="users.xhtml"/>
+                        <p:separator/>
+                        <p:menuitem  value="Supplier" icon="fa fa-truck" url="supplier.xhtml"/>
 
                     </pu:menu>
                 </div>

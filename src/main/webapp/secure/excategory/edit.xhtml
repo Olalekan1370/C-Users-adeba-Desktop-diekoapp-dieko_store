@@ -34,7 +34,9 @@
                         </h:panelGroup>
 
                         <p:commandButton value="Save"  icon="fa fa-plus" 
-                                         styleClass="success-btn raised-btn" id="save" />
+                                         styleClass="success-btn raised-btn" 
+                                         id="save" update=":parentform:result"
+                                         action="#{excategoryController.add()}"/>
                     </p:panelGrid> 
 
                 </p:outputPanel>

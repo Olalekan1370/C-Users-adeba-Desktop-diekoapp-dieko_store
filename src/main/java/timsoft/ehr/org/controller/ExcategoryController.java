@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.Expenditure;
+import timsoft.ehr.org.model.Excategory;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
@@ -26,34 +26,24 @@ import timsoft.ehr.org.utils.MessageUtil;
  */
 @Component
 @Scope("session")
-public class ExpenditureController implements Serializable {
+public class ExcategoryController implements Serializable {
 
-    private List<Expenditure> datalist;
+    private List<Excategory> datalist;
     @Autowired
     AppService service;
     @Autowired
     LoginController login;
-    private Date currentDate;
 
     @PostConstruct
     public void init() {
-        currentDate = new Date();
         datalist = new ArrayList<>();
         reload();
-    }
-
-    public Date getCurrentDate() {
-        return currentDate;
-    }
-
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
     }
 
     public void filter() {
 
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
-        datalist = service.getExpenditureRepo()
+        datalist = service.getExcategoryRepo()
                 .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
         if (datalist.isEmpty()) {
             login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
@@ -61,12 +51,12 @@ public class ExpenditureController implements Serializable {
     }
 
     public void reload() {
-        datalist = service.getExpenditureRepo().findAll();
+        datalist = service.getExcategoryRepo().findAll();
     }
 
     public void search() {
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
-        datalist = service.getExpenditureRepo().search(app.getSearchterm());
+        datalist = service.getExcategoryRepo().search(app.getSearchterm());
         if (datalist.isEmpty()) {
             login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
         }
@@ -74,11 +64,11 @@ public class ExpenditureController implements Serializable {
 
     public void add() {
         try {
-            Expenditure sp = (Expenditure) FacesUtils.getManagedBean("expenditure");
-            sp.setDatecreated(new Date());
+            Excategory rs = (Excategory) FacesUtils.getManagedBean("excategory");
+            rs.setDatecreated(new Date());
 
-            service.getExpenditureRepo().save(sp);
-            login.reset("expenditure");
+            service.getExcategoryRepo().save(rs);
+            login.reset("excategory");
             reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
         } catch (Exception e) {
@@ -90,10 +80,10 @@ public class ExpenditureController implements Serializable {
 
     public void update() {
         try {
-            Expenditure sp = (Expenditure) FacesUtils.getManagedBean("expenditure");
-            sp.setDatecreated(new Date());
-            service.getExpenditureRepo().save(sp);
-            login.reset("expenditure");
+            Excategory rs = (Excategory) FacesUtils.getManagedBean("excategory");
+            rs.setDatecreated(new Date());
+            service.getExcategoryRepo().save(rs);
+            login.reset("excategory");
             reload();
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
@@ -106,7 +96,7 @@ public class ExpenditureController implements Serializable {
 
     public void delete(Long id) {
         try {
-            service.getExpenditureRepo().delete(id);
+            service.getExcategoryRepo().delete(id);
             login.log(MessageUtil.RECORD_DELETED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
         } catch (Exception e) {
@@ -115,11 +105,11 @@ public class ExpenditureController implements Serializable {
         }
     }
 
-    public List<Expenditure> getDatalist() {
+    public List<Excategory> getDatalist() {
         return datalist;
     }
 
-    public void setDatalist(List<Expenditure> datalist) {
+    public void setDatalist(List<Excategory> datalist) {
         this.datalist = datalist;
     }
 

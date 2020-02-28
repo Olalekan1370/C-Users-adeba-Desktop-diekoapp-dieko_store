@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; maring:0px;">
+        <h:form id="parentform" style="padding:0px; margin:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -112,12 +112,12 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
-                                <p:commandLink 
+                                <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-
-                                </p:commandLink>
+                                     <p:dataExporter target="result" type="xls" fileName="expenditure"/>
+                                </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
@@ -129,8 +129,22 @@
                             <h:outputText value="#{result.description}" />
                         </p:column>
 
+                        <p:column headerText="Staff" >
+                            <h:outputText value="#{result.staffid.fullname}" />
+                        </p:column>
+                        
+                        <p:column headerText="Transactiondate" >
+                            <h:outputText value="#{result.transdate}" />
+                        </p:column>
+                        
+                        <p:column headerText="Datecreated" >
+                            <h:outputText value="#{result.datecreated}" />
+                        </p:column>
+
                         <p:column headerText="Amount" >
-                            <h:outputText value="#{result.amount}" />
+                            <h:outputText value="#{result.amount}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
                         </p:column>
 
                         <p:column width="25">
