@@ -14,17 +14,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AppService {
-
+    @Autowired
+    VwTopBalanceRepo vwTopBalanceRepo;
+    @Autowired
+    VwTranReportsRepo vwTranReportsRepo;
     @Autowired
     VwBalanceRepo vwBalanceRepo;
-
-    public VwBalanceRepo getVwBalanceRepo() {
-        return vwBalanceRepo;
-    }
-
-    public void setVwBalanceRepo(VwBalanceRepo vwBalanceRepo) {
-        this.vwBalanceRepo = vwBalanceRepo;
-    }
     @Autowired
     BankdepositRepo bankdepositRepo;
     @Autowired
@@ -51,6 +46,18 @@ public class AppService {
     TransactionRepo transactionRepo;
     @Autowired
     UserRepo UserRepo;
+
+    public VwTopBalanceRepo getVwTopBalanceRepo() {
+        return vwTopBalanceRepo;
+    }
+
+    public VwTranReportsRepo getVwTranReportsRepo() {
+        return vwTranReportsRepo;
+    }
+
+    public VwBalanceRepo getVwBalanceRepo() {
+        return vwBalanceRepo;
+    }
 
     public SupplierRepo getSupplierRepo() {
         return supplierRepo;

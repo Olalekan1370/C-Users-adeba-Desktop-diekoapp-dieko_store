@@ -25,7 +25,18 @@ public class AppHelper implements Serializable {
     private Date dateFrom;
     private Date dateTo;
     private String searchterm;
+    private Integer reportyear;
+    private String productname;
 
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    
     public String getOldpass() {
         return oldpass;
     }
@@ -40,6 +51,14 @@ public class AppHelper implements Serializable {
 
     public void setNewpass(String newpass) {
         this.newpass = newpass;
+    }
+
+    public Integer getReportyear() {
+        return reportyear;
+    }
+
+    public void setReportyear(Integer reportyear) {
+        this.reportyear = reportyear;
     }
 
     public Date getDateFrom() {
