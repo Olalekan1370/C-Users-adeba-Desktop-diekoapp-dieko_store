@@ -38,14 +38,16 @@
                         <p:calendar value="#{shifting.starttime}" required="true" 
                                      requiredMessage="invalid start time" 
                                      showHour="true" showMinute="true" showSecond="true"
-                                     navigator="true" maxdate="#{shiftController.currentdate}"/>
+                                     navigator="true" maxdate="#{shiftController.currentdate}"
+                                     pattern="MM/dd/yyyy HH:mm:ss"/>
                         <label>Start time</label>
                     </h:panelGroup>
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:calendar value="#{shifting.endtime}" required="true" 
                                      requiredMessage="invalid start time" 
                                      showHour="true" showMinute="true" showSecond="true"
-                                     navigator="true" maxdate="#{shiftController.currentdate}"/>
+                                     navigator="true" maxdate="#{shiftController.currentdate}"
+                                     pattern="MM/dd/yyyy HH:mm:ss"/>
                         <label>End time</label>
                     </h:panelGroup>
                     <p:commandButton value="Save"  icon="fa fa-plus" 

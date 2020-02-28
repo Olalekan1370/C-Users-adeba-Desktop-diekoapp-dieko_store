@@ -67,6 +67,8 @@ public class Transactions implements Serializable {
     private Double purchaseprice;
     @Column(name = "profit")
     private Double profit;
+    @Column(name="productname")
+    private String productname;
     @Column(name="deficitamount")
     private Double deficitamount;
     @Column(name="gain")
@@ -89,6 +91,14 @@ public class Transactions implements Serializable {
 
     public Transactions(Long id) {
         this.id = id;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
     public Long getId() {

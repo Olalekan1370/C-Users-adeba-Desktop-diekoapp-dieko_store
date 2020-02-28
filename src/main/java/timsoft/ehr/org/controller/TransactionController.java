@@ -139,6 +139,7 @@ public class TransactionController implements Serializable {
             reserve.setLastmodified(new Date());
             reserve.setQuantity(reserve.getQuantity() - login.getDouble(qty));
             sp.setInvoicenumber(login.getInvoice());
+            sp.setProductname(reserve.getStockid().getName());
             service.getReservoirRepo().save(reserve);
             service.getTransactionRepo().save(sp);
             login.reset("transactions");
