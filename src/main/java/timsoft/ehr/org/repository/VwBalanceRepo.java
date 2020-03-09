@@ -22,6 +22,9 @@ public interface VwBalanceRepo extends JpaRepository<VwBalance, Long> {
 
     @Query("select st from VwBalance st where st.staffid=:staffid and st.years=:years order by st.years desc")
     List<VwBalance> findByStaffIdAndYear(@Param("staffid") Long staffid, @Param("years") Integer year);
+    @Query("select st from VwBalance st where st.staffid=:staffid and st.years=:years and st.months=:months order by st.years desc")
+    List<VwBalance> listByStaff(@Param("staffid") Long staffid, @Param("years") Integer year,
+            @Param("months") Integer month);
 
     @Query(value = "select * from vwBalance where depositorname like %:search%", nativeQuery = true)
     List<VwBalance> search(@Param("search") String search);

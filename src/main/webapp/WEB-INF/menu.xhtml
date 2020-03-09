@@ -17,7 +17,7 @@
                                                 library="ultima-layout"/>
                             </div>
                             <a id="profile-options" href="#">
-                                <span class="profile-name">Welcome, #{admin.fullname}</span>
+                                <span class="profile-name">Welcome, #{admin.staffid.fullname}</span>
                                 <i class="material-icons">&#xE313;</i>
                             </a>
                         </div>
@@ -71,6 +71,7 @@
                         <p:menuitem  value="Users" icon="fa fa-user" url="users.xhtml"/>
                         <p:separator/>
                         <p:menuitem  value="Supplier" icon="fa fa-truck" url="supplier.xhtml"/>
+                        <p:menuitem  value="Backup Restore" icon="fa fa-cogs" url="backup_restore.xhtml"/>
 
                     </pu:menu>
                 </div>
@@ -110,8 +111,16 @@
 
                                 <label>New Password</label>
                             </h:panelGroup>
+                            <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                                <p:password value=
+                                            "#{appHelper.confirmPassword}" />
 
-
+                                <label>Confirm Password</label>
+                            </h:panelGroup>
+                            <p:commandButton value="Change Password" action="#{loginController.changeUserPassword()}" 
+                                             id="btn">
+                                <p:blockUI block="passwordDialog" trigger="btn"/>
+                            </p:commandButton>
                         </p:panelGrid> 
                         <p:autoUpdate/>
                     </p:outputPanel>

@@ -8,32 +8,33 @@ package timsoft.ehr.org.controller;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Random;
 import javax.annotation.PostConstruct;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LegendPlacement;
 import org.primefaces.model.charts.ChartData;
-import org.primefaces.model.charts.axes.cartesian.CartesianScales;
-import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
-import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearTicks;
-import org.primefaces.model.charts.bar.BarChartDataSet;
-import org.primefaces.model.charts.bar.BarChartModel;
-import org.primefaces.model.charts.bar.BarChartOptions;
 import org.primefaces.model.charts.donut.DonutChartDataSet;
 import org.primefaces.model.charts.donut.DonutChartModel;
-import org.primefaces.model.charts.optionconfig.legend.Legend;
-import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
-import org.primefaces.model.charts.optionconfig.title.Title;
 import org.python.icu.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import timsoft.ehr.org.dto.Chartsdata;
 import timsoft.ehr.org.model.VwTopBalance;
 import timsoft.ehr.org.model.VwTranReports;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.FacesUtils;
+import timsoft.ehr.org.utils.Reportutils;
 
 /**
  *
@@ -47,19 +48,20 @@ public class DashboardController implements Serializable {
     @Autowired
     AppService service;
     private VwTopBalance top;
-    private BarChartModel barModel;
     private DonutChartModel donutModel;
+    private BarChartModel salesBar;
+    private HashMap<String, Chartsdata> maps;
 
     @PostConstruct
     public void init() {
         datalist = new ArrayList<>();
-        barModel = new BarChartModel();
+        maps = new HashMap<>();
         donutModel = new DonutChartModel();
         reload();
     }
 
     public void initChart() {
-        plotBarModel();
+        createBarModel();
         plotDonutModel();
     }
 
@@ -67,71 +69,153 @@ public class DashboardController implements Serializable {
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLLL", Locale.getDefault());
         return dateFormat.format(d);
     }
+    public void loadDataIntoMap(){
+        datalist.forEach((rs) -> {
+            updateMap(rs.getProductname(), rs.getQuantity());
+        });
+    }
+public void updateMap(String key, Double quantity){
+    if(maps.containsKey(key)){
+        Chartsdata rs = maps.get(key);
+        rs.setQuantity(rs.getQuantity()+quantity);
+        maps.put(key, rs);
+    }else{
+        Chartsdata rs = new Chartsdata();
+        rs.setProductname(key);
+         rs.setQuantity(quantity);
+        maps.put(key, rs);
+    }
+}
+    public void initializeModel(ChartSeries profits, ChartSeries cost, ChartSeries quantity,
+            ChartSeries loss, ChartSeries gain) {
+        cost.set(Reportutils.getMonthName(1), 0.0);
+        cost.set(Reportutils.getMonthName(2), 0.0);
+        cost.set(Reportutils.getMonthName(3), 0.0);
+        cost.set(Reportutils.getMonthName(4), 0.0);
+        cost.set(Reportutils.getMonthName(5), 0.0);
+        cost.set(Reportutils.getMonthName(6), 0.0);
+        cost.set(Reportutils.getMonthName(7), 0.0);
+        cost.set(Reportutils.getMonthName(8), 0.0);
+        cost.set(Reportutils.getMonthName(9), 0.0);
+        cost.set(Reportutils.getMonthName(10), 0.0);
+        cost.set(Reportutils.getMonthName(11), 0.0);
+        cost.set(Reportutils.getMonthName(12), 0.0);
 
-    public void plotBarModel() {
-        barModel = new BarChartModel();
-        ChartData data = new ChartData();
-        List<Number> values = new ArrayList<>();
-        List<String> labels = new ArrayList<>();
+        profits.set(Reportutils.getMonthName(1), 0.0);
+        profits.set(Reportutils.getMonthName(2), 0.0);
+        profits.set(Reportutils.getMonthName(3), 0.0);
+        profits.set(Reportutils.getMonthName(4), 0.0);
+        profits.set(Reportutils.getMonthName(5), 0.0);
+        profits.set(Reportutils.getMonthName(6), 0.0);
+        profits.set(Reportutils.getMonthName(7), 0.0);
+        profits.set(Reportutils.getMonthName(8), 0.0);
+        profits.set(Reportutils.getMonthName(9), 0.0);
+        profits.set(Reportutils.getMonthName(10), 0.0);
+        profits.set(Reportutils.getMonthName(11), 0.0);
+        profits.set(Reportutils.getMonthName(12), 0.0);
+
+        loss.set(Reportutils.getMonthName(1), 0.0);
+        loss.set(Reportutils.getMonthName(2), 0.0);
+        loss.set(Reportutils.getMonthName(3), 0.0);
+        loss.set(Reportutils.getMonthName(4), 0.0);
+        loss.set(Reportutils.getMonthName(5), 0.0);
+        loss.set(Reportutils.getMonthName(6), 0.0);
+        loss.set(Reportutils.getMonthName(7), 0.0);
+        loss.set(Reportutils.getMonthName(8), 0.0);
+        loss.set(Reportutils.getMonthName(9), 0.0);
+        loss.set(Reportutils.getMonthName(10), 0.0);
+        loss.set(Reportutils.getMonthName(11), 0.0);
+        loss.set(Reportutils.getMonthName(12), 0.0);
+
+        gain.set(Reportutils.getMonthName(1), 0.0);
+        gain.set(Reportutils.getMonthName(2), 0.0);
+        gain.set(Reportutils.getMonthName(3), 0.0);
+        gain.set(Reportutils.getMonthName(4), 0.0);
+        gain.set(Reportutils.getMonthName(5), 0.0);
+        gain.set(Reportutils.getMonthName(6), 0.0);
+        gain.set(Reportutils.getMonthName(7), 0.0);
+        gain.set(Reportutils.getMonthName(8), 0.0);
+        gain.set(Reportutils.getMonthName(9), 0.0);
+        gain.set(Reportutils.getMonthName(10), 0.0);
+        gain.set(Reportutils.getMonthName(11), 0.0);
+        gain.set(Reportutils.getMonthName(12), 0.0);
+        quantity.set(Reportutils.getMonthName(1), 0.0);
+        quantity.set(Reportutils.getMonthName(2), 0.0);
+        quantity.set(Reportutils.getMonthName(3), 0.0);
+        quantity.set(Reportutils.getMonthName(4), 0.0);
+        quantity.set(Reportutils.getMonthName(5), 0.0);
+        quantity.set(Reportutils.getMonthName(6), 0.0);
+        quantity.set(Reportutils.getMonthName(7), 0.0);
+        quantity.set(Reportutils.getMonthName(8), 0.0);
+        quantity.set(Reportutils.getMonthName(9), 0.0);
+        quantity.set(Reportutils.getMonthName(10), 0.0);
+        quantity.set(Reportutils.getMonthName(11), 0.0);
+        quantity.set(Reportutils.getMonthName(12), 0.0);
+    }
+
+    private BarChartModel initBarModel() {
+        BarChartModel model = new BarChartModel();
+        ChartSeries profits = new ChartSeries();
+        ChartSeries costs = new ChartSeries();
+        ChartSeries loss = new ChartSeries();
+        ChartSeries gain = new ChartSeries();
+        ChartSeries quantity = new ChartSeries();
+        profits.setLabel("Profits");
+        costs.setLabel("Sales");
+        quantity.setLabel("Quantity");
+        loss.setLabel("Loss");
+        gain.setLabel("Gain");
+        initializeModel(profits, costs, quantity, loss, gain);
+
         datalist.stream().map((rs) -> {
-            values.add(rs.getQuantity());
+            costs.set(rs.getMonths().substring(0, 3), rs.getAmount());
+            return rs;
+        }).map((rs) -> {
+            profits.set(rs.getMonths().substring(0, 3), rs.getProfit());
+            return rs;
+        }).map((rs) -> {
+            loss.set(rs.getMonths().substring(0, 3), rs.getLoss());
+            return rs;
+        }).map((rs) -> {
+            gain.set(rs.getMonths().substring(0, 3), rs.getGain());
             return rs;
         }).forEachOrdered((rs) -> {
-            labels.add(getMonth(rs.getTrandate()));
-        });
+            quantity.set(rs.getMonths().substring(0, 3), rs.getQuantity());
+           });
 
-        BarChartDataSet barDataSet = new BarChartDataSet();
-        barDataSet.setLabel("Transaction Report");
-        barDataSet.setData(values);
+        model.addSeries(quantity);
+        model.addSeries(costs);
+        model.addSeries(loss);
+        model.addSeries(profits);
+        model.addSeries(gain);
 
-        List<String> bgColor = new ArrayList<>();
-        Random r = new Random();
-        for (int i = 0; i < datalist.size(); i++) {
-            bgColor.add("rgba(" + r.nextInt(255) + ", " + r.nextInt(99) + ", " + r.nextInt(132) + ", " + r.nextDouble() + ")");
+        return model;
+    }
+
+    private void createBarModel() {
+        salesBar = initBarModel();
+        salesBar.setTitle("Sales Report Jan-Dec");
+        salesBar.setLegendPosition("s");
+salesBar.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+salesBar.setLegendRows(1);
+        Axis xAxis = salesBar.getAxis(AxisType.X);
+        xAxis.setLabel("Report Months");
+
+        Axis yAxis = salesBar.getAxis(AxisType.Y);
+        yAxis.setLabel("Transaction Range");
+
+        if (datalist.isEmpty()) {
+            yAxis.setMin(1000);
+            yAxis.setMax(10000);
+        } else {
+            Optional<VwTranReports> min = datalist.stream().min(Comparator.comparingDouble(VwTranReports::getAmount));
+            Optional<VwTranReports> max = datalist.stream().max(Comparator.comparingDouble(VwTranReports::getAmount));
+            yAxis.setMin(min.get().getAmount());
+            yAxis.setMax(max.get().getAmount());
         }
-        barDataSet.setBackgroundColor(bgColor);
-
-        List<String> borderColor = new ArrayList<>();
-
-        for (int i = 0; i < datalist.size(); i++) {
-
-            borderColor.add("rgb(" + r.nextInt(255) + ", " + r.nextInt(99) + ", " + r.nextInt(132) + ")");
-
-        }
-        barDataSet.setBorderColor(borderColor);
-        barDataSet.setBorderWidth(1);
-
-        data.addChartDataSet(barDataSet);
-        data.setLabels(labels);
-        barModel.setData(data);
-
-        //Options
-        BarChartOptions options = new BarChartOptions();
-        CartesianScales cScales = new CartesianScales();
-        CartesianLinearAxes linearAxes = new CartesianLinearAxes();
-        CartesianLinearTicks ticks = new CartesianLinearTicks();
-        ticks.setBeginAtZero(true);
-        linearAxes.setTicks(ticks);
-        cScales.addYAxesData(linearAxes);
-        options.setScales(cScales);
-
-        Title title = new Title();
-        title.setDisplay(true);
-        title.setText("Transaction Report");
-        options.setTitle(title);
-
-        Legend legend = new Legend();
-        legend.setDisplay(true);
-        legend.setPosition("top");
-        LegendLabel legendLabels = new LegendLabel();
-        legendLabels.setFontStyle("bold");
-        legendLabels.setFontColor("#2980B9");
-        legendLabels.setFontSize(24);
-        legend.setLabels(legendLabels);
-        options.setLegend(legend);
-
-        barModel.setOptions(options);
-
+       // salesBar.setStacked(true);
+    
+        salesBar.setExtender("skinBar");
     }
 
     public void plotDonutModel() {
@@ -142,14 +226,13 @@ public class DashboardController implements Serializable {
         DonutChartDataSet dataSet = new DonutChartDataSet();
         List<Number> values = new ArrayList<>();
         List<String> labels = new ArrayList<>();
-
-        datalist.stream().map((rs) -> {
-            values.add(rs.getProfit()+rs.getGain());
+        maps.values().stream().map((rs) -> {
+            values.add(rs.getQuantity());
             return rs;
         }).forEachOrdered((rs) -> {
-            labels.add(getMonth(rs.getTrandate()));
-           // labels.add(getMonth(rs.getTrandate())+" - "+rs.getProductname());
+            labels.add(rs.getProductname());
         });
+       
 
         dataSet.setData(values);
 
@@ -167,18 +250,20 @@ public class DashboardController implements Serializable {
         data.setLabels(labels);
 
         donutModel.setData(data);
+        donutModel.setExtender("skinDonut");
     }
 
-        public void reload() {
+    public void reload() {
         Calendar cl = Calendar.getInstance();
         datalist = service.getVwTranReportsRepo().listByDateRange(cl.get(Calendar.YEAR));
         List<VwTopBalance> data = service.getVwTopBalanceRepo().findAll();
-        if(data.isEmpty()==false){
-            top =data.get(0);
+        if (data.isEmpty() == false) {
+            top = data.get(0);
         }
-        if(datalist.isEmpty()==false){
+       
+             loadDataIntoMap();
             initChart();
-        }
+        
     }
 
     public void filter() {
@@ -195,9 +280,9 @@ public class DashboardController implements Serializable {
                 datalist = service.getVwTranReportsRepo().listByDateRange(helper.getDateFrom(), helper.getDateTo());
                 break;
         }
-        if(datalist.isEmpty()==false){
+             loadDataIntoMap();
             initChart();
-        }
+        
     }
 
     public List<VwTranReports> getDatalist() {
@@ -224,12 +309,12 @@ public class DashboardController implements Serializable {
         this.top = top;
     }
 
-    public BarChartModel getBarModel() {
-        return barModel;
+    public BarChartModel getSalesBar() {
+        return salesBar;
     }
 
-    public void setBarModel(BarChartModel barModel) {
-        this.barModel = barModel;
+    public void setSalesBar(BarChartModel salesBar) {
+        this.salesBar = salesBar;
     }
 
     public DonutChartModel getDonutModel() {
@@ -238,6 +323,14 @@ public class DashboardController implements Serializable {
 
     public void setDonutModel(DonutChartModel donutModel) {
         this.donutModel = donutModel;
+    }
+
+    public HashMap<String, Chartsdata> getMaps() {
+        return maps;
+    }
+
+    public void setMaps(HashMap<String, Chartsdata> maps) {
+        this.maps = maps;
     }
 
 }

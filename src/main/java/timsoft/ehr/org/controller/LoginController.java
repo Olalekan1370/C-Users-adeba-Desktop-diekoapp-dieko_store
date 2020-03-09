@@ -7,13 +7,20 @@ package timsoft.ehr.org.controller;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import timsoft.ehr.org.model.User;
+import timsoft.ehr.org.repository.AppService;
+import timsoft.ehr.org.utils.AppHelper;
+import timsoft.ehr.org.utils.AppUtils;
 import timsoft.ehr.org.utils.FacesUtils;
+import timsoft.ehr.org.utils.MessageUtil;
 
 /**
  *
@@ -23,9 +30,56 @@ import timsoft.ehr.org.utils.FacesUtils;
 @Scope("session")
 public class LoginController {
 
+    @Autowired
+    AppService service;
+
     @PostConstruct
     public void init() {
 
+    }
+
+    public void checkUserLogin() {
+        User user = (User) FacesUtils.getManagedBean("user");
+        List<User> login = service.getUserRepo().checkLogin(user.getUsername(), user.getPassword());
+        if (login.isEmpty()) {
+            log("Either username/password not correct", "Error", MessageUtil.ERROR_TAG);
+        } else {
+            getSession().setAttribute(AppUtils.LOGIN_ADMIN, login.get(0));
+
+            try {
+                FacesUtils.getExternalContext().redirect("./secure/dashboard.xhtml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void changeUserPassword() {
+        AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
+        User mk = getLoginUser();
+        if (app.getConfirmPassword().matches(app.getNewpass()) == false) {
+            log("Confirm password not match", "Error", MessageUtil.ERROR_TAG);
+        } else if (app.getOldpass().matches(mk.getPassword()) == false) {
+            log("Old password not matched", "Error", MessageUtil.ERROR_TAG);
+        } else {
+            mk.setPassword(app.getNewpass());
+            service.getUserRepo().save(mk);
+            log("Password Changed Successfully", "Success", MessageUtil.SUCCESS_TAG);
+        }
+    }
+
+    public User getLoginUser() {
+        User login = (User) getSession().getAttribute(AppUtils.LOGIN_ADMIN);
+        return login;
+    }
+
+    public void logoutAdmin() {
+        try {
+            getSession().setAttribute(AppUtils.LOGIN_ADMIN, null);
+            FacesUtils.getExternalContext().redirect(FacesUtils.getServletContext().getContextPath() + "/index.xhtml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void storeToSession(String name, Object t) {
@@ -88,12 +142,13 @@ public class LoginController {
         String no = "" + year + month + day + hour + minute + second;
         return no;
     }
-    public Double getDouble(Double value){
-        if(value==null){
+
+    public Double getDouble(Double value) {
+        if (value == null) {
             return 0.0;
-        }else{
-             DecimalFormat df = new DecimalFormat("#.##");
-         return Double.valueOf(df.format(value));
+        } else {
+            DecimalFormat df = new DecimalFormat("#.##");
+            return Double.valueOf(df.format(value));
         }
     }
 }

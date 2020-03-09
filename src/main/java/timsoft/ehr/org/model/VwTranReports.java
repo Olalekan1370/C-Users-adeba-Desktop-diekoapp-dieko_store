@@ -68,6 +68,8 @@ public class VwTranReports implements Serializable {
     private Double expenses;
     @Column(name = "balance")
     private Double balance;
+    @Column(name="months")
+    private String months;
     @Column(name = "trandate")
     @Temporal(TemporalType.DATE)
     private Date trandate;
@@ -201,6 +203,14 @@ public class VwTranReports implements Serializable {
 
     public void setTrandate(Date trandate) {
         this.trandate = trandate;
+    }
+
+    public String getMonths() {
+        return months;
+    }
+
+    public void setMonths(String months) {
+        this.months = months;
     }
     
 }

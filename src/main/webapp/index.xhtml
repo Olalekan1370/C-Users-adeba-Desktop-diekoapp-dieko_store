@@ -18,7 +18,7 @@
     </h:head>
 
     <h:body styleClass="login-body">
-        <marquee behavior="scroll" direction="left" style="color:white; font-size:20px">Welcome to Information And Communication Technology Center...</marquee>
+        <marquee behavior="scroll" direction="left" style="color:white; font-size:20px">Welcome to Palm Beach Oil and Gas</marquee>
         <h:form id="login">
             <p:growl showDetail="true" id="msg">
                 <p:autoUpdate/>
@@ -31,8 +31,16 @@
                 <div class="ui-g-12">
                     <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
                         <p:inputText  required="true" requiredMessage="Invalid matric number"
-                                      />
-                        <label>Matriculation Number</label>
+                                      value="#{user.username}"/>
+                        <label>Username</label>
+                    </h:panelGroup>
+                    
+                </div>
+                <div class="ui-g-12">
+                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                        <p:password  required="true" requiredMessage="Invalid password"
+                                     value="#{user.password}" />
+                        <label>Password</label>
                     </h:panelGroup>
                     
                 </div>
@@ -40,7 +48,7 @@
                 
                 <div class="ui-g-12">
                     <p:commandButton  value="Login" icon="ui-icon-person" 
-                                      id="btn"  update=":login:msg">
+                                      id="btn"  update=":login:msg" action="#{loginController.checkUserLogin()}">
                         
                         <p:blockUI trigger="btn" block="login">
                             Authenticating please wait...

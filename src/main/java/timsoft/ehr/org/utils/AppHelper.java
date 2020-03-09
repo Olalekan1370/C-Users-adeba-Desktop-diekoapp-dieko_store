@@ -27,7 +27,17 @@ public class AppHelper implements Serializable {
     private String searchterm;
     private Integer reportyear;
     private String productname;
+    private String confirmPassword;
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    
     public String getProductname() {
         return productname;
     }

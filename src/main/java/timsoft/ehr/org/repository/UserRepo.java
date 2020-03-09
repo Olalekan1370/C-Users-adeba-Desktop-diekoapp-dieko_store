@@ -24,4 +24,8 @@ public interface UserRepo extends JpaRepository<User,Long>{
     List<User> filterByDateRange(@Param("from")String from, @Param("to")String to);
     @Query("select st from User st where st.username=:username")
     List<User> findByUsername(@Param("username")String username);
+    
+    @Query("select st from User st where st.username=:username and st.password=:password")
+    List<User> checkLogin(@Param("username")String username,
+            @Param("password")String password);
 }

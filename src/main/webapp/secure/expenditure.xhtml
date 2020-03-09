@@ -53,13 +53,13 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Expenditure Module"/>
+                        <h:outputText value="Payment Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
                             <p:commandLink>
 
-                                <span>#0 Record(s)</span>
+                                <span>#{excategoryController.datalist.size()} Record(s)</span>
                             </p:commandLink>
                         </p:outputPanel> 
                     </div>
@@ -71,7 +71,8 @@
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('expenditure')}">
+                        <p:commandLink oncomplete="PF('addNew').show()" 
+                                       action="#{loginController.reset('expenditure')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
@@ -125,10 +126,7 @@
                             <h:outputText value="#{result.excategoryid.name}" />
                         </p:column>
 
-                        <p:column headerText="Description" >
-                            <h:outputText value="#{result.description}" />
-                        </p:column>
-
+                      
                         <p:column headerText="Staff" >
                             <h:outputText value="#{result.staffid.fullname}" />
                         </p:column>
@@ -143,6 +141,16 @@
 
                         <p:column headerText="Amount" >
                             <h:outputText value="#{result.amount}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Deduction" >
+                            <h:outputText value="#{result.deducation}" >
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Issued Amount" >
+                            <h:outputText value="#{result.amount_issued}" >
                                 <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>

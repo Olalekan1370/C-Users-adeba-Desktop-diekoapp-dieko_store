@@ -41,7 +41,7 @@
         function skinBar() {
             this.cfg.shadow = false;
             this.cfg.title = '';
-            this.cfg.seriesColors = ['#4CAF50', '#FFC107'];
+            this.cfg.seriesColors = ['#039BE5','#006064','#c62828','#2E7D32', '#FFD600'];
             this.cfg.grid = {
                 background: '#ffffff',
                 borderColor: '#ffffff',
@@ -59,6 +59,7 @@
                 shadow: false,
                 lineWidth: 1,
                 renderer: $.jqplot.BarRenderer,
+                pointLabels: {show: true},
                 markerOptions: {
                     shadow: false,
                     size: 7,
@@ -192,8 +193,10 @@
             };
             this.cfg.seriesDefaults = {
                 renderer: $.jqplot.DonutRenderer,
+                pointLabels: {show: true},
                 shadow: false,
                 lineWidth: 1,
+                
                 markerOptions: {
                     shadow: false,
                     size: 7,
@@ -357,7 +360,7 @@
                     <f:facet name="header">
                          <h:outputText value="Report Filter"/>
                     </f:facet>
-                    <p:panelGrid columns="5" styleClass="ui-panelgrid-blank"
+                    <p:panelGrid columns="6" styleClass="ui-panelgrid-blank"
                                          style="margin-top:10px;">
                                
                         <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
@@ -386,30 +389,32 @@
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
+                        <p:commandLink action="#{dashboardController.reload()}" 
+                                       update=":parentform, :parentform:tabs">
+
+                                    <i class="fa fa-refresh" style="color:#eb4924"/>
+                                    <span>Reload</span>
+                                </p:commandLink>
                             </p:panelGrid>
                 </p:fieldset>
                 <p:tabView id="tabs" style="margin:0px;">
                     <p:tab title="Chart Report">
                         <div class="ui-g">
-                            <div class="ui-g-12 ui-lg-8 ">
-                                <p:fieldset style="border-left:none; border-right:none; border-bottom:none">
-                                    <f:facet name="legend">
-                                        <h:outputText value="Product sales report"/>
-                                        <p:barChart model="#{dashboardController.barModel}" 
-                                    style="height: 600px;" 
-                                    id="bar" widgetVar="bar"/>
-                                    </f:facet>
-                                </p:fieldset>
+                            <div class="ui-g-12 ui-lg-12 ">
+                               <p:panel header="Product sales report">
+                                           <p:chart id="bar" type="bar" 
+                                                    model="#{dashboardController.salesBar}" 
+                                                    responsive="true"
+                             style="height: 430px;"/>
+                                   
+                               </p:panel>
                             </div>
                             
-                            <div class="ui-g-12 ui-lg-4 ">
-                                <p:fieldset style="border-left:none; border-right:none; border-bottom:none">
-                                    <f:facet name="legend">
-                                        <h:outputText value="Profit Margin Report"/>
+                            <div class="ui-g-12 ui-lg-12 ">
+                                <p:panel header="Product Patronage Report">
                                         <p:donutChart model="#{dashboardController.donutModel}" style="height: 600px;" 
                                        widgetVar="donut"/>
-                                    </f:facet>
-                                </p:fieldset>
+                                </p:panel>
                             </div>
                         </div>
                     </p:tab>
@@ -420,31 +425,15 @@
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
                                  rowKey="#{result.id}">
                         <f:facet name="header">
-                            <p:panelGrid columns="5" styleClass="ui-panelgrid-blank"
-                                         style="margin-top:10px;">
-                                <h:outputText value="Search by Date Range" style="margin-right:10px;"/>
-                                <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                                    <p:calendar value="#{appHelper.dateFrom}" />
-
-                                    <label>Date From</label>
-                                </h:panelGroup>
-                                <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                                    <p:calendar value="#{appHelper.dateTo}" />
-
-                                    <label>Date To</label>
-                                </h:panelGroup>
-                                <p:commandLink action="#{dashboardController.filter()}">
-
-                                    <i class="fa fa-search" style="color:#eb4924"/>
-                                    <span>Search</span>
-                                </p:commandLink>
+                            
+                                
                                 <h:commandLink 
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
                                     <p:dataExporter target="result" type="xls" fileName="vwBalances"/>
                                 </h:commandLink>
-                            </p:panelGrid>
+                           
                         </f:facet>
 
                         <p:column headerText="Product" >
@@ -480,8 +469,13 @@
                                 <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>
-                            <p:column headerText="Balance">
-                                <h:outputText value="#{result.balance+result.gain}">
+                            <p:column headerText="Profit">
+                                <h:outputText value="#{result.profit}">
+                                <f:convertNumber type="currency" currencySymbol="₦"/>
+                            </h:outputText>
+                        </p:column>
+                             <p:column headerText="Expenses">
+                                <h:outputText value="#{result.expenses}">
                                 <f:convertNumber type="currency" currencySymbol="₦"/>
                             </h:outputText>
                         </p:column>

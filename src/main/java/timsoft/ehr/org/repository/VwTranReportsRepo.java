@@ -18,11 +18,11 @@ import timsoft.ehr.org.model.VwTranReports;
  */
 public interface VwTranReportsRepo  extends JpaRepository<VwTranReports,Long>{
     
-    @Query("select st from VwTranReports st where st.trandate=:fromDate or st.trandate=toDate "
-            + " or (st.trandate between :fromdate and :todate)")
+    @Query("select st from VwTranReports st where st.trandate=:fromDate or st.trandate=:toDate "
+            + " or (st.trandate between :fromDate and :toDate)")
     List<VwTranReports> listByDateRange(@Param("fromDate")Date fromDate, @Param("toDate")Date toDate);
-    @Query("select st from VwTranReports st where st.trandate=:fromDate or st.trandate=toDate "
-            + " or (st.trandate between :fromdate and :todate) and st.productname=:productname")
+    @Query("select st from VwTranReports st where st.trandate=:fromDate or st.trandate=:toDate "
+            + " or (st.trandate between :fromDate and :toDate) and st.productname=:productname")
     List<VwTranReports> listByDateRange(@Param("fromDate")Date fromDate, @Param("toDate")Date toDate, @Param("productname")String productname);
 @Query(value="select * from vw_tran_reports where YEAR(trandate)=:reportyear", nativeQuery=true)
     List<VwTranReports> listByDateRange(@Param("reportyear") Integer reportyear);

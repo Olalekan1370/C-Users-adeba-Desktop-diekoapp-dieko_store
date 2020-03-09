@@ -59,6 +59,10 @@ public class Expenditure implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "amount")
     private Double amount;
+    @Column(name="amount_issued")
+    private Double amount_issued;
+    @Column(name="deduction")
+    private Double deducation;
     @Column(name = "transdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date transdate;
@@ -106,6 +110,22 @@ public class Expenditure implements Serializable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Double getAmount_issued() {
+        return amount_issued;
+    }
+
+    public void setAmount_issued(Double amount_issued) {
+        this.amount_issued = amount_issued;
+    }
+
+    public Double getDeducation() {
+        return deducation;
+    }
+
+    public void setDeducation(Double deducation) {
+        this.deducation = deducation;
     }
 
     public Date getTransdate() {
