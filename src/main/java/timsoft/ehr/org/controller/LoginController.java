@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import timsoft.ehr.org.model.User;
+import timsoft.ehr.org.model.Accounts;
 import timsoft.ehr.org.repository.AppService;
 import timsoft.ehr.org.utils.AppHelper;
 import timsoft.ehr.org.utils.AppUtils;
@@ -38,9 +38,9 @@ public class LoginController {
 
     }
 
-    public void checkUserLogin() {
-        User user = (User) FacesUtils.getManagedBean("user");
-        List<User> login = service.getUserRepo().checkLogin(user.getUsername(), user.getPassword());
+    public void checkAccountsLogin() {
+        Accounts acct = (Accounts) FacesUtils.getManagedBean("acct");
+        List<Accounts> login = service.getAccountsRepo().checkLogin(acct.getAccountsname(), acct.getPassword());
         if (login.isEmpty()) {
             log("Either username/password not correct", "Error", MessageUtil.ERROR_TAG);
         } else {
@@ -54,22 +54,22 @@ public class LoginController {
         }
     }
 
-    public void changeUserPassword() {
+    public void changeAccountsPassword() {
         AppHelper app = (AppHelper) FacesUtils.getManagedBean("appHelper");
-        User mk = getLoginUser();
+        Accounts mk = getLoginAccounts();
         if (app.getConfirmPassword().matches(app.getNewpass()) == false) {
             log("Confirm password not match", "Error", MessageUtil.ERROR_TAG);
         } else if (app.getOldpass().matches(mk.getPassword()) == false) {
             log("Old password not matched", "Error", MessageUtil.ERROR_TAG);
         } else {
             mk.setPassword(app.getNewpass());
-            service.getUserRepo().save(mk);
+            service.getAccountsRepo().save(mk);
             log("Password Changed Successfully", "Success", MessageUtil.SUCCESS_TAG);
         }
     }
 
-    public User getLoginUser() {
-        User login = (User) getSession().getAttribute(AppUtils.LOGIN_ADMIN);
+    public Accounts getLoginAccounts() {
+        Accounts login = (Accounts) getSession().getAttribute(AppUtils.LOGIN_ADMIN);
         return login;
     }
 

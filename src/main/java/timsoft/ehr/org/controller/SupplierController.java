@@ -16,8 +16,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Supplier;
 import timsoft.ehr.org.repository.AppService;
-import timsoft.ehr.org.utils.AppHelper;
-import timsoft.ehr.org.utils.AppUtils;
 import timsoft.ehr.org.utils.FacesUtils;
 import timsoft.ehr.org.utils.MessageUtil;
 
@@ -28,7 +26,7 @@ import timsoft.ehr.org.utils.MessageUtil;
 @Component
 @Scope("session")
 @ManagedBean
-public class SupplierController implements Serializable{
+public class SupplierController implements Serializable {
 
     private List<Supplier> datalist;
     @Autowired
@@ -41,29 +39,16 @@ public class SupplierController implements Serializable{
         datalist = new ArrayList<>();
         reload();
     }
-public void filter(){
-    AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
-   datalist = service.getSupplierRepo()
-           .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
-   if(datalist.isEmpty()){
-       login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
-   }
-}
+
     public void reload() {
         datalist = service.getSupplierRepo().findAll();
     }
-public void search(){
-    AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
-   datalist = service.getSupplierRepo().search(app.getSearchterm());
-   if(datalist.isEmpty()){
-       login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
-   }
-}
+
     public void add() {
         try {
             Supplier sp = (Supplier) FacesUtils.getManagedBean("supplier");
             sp.setDatecreated(new Date());
-            sp.setLastmodified(new Date());
+
             service.getSupplierRepo().save(sp);
             login.reset("supplier");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
@@ -73,11 +58,12 @@ public void search(){
         }
 
     }
+
     public void update() {
         try {
             Supplier sp = (Supplier) FacesUtils.getManagedBean("supplier");
             sp.setDatecreated(new Date());
-            sp.setLastmodified(new Date());
+
             service.getSupplierRepo().save(sp);
             login.reset("supplier");
             login.log(MessageUtil.RECORD_CREATED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
@@ -88,18 +74,17 @@ public void search(){
         }
 
     }
-    
-    public void delete(Long id){
-        try{
+
+    public void delete(Long id) {
+        try {
             service.getSupplierRepo().delete(id);
             login.log(MessageUtil.RECORD_DELETED, MessageUtil.SUCCESS, MessageUtil.SUCCESS_TAG);
             reload();
-        }catch(Exception e){
-             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             login.log(MessageUtil.INTERNAL_ERROR, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
         }
     }
-    
 
     public List<Supplier> getDatalist() {
         return datalist;

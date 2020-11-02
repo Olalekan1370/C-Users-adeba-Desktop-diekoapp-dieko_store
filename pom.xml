@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>timsoft.ehr.org</groupId>
-    <artifactId>palm_oil</artifactId>
+    <artifactId>dieko_store</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>palm_oil</name>
+    <name>dieko_store</name>
 
     <!-- Inherit defaults from Spring Boot -->
     <parent>
@@ -18,7 +18,7 @@
     </parent>
     <properties>
         <java.version>1.8</java.version>
-        <context.path>palm_oil</context.path>
+        <context.path>dieko_store</context.path>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <mysql.connector.version>5.1.31</mysql.connector.version>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -227,7 +227,7 @@
         </repository>
     </repositories>
     <build>
-        <finalName>palm_oil</finalName>
+        <finalName>dieko_store</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <plugins>
             <plugin>
@@ -251,7 +251,7 @@
                 <version>8.1.9.v20130131</version>
                 <configuration>
                     <webAppConfig>
-                        <contextPath>/palm_oil</contextPath>
+                        <contextPath>/dieko_store</contextPath>
                     </webAppConfig>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
                     <connectors>

@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,11 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "bankdeposit")
+@Table(name = "catlog")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bankdeposit.findAll", query = "SELECT b FROM Bankdeposit b")})
-public class Bankdeposit implements Serializable {
+    @NamedQuery(name = "Catlog.findAll", query = "SELECT c FROM Catlog c")})
+public class Catlog implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,30 +42,23 @@ public class Bankdeposit implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "amount")
-    private Double amount;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "bank")
-    private String bank;
-    @Size(max = 20)
-    @Column(name = "bankcode")
-    private String bankcode;
+    @Size(max = 50)
+    @Column(name = "category")
+    private String category;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
     @Size(max = 50)
-    @Column(name = "depositor")
-    private String depositor;
+    @Column(name = "reportcategory")
+    private String reportcategory;
     @Size(max = 30)
-    @Column(name = "deposittype")
-    private String deposittype;
+    @Column(name = "receiver_address")
+    private String receiverAddress;
 
-    public Bankdeposit() {
+    public Catlog() {
     }
 
-    public Bankdeposit(Long id) {
+    public Catlog(Long id) {
         this.id = id;
     }
 
@@ -78,28 +70,12 @@ public class Bankdeposit implements Serializable {
         this.id = id;
     }
 
-    public Double getAmount() {
-        return amount;
+    public String getCategory() {
+        return category;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public String getBankcode() {
-        return bankcode;
-    }
-
-    public void setBankcode(String bankcode) {
-        this.bankcode = bankcode;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Date getDatecreated() {
@@ -110,20 +86,20 @@ public class Bankdeposit implements Serializable {
         this.datecreated = datecreated;
     }
 
-    public String getDepositor() {
-        return depositor;
+    public String getReportcategory() {
+        return reportcategory;
     }
 
-    public void setDepositor(String depositor) {
-        this.depositor = depositor;
+    public void setReportcategory(String reportcategory) {
+        this.reportcategory = reportcategory;
     }
 
-    public String getDeposittype() {
-        return deposittype;
+    public String getReceiverAddress() {
+        return receiverAddress;
     }
 
-    public void setDeposittype(String deposittype) {
-        this.deposittype = deposittype;
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
     }
 
     @Override
@@ -136,10 +112,10 @@ public class Bankdeposit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bankdeposit)) {
+        if (!(object instanceof Catlog)) {
             return false;
         }
-        Bankdeposit other = (Bankdeposit) object;
+        Catlog other = (Catlog) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +124,7 @@ public class Bankdeposit implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Bankdeposit[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.Catlog[ id=" + id + " ]";
     }
     
 }

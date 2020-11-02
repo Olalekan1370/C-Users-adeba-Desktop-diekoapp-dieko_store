@@ -31,11 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "bankdeposit")
+@Table(name = "expences")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bankdeposit.findAll", query = "SELECT b FROM Bankdeposit b")})
-public class Bankdeposit implements Serializable {
+    @NamedQuery(name = "Expences.findAll", query = "SELECT e FROM Expences e")})
+public class Expences implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,25 +48,22 @@ public class Bankdeposit implements Serializable {
     private Double amount;
     @Lob
     @Size(max = 65535)
-    @Column(name = "bank")
-    private String bank;
-    @Size(max = 20)
-    @Column(name = "bankcode")
-    private String bankcode;
-    @Column(name = "datecreated")
+    @Column(name = "comments")
+    private String comments;
+    @Size(max = 100)
+    @Column(name = "issueto")
+    private String issueto;
+    @Column(name = "dateissue")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date datecreated;
-    @Size(max = 50)
-    @Column(name = "depositor")
-    private String depositor;
+    private Date dateissue;
     @Size(max = 30)
-    @Column(name = "deposittype")
-    private String deposittype;
+    @Column(name = "category")
+    private String category;
 
-    public Bankdeposit() {
+    public Expences() {
     }
 
-    public Bankdeposit(Long id) {
+    public Expences(Long id) {
         this.id = id;
     }
 
@@ -86,44 +83,36 @@ public class Bankdeposit implements Serializable {
         this.amount = amount;
     }
 
-    public String getBank() {
-        return bank;
+    public String getComments() {
+        return comments;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public String getBankcode() {
-        return bankcode;
+    public String getIssueto() {
+        return issueto;
     }
 
-    public void setBankcode(String bankcode) {
-        this.bankcode = bankcode;
+    public void setIssueto(String issueto) {
+        this.issueto = issueto;
     }
 
-    public Date getDatecreated() {
-        return datecreated;
+    public Date getDateissue() {
+        return dateissue;
     }
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
+    public void setDateissue(Date dateissue) {
+        this.dateissue = dateissue;
     }
 
-    public String getDepositor() {
-        return depositor;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDepositor(String depositor) {
-        this.depositor = depositor;
-    }
-
-    public String getDeposittype() {
-        return deposittype;
-    }
-
-    public void setDeposittype(String deposittype) {
-        this.deposittype = deposittype;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
@@ -136,10 +125,10 @@ public class Bankdeposit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bankdeposit)) {
+        if (!(object instanceof Expences)) {
             return false;
         }
-        Bankdeposit other = (Bankdeposit) object;
+        Expences other = (Expences) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +137,7 @@ public class Bankdeposit implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Bankdeposit[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.Expences[ id=" + id + " ]";
     }
     
 }

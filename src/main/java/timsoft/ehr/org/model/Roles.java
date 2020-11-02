@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,11 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "bankdeposit")
+@Table(name = "roles")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bankdeposit.findAll", query = "SELECT b FROM Bankdeposit b")})
-public class Bankdeposit implements Serializable {
+    @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r")})
+public class Roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,30 +42,17 @@ public class Bankdeposit implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "amount")
-    private Double amount;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "bank")
-    private String bank;
-    @Size(max = 20)
-    @Column(name = "bankcode")
-    private String bankcode;
+    @Size(max = 50)
+    @Column(name = "rolename")
+    private String rolename;
     @Column(name = "datecreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datecreated;
-    @Size(max = 50)
-    @Column(name = "depositor")
-    private String depositor;
-    @Size(max = 30)
-    @Column(name = "deposittype")
-    private String deposittype;
 
-    public Bankdeposit() {
+    public Roles() {
     }
 
-    public Bankdeposit(Long id) {
+    public Roles(Long id) {
         this.id = id;
     }
 
@@ -78,28 +64,12 @@ public class Bankdeposit implements Serializable {
         this.id = id;
     }
 
-    public Double getAmount() {
-        return amount;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public String getBankcode() {
-        return bankcode;
-    }
-
-    public void setBankcode(String bankcode) {
-        this.bankcode = bankcode;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     public Date getDatecreated() {
@@ -108,22 +78,6 @@ public class Bankdeposit implements Serializable {
 
     public void setDatecreated(Date datecreated) {
         this.datecreated = datecreated;
-    }
-
-    public String getDepositor() {
-        return depositor;
-    }
-
-    public void setDepositor(String depositor) {
-        this.depositor = depositor;
-    }
-
-    public String getDeposittype() {
-        return deposittype;
-    }
-
-    public void setDeposittype(String deposittype) {
-        this.deposittype = deposittype;
     }
 
     @Override
@@ -136,10 +90,10 @@ public class Bankdeposit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bankdeposit)) {
+        if (!(object instanceof Roles)) {
             return false;
         }
-        Bankdeposit other = (Bankdeposit) object;
+        Roles other = (Roles) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +102,7 @@ public class Bankdeposit implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Bankdeposit[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.Roles[ id=" + id + " ]";
     }
     
 }

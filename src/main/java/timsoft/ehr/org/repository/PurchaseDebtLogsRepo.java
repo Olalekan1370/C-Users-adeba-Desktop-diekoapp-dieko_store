@@ -6,12 +6,12 @@
 package timsoft.ehr.org.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import timsoft.ehr.org.model.Bankdeposit;
+import timsoft.ehr.org.model.PurchaseDebtLogs;
 
 /**
  *
  * @author JIDEX
  */
-public interface BankdepositRepo extends JpaRepository<Bankdeposit, Long> {
+public interface PurchaseDebtLogsRepo extends JpaRepository<PurchaseDebtLogs, Long> {
 
 }

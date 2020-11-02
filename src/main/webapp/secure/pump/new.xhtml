@@ -36,8 +36,9 @@
                             <p:selectOneMenu  required="true" requiredMessage="reservoir name is required"
                                               filter="true" filterMatchMode="contains" value="#{pump.reservoirid}" 
                                               converter="reservoirConverter">
-                                <f:selectItem noSelectionOption="true" itemLabel="--Reservoir--" itemValue="#{reservoir}"/>
-                                <f:selectItems value="#{reservoirController.datalist}" var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
+                                <f:selectItem noSelectionOption="true" itemLabel="--Reservoir--"/>
+                                <f:selectItems value="#{reservoirController.datalist}" 
+                                               var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
                        </p:selectOneMenu>
                     <p:commandButton value="Save"  icon="fa fa-plus" 
                              styleClass="success-btn raised-btn" id="save"  

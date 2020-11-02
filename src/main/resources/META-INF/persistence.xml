@@ -18,6 +18,19 @@
     <class>timsoft.ehr.org.model.VwBalance</class>
     <class>timsoft.ehr.org.model.VwTranReports</class>
     <class>timsoft.ehr.org.model.VwTopBalance</class>
+    <class>timsoft.ehr.org.model.Customers</class>
+    <class>timsoft.ehr.org.model.ProductSupply</class>
+    <class>timsoft.ehr.org.model.ReceiptLogs</class>
+    <class>timsoft.ehr.org.model.Accounts</class>
+    <class>timsoft.ehr.org.model.PurchaseDebt</class>
+    <class>timsoft.ehr.org.model.DeleteLogs</class>
+    <class>timsoft.ehr.org.model.Roles</class>
+    <class>timsoft.ehr.org.model.PurchaseDebtLogs</class>
+    <class>timsoft.ehr.org.model.Expences</class>
+    <class>timsoft.ehr.org.model.Catlog</class>
+    <class>timsoft.ehr.org.model.Purchases</class>
+    <class>timsoft.ehr.org.model.AccountsActivities</class>
+    <class>timsoft.ehr.org.model.Library</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cbtexam?zeroDateTimeBehavior=convertToNull"/>

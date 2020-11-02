@@ -15,7 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,11 +32,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ManagedBean
 @ViewScoped
 @Entity
-@Table(name = "bankdeposit")
+@Table(name = "receipt_logs")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bankdeposit.findAll", query = "SELECT b FROM Bankdeposit b")})
-public class Bankdeposit implements Serializable {
+    @NamedQuery(name = "ReceiptLogs.findAll", query = "SELECT r FROM ReceiptLogs r")})
+public class ReceiptLogs implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,30 +44,23 @@ public class Bankdeposit implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "amount")
-    private Double amount;
-    @Lob
-    @Size(max = 65535)
-    @Column(name = "bank")
-    private String bank;
-    @Size(max = 20)
-    @Column(name = "bankcode")
-    private String bankcode;
-    @Column(name = "datecreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datecreated;
-    @Size(max = 50)
-    @Column(name = "depositor")
-    private String depositor;
     @Size(max = 30)
-    @Column(name = "deposittype")
-    private String deposittype;
+    @Column(name = "category")
+    private String category;
+    @Column(name = "dateprinted")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateprinted;
+    @Size(max = 40)
+    @Column(name = "reporttype")
+    private String reporttype;
+    @JoinColumn(name = "printedby", referencedColumnName = "id")
+    @ManyToOne
+    private Accounts printedby;
 
-    public Bankdeposit() {
+    public ReceiptLogs() {
     }
 
-    public Bankdeposit(Long id) {
+    public ReceiptLogs(Long id) {
         this.id = id;
     }
 
@@ -78,52 +72,36 @@ public class Bankdeposit implements Serializable {
         this.id = id;
     }
 
-    public Double getAmount() {
-        return amount;
+    public String getCategory() {
+        return category;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getBank() {
-        return bank;
+    public Date getDateprinted() {
+        return dateprinted;
     }
 
-    public void setBank(String bank) {
-        this.bank = bank;
+    public void setDateprinted(Date dateprinted) {
+        this.dateprinted = dateprinted;
     }
 
-    public String getBankcode() {
-        return bankcode;
+    public String getReporttype() {
+        return reporttype;
     }
 
-    public void setBankcode(String bankcode) {
-        this.bankcode = bankcode;
+    public void setReporttype(String reporttype) {
+        this.reporttype = reporttype;
     }
 
-    public Date getDatecreated() {
-        return datecreated;
+    public Accounts getPrintedby() {
+        return printedby;
     }
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
-    }
-
-    public String getDepositor() {
-        return depositor;
-    }
-
-    public void setDepositor(String depositor) {
-        this.depositor = depositor;
-    }
-
-    public String getDeposittype() {
-        return deposittype;
-    }
-
-    public void setDeposittype(String deposittype) {
-        this.deposittype = deposittype;
+    public void setPrintedby(Accounts printedby) {
+        this.printedby = printedby;
     }
 
     @Override
@@ -136,10 +114,10 @@ public class Bankdeposit implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bankdeposit)) {
+        if (!(object instanceof ReceiptLogs)) {
             return false;
         }
-        Bankdeposit other = (Bankdeposit) object;
+        ReceiptLogs other = (ReceiptLogs) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +126,7 @@ public class Bankdeposit implements Serializable {
 
     @Override
     public String toString() {
-        return "timsoft.ehr.org.model.Bankdeposit[ id=" + id + " ]";
+        return "timsoft.ehr.org.model.ReceiptLogs[ id=" + id + " ]";
     }
     
 }
