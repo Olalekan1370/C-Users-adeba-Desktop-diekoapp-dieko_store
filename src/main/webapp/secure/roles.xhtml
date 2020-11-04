@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Supplier</ui:define>
+    <ui:define name="title">Manage Reservoir</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; maring:0px;">
+        <h:form id="parentform" style="padding:0px; margin:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -52,33 +52,34 @@
             </p:confirmDialog>
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
-                    <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Supplier Module"/>
+                    <div class="ui-g-12 ui-lg-5">
+                        <h:outputText value="Researvior Module"/>
                     </div> 
-                    <div class="ui-g-12 ui-lg-2">
+                    <div class="ui-g-12 ui-lg-1">
                         <p:outputPanel>    
                             <p:commandLink>
 
-                                <span>#0 Record(s)</span>
+                                <span>#{rolesController.datalist.size()} Record(s)</span>
                             </p:commandLink>
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_student').show()">
+                        <p:commandLink  oncomplete="PF('search_roles').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('supplier')}">
+                        <p:commandLink action="#{loginController.reset('roles')}" oncomplete="PF('addNew').show()">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
+
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  action="#{supplierController.reload()}" update=":parentform:result">
+                        <p:commandLink update=":parentform:result" action="#{rolesController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -87,7 +88,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{supplierController.datalist}" 
+                    <p:dataTable value="#{rolesController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -107,52 +108,49 @@
 
                                     <label>Date To</label>
                                 </h:panelGroup>
-                                <p:commandLink update=":parentform:result" action="#{supplierController.filter()}">
+                                <p:commandLink action="#{rolesController.search()}" update="result">
 
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
                                 </p:commandLink>
                                 <h:commandLink 
                                     >
-                                    <i class="fa fa-close" style="color:#eb4924"/>
+                                    <i class="fa fa-file-excel-o" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-                                    <p:dataExporter target="result" type="xls" fileName="supplier"/>
+                                    <p:dataExporter target="result" type="xls" fileName="roles"/>  
                                 </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="SupplierName" width="150" >
-                            <h:outputText value="#{result.suppliername}" />
+                        <p:column headerText="Reserve Name" width="100" >
+                            <h:outputText value="#{result.rolename}" />
                         </p:column>
-                        <p:column headerText="Address" width="160">
-                            <h:outputText value="#{result.address}" />
-                        </p:column>
-                        <p:column headerText="Email" width="160">
-                            <h:outputText value="#{result.email}" />
-                        </p:column>
-                        <p:column headerText="ContactPhone" width="150">
-                            <h:outputText value="#{result.phone}" />
-                        </p:column>
-                        <p:column headerText="Code" width="160">
-                            <h:outputText value="#{result.code}" />
-                        </p:column>
-                        <p:column headerText="Date Created" width="120">
+
+                        <p:column headerText="Date Created" width="200">
                             <h:outputText value="#{result.datecreated}" >
                                 <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>
                             </h:outputText>
                         </p:column>
-                        <p:column width="25">
+                        <p:column width="50">
+                            <p:commandLink style="color:pink; font-size:12px;"
+                                           title="New Supply"
+                                           oncomplete="PF('reservelog').show()"  
+                                           action="#{rolesController.loadChildren(result)}">
+
+                                <i class="fa fa-vcard" style="color:#7CB342"/>
+
+                            </p:commandLink>
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
 
-                                           oncomplete="PF('addNew').show()" >
+                                           oncomplete="PF('editNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{supplier}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{roles}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result" action="#{supplierController.delete(result.id)}">
+                                           update="result" action="#{rolesController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
@@ -168,18 +166,20 @@
 
         </h:form>
         <h:form id="uploadform">    
-            <ui:include src="./supplier/new.xhtml"/>  
+            <ui:include src="./roles/new.xhtml"/>  
         </h:form> 
 
         <h:form id="edit">    
-            <ui:include src="./supplier/edit.xhtml"/>  
+            <ui:include src="./roles/edit.xhtml"/>  
         </h:form> 
 
-        <h:form id="search_supplier">    
-            <ui:include src="./supplier/search.xhtml"/>  
+        <h:form id="search_roles">    
+            <ui:include src="./roles/search.xhtml"/>  
         </h:form> 
 
-
+        <h:form id="reservelogs_form">    
+            <ui:include src="./roles/logs.xhtml"/>  
+        </h:form> 
 
     </ui:define>
 

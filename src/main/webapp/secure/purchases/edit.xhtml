@@ -1,0 +1,145 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    >
+
+    <p:dialog  
+        widgetVar="editNew" 
+        responsive="true" 
+        closeOnEscape="true"
+        dynamic="true"
+        position="center" 
+        closable="true"
+        id="editNew"
+        fitViewport="true"
+
+        >
+        <f:facet name="header">
+            Edit Purchases
+        </f:facet>
+
+        <div class="p-grid ui-fluid">
+            <div class="p-col-12">
+                <p:outputPanel>
+                    <p:autoUpdate/>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.productname}" required="true" 
+                                         requiredMessage="invalid name"/>
+                            <label>ProductName</label>
+                        </h:panelGroup>
+
+                        <p:selectOneMenu  required="true" requiredMessage="category is required"
+                                          filter="true" filterMatchMode="contains" value="#{purchases.category}" 
+                                          >
+                            <f:selectItem noSelectionOption="true" itemLabel="--Category--"/>
+                            <f:selectItems value="#{purchasesController.datalist}" 
+                                           var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
+                        </p:selectOneMenu>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.supplier}" required="true" 
+                                         requiredMessage="invalid name"/>
+                            <label>Supplier</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.customer}" required="true" 
+                                         requiredMessage="invalid name"/>
+                            <label>Customer</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.customercode}" required="true" 
+                                         requiredMessage="invalid customercode"/>
+                            <label>Customercode</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.salesprice}" required="true" 
+                                         requiredMessage="invalid salesprice"/>
+                            <label>Salesprice</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.purchaseprice}" required="true" 
+                                         requiredMessage="invalid purchaseprice"/>
+                            <label>Purchaseprice</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.quantity}" required="true" 
+                                         requiredMessage="invalid quantity"/>
+                            <label>Quantity</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.sellingcategory}" required="true" 
+                                         requiredMessage="invalid sellingcategory"/>
+                            <label>Sellingcategory</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.profit}" required="true" 
+                                         requiredMessage="invalid profit"/>
+                            <label>Profit</label>
+                        </h:panelGroup>
+
+                        <p:selectOneMenu  required="true" requiredMessage="paymenttype is required"
+                                          filter="true" filterMatchMode="contains" value="#{purchases.paymenttype}" 
+                                          >
+                            <f:selectItem noSelectionOption="true" itemLabel="--Paymenttype--"/>
+                            <f:selectItems value="#{purchasesController.datalist}" 
+                                           var="rs" itemLabel="#{rs.name} - #{rs.units}" itemValue="#{rs}"/>
+                        </p:selectOneMenu>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.amountpaid}" required="true" 
+                                         requiredMessage="invalid amountpaid"/>
+                            <label>Amountpaid</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.discount}" required="true" 
+                                         requiredMessage="invalid discount"/>
+                            <label>Discount</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.vat}" required="true" 
+                                         requiredMessage="invalid vat "/>
+                            <label>V.A.T</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchases.invoiceno}" required="true" 
+                                         requiredMessage="invalid invoiceno"/>
+                            <label>Invoiceno</label>
+                        </h:panelGroup>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:calendar value="#{purchases.datecreated}" required="true" 
+                                        requiredMessage="date created is required" navigator="true"
+                                        pattern="yyyy-MM-dd"/>
+                            <label>Date Created</label>
+                        </h:panelGroup>
+                        <p:commandButton value="Save"  icon="fa fa-refresh" 
+                                         styleClass="success-btn raised-btn" id="save"  
+                                         action="#{purchasesController.update()}" update=":parentform:result"/>
+                    </p:panelGrid> 
+
+                </p:outputPanel>
+            </div>
+        </div>
+
+
+
+
+    </p:dialog>  
+
+
+</ui:composition>

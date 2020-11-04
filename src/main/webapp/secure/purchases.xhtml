@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/template.xhtml">
 
-    <ui:define name="title">Manage Supplier</ui:define>
+    <ui:define name="title">Manage Pump</ui:define>
     <ui:define name="head">
         <style type="text/css">
             .ui-outputlabel {
@@ -41,7 +41,7 @@
 
     </ui:define>
     <ui:define name="content">
-        <h:form id="parentform" style="padding:0px; maring:0px;">
+        <h:form id="parentform" style="padding:0px; margin:0px;">
             <p:growl id="msg" showDetail="true">
                 <p:autoUpdate/>
             </p:growl>
@@ -53,7 +53,7 @@
             <div class="ui-g ui-fluid" style="margin-left:-20px; padding:0px; margin-right:-20px;">
                 <div class="ui-g-12 ui-lg-12" style="margin:0px; padding:0px;">
                     <div class="ui-g-12 ui-lg-4">
-                        <h:outputText value="Supplier Module"/>
+                        <h:outputText value="Pump Module"/>
                     </div> 
                     <div class="ui-g-12 ui-lg-2">
                         <p:outputPanel>    
@@ -64,21 +64,22 @@
                         </p:outputPanel> 
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  oncomplete="PF('search_student').show()">
+                        <p:commandLink  oncomplete="PF('search_purchases').show()">
 
                             <i class="fa fa-search" style="margin-right:5px;"></i>
                             <span>Search</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink oncomplete="PF('addNew').show()" action="#{loginController.reset('supplier')}">
+                        <p:commandLink oncomplete="PF('addNew').show()" 
+                                       action="#{loginController.reset('purchases')}">
 
                             <i class="fa fa-plus" style="margin-right:5px;"></i>
                             <span>Add New</span>
                         </p:commandLink>
                     </div>
                     <div class="ui-g-12 ui-lg-2">
-                        <p:commandLink  action="#{supplierController.reload()}" update=":parentform:result">
+                        <p:commandLink  update=":parentform:result" action="#{purchasesController.reload()}">
 
                             <i class="fa fa-refresh" style="margin-right:5px;"></i>
                             <span>Refresh</span>
@@ -87,7 +88,7 @@
                     </div>
                 </div>
                 <div class="ui-g-12 ui-lg-12">
-                    <p:dataTable value="#{supplierController.datalist}" 
+                    <p:dataTable value="#{purchasesController.datalist}" 
                                  var="result" 
                                  id="result" paginator="true" paginatorPosition="bottom" rows="100"
                                  style="margin:0px;" scrollable="true" scrollHeight="380"
@@ -107,7 +108,7 @@
 
                                     <label>Date To</label>
                                 </h:panelGroup>
-                                <p:commandLink update=":parentform:result" action="#{supplierController.filter()}">
+                                <p:commandLink action="#{purchasesController.filter()}"  update="result, :parentform:msg">
 
                                     <i class="fa fa-search" style="color:#eb4924"/>
                                     <span>Search</span>
@@ -116,26 +117,71 @@
                                     >
                                     <i class="fa fa-close" style="color:#eb4924"/>
                                     <span>Export to Excel</span>
-                                    <p:dataExporter target="result" type="xls" fileName="supplier"/>
+                                    <p:dataExporter target="result" type="xls" fileName="purchases"/>
                                 </h:commandLink>
                             </p:panelGrid>
                         </f:facet>
 
-                        <p:column headerText="SupplierName" width="150" >
-                            <h:outputText value="#{result.suppliername}" />
+                        <p:column headerText="Productname" width="100" >
+                            <h:outputText value="#{result.productname}" />
                         </p:column>
-                        <p:column headerText="Address" width="160">
-                            <h:outputText value="#{result.address}" />
+
+                        <p:column headerText="Category" >
+                            <h:outputText value="#{result.category}" />
                         </p:column>
-                        <p:column headerText="Email" width="160">
-                            <h:outputText value="#{result.email}" />
+
+                        <p:column headerText="Supplier" width="130">
+                            <h:outputText value="#{result.supplier}" />
                         </p:column>
-                        <p:column headerText="ContactPhone" width="150">
-                            <h:outputText value="#{result.phone}" />
+
+                        <p:column headerText="Customer" width="130">
+                            <h:outputText value="#{result.customer}" />
                         </p:column>
-                        <p:column headerText="Code" width="160">
-                            <h:outputText value="#{result.code}" />
+
+                        <p:column headerText="Customercode" width="130">
+                            <h:outputText value="#{result.customercode}" />
                         </p:column>
+
+                        <p:column headerText="Salesprice" width="130">
+                            <h:outputText value="#{result.salesprice}" />
+                        </p:column>
+
+                        <p:column headerText="Purchaseprice" width="130">
+                            <h:outputText value="#{result.purchaseprice}" />
+                        </p:column>
+
+                        <p:column headerText="Quantity" width="130">
+                            <h:outputText value="#{result.quantity}" />
+                        </p:column>
+
+                        <p:column headerText="Sellingcategory" width="130">
+                            <h:outputText value="#{result.sellingcategory}" />
+                        </p:column>
+
+                        <p:column headerText="Profit" width="130">
+                            <h:outputText value="#{result.profit}" />
+                        </p:column>
+
+                        <p:column headerText="Paymenttype" width="130">
+                            <h:outputText value="#{result.paymenttype}" />
+                        </p:column>
+
+                        <p:column headerText="Amountpaid" width="130">
+                            <h:outputText value="#{result.amountpaid}" />
+                        </p:column>
+
+                        <p:column headerText="Discount" width="130">
+                            <h:outputText value="#{result.discount}" />
+                        </p:column>
+
+                        <p:column headerText="VAT" width="130">
+                            <h:outputText value="#{result.vat}" />
+                        </p:column>
+
+                        <p:column headerText="Invoiceno" width="130">
+                            <h:outputText value="#{result.invoiceno}" />
+                        </p:column>
+
                         <p:column headerText="Date Created" width="120">
                             <h:outputText value="#{result.datecreated}" >
                                 <f:convertDateTime timeZone="GMT+01" pattern="yyyy/MM/dd HH:mm:ss a"/>
@@ -145,14 +191,14 @@
                             <p:commandLink style="color:green; font-size:12px;"
                                            title="Edit Record"
 
-                                           oncomplete="PF('addNew').show()" >
+                                           oncomplete="PF('editNew').show()" >
 
                                 <i class="fa fa-edit" style="color:#0288D1"/>
-                                <f:setPropertyActionListener target="#{supplier}" value="#{result}"/>
+                                <f:setPropertyActionListener target="#{purchases}" value="#{result}"/>
                             </p:commandLink>
 
                             <p:commandLink style="color:green; font-size:12px;" title="delete"
-                                           update="result" action="#{supplierController.delete(result.id)}">
+                                           update="result" action="#{purchasesController.delete(result.id)}">
 
                                 <i class="fa fa-close" style="color:#eb4924"/>
                                 <p:confirm header="Confirmation" message="Are you sure to delete Record?" icon="ui-icon-warning" />
@@ -167,16 +213,16 @@
             </div>
 
         </h:form>
-        <h:form id="uploadform">    
-            <ui:include src="./supplier/new.xhtml"/>  
+        <h:form id="addNew">    
+            <ui:include src="./purchases/new.xhtml"/>  
         </h:form> 
 
         <h:form id="edit">    
-            <ui:include src="./supplier/edit.xhtml"/>  
+            <ui:include src="./purchases/edit.xhtml"/>  
         </h:form> 
 
-        <h:form id="search_supplier">    
-            <ui:include src="./supplier/search.xhtml"/>  
+        <h:form id="search_purchases">    
+            <ui:include src="./purchases/search.xhtml"/>  
         </h:form> 
 
 

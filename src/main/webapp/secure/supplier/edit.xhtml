@@ -5,7 +5,7 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     >
- 
+
     <p:dialog  
         widgetVar="addNew" 
         responsive="true" 
@@ -20,43 +20,48 @@
         <f:facet name="header">
             Edit Supplier
         </f:facet>
-       
+
         <div class="p-grid ui-fluid">
             <div class="p-col-12">
                 <p:outputPanel>
                     <p:autoUpdate/>
-                   <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
-                             columnClasses="ui-grid-col-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{supplier.name}" required="true" 
-                                     requiredMessage="invalid course title"/>
-                            <label>Supplier name</label>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank"
+                                 columnClasses="ui-grid-col-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText required="true" value="#{supplier.suppliername}"
+                                         requiredMessage="invalid suppliername"/>
+                            <label>SupplierName</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
-                        <p:inputText value="#{supplier.contactphone}" required="true" requiredMessage="invalid course code"/>
-                            <label>Contact Mobile</label>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill" >
+                            <p:inputText value="#{supplier.phone}" required="true" requiredMessage="invalid course code"/>
+                            <label>Phone</label>
                         </h:panelGroup>
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText value="#{supplier.email}"  required="true" requiredMessage="invalid course unit"/>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{supplier.email}"  required="true" requiredMessage="invalid course unit"/>
                             <label>Contact Email</label>
                         </h:panelGroup>
-                       <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                           <p:inputText value="#{supplier.adress}" 
-                                        required="true" requiredMessage="invalid course unit"/>
-                            <label>Contact Address</label>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{supplier.address}" 
+                                         required="true" requiredMessage="invalid course unit"/>
+                            <label>Address</label>
                         </h:panelGroup>
-                    <p:commandButton value="Save"  icon="fa fa-refresh" 
-                                     styleClass="success-btn raised-btn" id="save"  action="#{supplierController.update()}"/>
-                </p:panelGrid> 
-                
-               </p:outputPanel>
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{supplier.code}" 
+                                         required="true" requiredMessage="invalid course unit"/>
+                            <label>Code</label>
+                        </h:panelGroup>
+                        <p:commandButton value="Save"  icon="fa fa-refresh" 
+                                         styleClass="success-btn raised-btn" id="save"  action="#{supplierController.update()}"/>
+                    </p:panelGrid> 
+
+                </p:outputPanel>
             </div>
         </div>
-       
-            
-            
-      
+
+
+
+
     </p:dialog>  
-     
+
 
 </ui:composition>

@@ -6,7 +6,6 @@
 package timsoft.ehr.org.repository;
 
 import java.util.List;
-import org.primefaces.ultima.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,9 +16,6 @@ import timsoft.ehr.org.model.Accounts;
  * @author JIDEX
  */
 public interface AccountsRepo extends JpaRepository<Accounts, Long> {
-
-    @Query("select acct from Accounts acct where acct.acctaffid.fullname like :search or acct.username like :search")
-    List<Accounts> search(@Param("search") String search);
 
 //    @Query(value="select * from user  where staffaffid like :search or acct.username like :search", nativeQuery = true)
 // public   List<Accounts> searchTerm(@Param("search")String term);
@@ -32,7 +28,5 @@ public interface AccountsRepo extends JpaRepository<Accounts, Long> {
     @Query("select acct from Accounts acct where acct.username=:username and acct.password=:password")
     List<Accounts> checkLogin(@Param("username") String username,
             @Param("password") String password);
-
-    public void save(User mk);
 
 }

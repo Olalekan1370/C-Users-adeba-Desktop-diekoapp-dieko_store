@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import timsoft.ehr.org.model.Supplier;
 import timsoft.ehr.org.repository.AppService;
+import timsoft.ehr.org.utils.AppHelper;
+import timsoft.ehr.org.utils.AppUtils;
 import timsoft.ehr.org.utils.FacesUtils;
 import timsoft.ehr.org.utils.MessageUtil;
 
@@ -40,6 +42,15 @@ public class SupplierController implements Serializable {
         reload();
     }
 
+    public void filter(){
+    AppHelper app =(AppHelper)FacesUtils.getManagedBean("appHelper");
+   datalist = service.getSupplierRepo()
+           .filterByDateRange(AppUtils.getDate(app.getDateFrom()), AppUtils.getDate(app.getDateTo()));
+   if(datalist.isEmpty()){
+       login.log(MessageUtil.RECORD_NOT_FOUND, MessageUtil.ERROR, MessageUtil.ERROR_TAG);
+   }
+}
+    
     public void reload() {
         datalist = service.getSupplierRepo().findAll();
     }

@@ -5,7 +5,10 @@
  */
 package timsoft.ehr.org.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import timsoft.ehr.org.model.Supplier;
 
 /**
@@ -13,5 +16,7 @@ import timsoft.ehr.org.model.Supplier;
  * @author JIDEX
  */
 public interface SupplierRepo extends JpaRepository<Supplier, Long> {
+    @Query(value="select * from supplier where DATE(datecreated)=:from or DATE(datecreated)=:to or DATE(datecreated) between :from and :to", nativeQuery=true)
+    List<Supplier> filterByDateRange(@Param("from")String from, @Param("to")String to);
 
 }

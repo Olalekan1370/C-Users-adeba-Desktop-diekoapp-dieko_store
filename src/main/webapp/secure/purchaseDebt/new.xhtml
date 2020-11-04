@@ -1,0 +1,67 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    >
+
+    <p:dialog  
+        widgetVar="reservelog" 
+        responsive="true" 
+        closeOnEscape="true"
+        dynamic="true"
+        position="center" 
+        closable="true"
+        id="reservelog"
+        fitViewport="true"
+        width="700"
+        >
+        <f:facet name="header">
+            Manage Reserve Log
+        </f:facet>
+
+        <div class="p-grid ui-fluid">
+            <div class="p-col-12 p-lg-12">
+                <p:outputPanel>
+                    <p:autoUpdate/>
+                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank"
+                                 >
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText value="#{purchaseDebt.amount}" 
+                                         required="true" requiredMessage="invalid reporttype"/>
+                            <label>Amount</label>
+                        </h:panelGroup>
+
+                        <p:selectOneMenu  required="true" requiredMessage="invalid debt status"
+                                          filter="true" filterMatchMode="contains"
+                                          value="#{purchaseDebt.debtstatus}">
+                            <f:selectItem noSelectionOption="true" 
+                                          itemLabel="--Debtstatus--" />
+                            <f:selectItems itemLabel="#{rs.name}" var="rs" value="#{purchaseDebtController.datalist}"
+                                           itemValue="#{rs}"/>
+                        </p:selectOneMenu>
+
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:calendar value="#{purchaseDebt.datecreated}" required="true" 
+                                        requiredMessage="date created is required" navigator="true"
+                                        pattern="yyyy-MM-dd"/>
+                            <label>Date Created</label>
+                        </h:panelGroup>
+
+                        <p:commandButton value="Save"  icon="fa fa-plus" 
+                                         styleClass="success-btn raised-btn" id="save" />
+                    </p:panelGrid> 
+
+                </p:outputPanel>
+            </div>
+        </div>
+
+
+
+
+    </p:dialog>  
+
+
+</ui:composition>

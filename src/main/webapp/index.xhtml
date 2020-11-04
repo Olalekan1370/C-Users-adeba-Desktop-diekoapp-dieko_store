@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
@@ -23,43 +22,43 @@
             <p:growl showDetail="true" id="msg">
                 <p:autoUpdate/>
             </p:growl>
-        <div class="card login-panel ui-fluid">
-            <div class="ui-g">
-                <div class="ui-g-12">
-                    <p:graphicImage name="images/school_logo.png" library="ultima-layout" style="width:200px; height:180px;"/>
+            <div class="card login-panel ui-fluid">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <p:graphicImage name="images/school_logo.png" library="ultima-layout" style="width:200px; height:180px;"/>
+                    </div>
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:inputText  required="true" requiredMessage="Invalid matric number"
+                                          value="#{user.username}"/>
+                            <label>Username</label>
+                        </h:panelGroup>
+
+                    </div>
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
+                            <p:password  required="true" requiredMessage="Invalid password"
+                                         value="#{user.password}" />
+                            <label>Password</label>
+                        </h:panelGroup>
+
+                    </div>
+
+
+                    <div class="ui-g-12">
+                        <p:commandButton  value="Login" icon="ui-icon-person" 
+                                          id="btn"  update=":login:msg" action="#{loginController.checkAccountsLogin()}">
+
+                            <p:blockUI trigger="btn" block="login">
+                                Authenticating please wait...
+                            </p:blockUI>
+                        </p:commandButton>
+
+                        <p:button  value="Need Help" icon="ui-icon-help" styleClass="secondary"/>
+                    </div>
+
                 </div>
-                <div class="ui-g-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:inputText  required="true" requiredMessage="Invalid matric number"
-                                      value="#{user.username}"/>
-                        <label>Username</label>
-                    </h:panelGroup>
-                    
-                </div>
-                <div class="ui-g-12">
-                    <h:panelGroup styleClass="md-inputfield md-inputfield-fill">
-                        <p:password  required="true" requiredMessage="Invalid password"
-                                     value="#{user.password}" />
-                        <label>Password</label>
-                    </h:panelGroup>
-                    
-                </div>
-               
-                
-                <div class="ui-g-12">
-                    <p:commandButton  value="Login" icon="ui-icon-person" 
-                                      id="btn"  update=":login:msg" action="#{loginController.checkUserLogin()}">
-                        
-                        <p:blockUI trigger="btn" block="login">
-                            Authenticating please wait...
-                        </p:blockUI>
-                    </p:commandButton>
-                    
-                    <p:button  value="Need Help" icon="ui-icon-help" styleClass="secondary"/>
-                </div>
-                
             </div>
-        </div>
         </h:form>
         <h:outputStylesheet name="css/ripple.css" library="ultima-layout" />
         <h:outputStylesheet name="css/layout-#{guestPreferences.theme}.css" library="ultima-layout" />
